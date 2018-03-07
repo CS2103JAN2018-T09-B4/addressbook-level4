@@ -781,7 +781,13 @@ See this https://github.com/se-edu/addressbook-level4/pull/599[PR] for the step-
 == Product Scope
 
 *Target user profile*:
-
+* Freshie Couples/Students in NUS School of Computing
+* - Time Table Sync to NUS Mods in order to find common breaks
+* - Notify on important dates
+* - Journal diary on the meeting
+* - Campus direction shortcuts for new students and when it rains
+* - Couples having diet issues
+* - Location on where to eat
 * has a need to manage a significant number of contacts
 * prefer desktop apps over other types
 * can type fast
@@ -789,9 +795,25 @@ See this https://github.com/se-edu/addressbook-level4/pull/599[PR] for the step-
 * is reasonably comfortable using CLI apps
 
 *Value proposition*: manage contacts faster than a typical mouse/GUI driven app
+*Our team visions to help new students to not get lost in their first day of school or when it rains. Because right now, there is no proper channel that helps them to solve this problem.
+*Our team visions to help new students to help them find a place to eat because they don’t know the nearest food centre they can eat at.
+*Our team visions to help students to find common breaks so they can form a meetup session easily
+*Our team visions to help students to jote down journals that happen on the meetup session so that everything is well stored together
+*Our team visions to help NUS couple to solve problem that they faced out of all the hectic workload in NUS which always leads to a disastrous break up.
 
 [appendix]
 == User Stories
+*As a new student user i can view more information about particular command, so that i can learn how to use various commands
+*As a student/couple user, i can view my friends/couple time table so i can plan a schedule/location to meet
+*As a student/couple user, i can schedule(add) a time slot for meetup at a location so there will not be any crashes
+*As a student/couple user, i can edit the schedule for meetup and edit the location (if there is changes) so that if there has been any last minute changes i still can edit
+*As a student/couple user, i can delete the scheduled meetup and reflect on affected people only so not everyone that sync with my timetable gets affected
+*As a student/couple user, i can add/list/delete/edit journal so i can note down everything in a journal that i would like to keep
+*As a couple user, i would like to receive a birthday notification a week earlier so i can have ample time to prepare the gift
+*As a new student user, i can search for the campus shortcuts and list out in ascending order so i won’t be late in future.
+*8As a new student user, i can search for the route when it rains from one location to another so i won’t get wet if i didn't bring my umbrella
+*As a couple user, i can calculate my diet of how many calories i have burnt this that day so my love won’t leave me.
+*As a new student user i can find a place to eat from that location (Faculty/School) so i will not feel hungry.
 
 Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (unlikely to have) - `*`
 
