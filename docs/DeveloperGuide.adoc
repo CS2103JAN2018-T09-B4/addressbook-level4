@@ -852,6 +852,11 @@ _{More to be added}_
 .  Should work on any <<mainstream-os,mainstream OS>> as long as it has Java `1.8.0_60` or higher installed.
 .  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 .  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+.  Should be usable by a novice after reading the <<UserGuide#, User Guide>>.
+.  Should be able to handle any invalid inputs.
+.  Commands used should be intuitive and comprehensible.
+.  Should respond within 2 seconds.
+.  Should be able to work on both 32-bit and 64-bit environments.
 
 _{More to be added}_
 
