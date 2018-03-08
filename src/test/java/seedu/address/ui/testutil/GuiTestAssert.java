@@ -3,6 +3,7 @@ package seedu.address.ui.testutil;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
+import java.awt.*;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -18,7 +19,6 @@ import seedu.address.ui.PersonCard;
  */
 public class GuiTestAssert {
     private static final String LABEL_DEFAULT_STYLE = "label";
-
     /**
      * Asserts that {@code actualCard} displays the same values as {@code expectedCard}.
      */
@@ -31,7 +31,8 @@ public class GuiTestAssert {
         assertEquals(expectedCard.getTags(), actualCard.getTags());
 
         expectedCard.getTags().forEach(tag ->
-                assertEquals(expectedCard.getTagStyleClasses(tag), actualCard.getTagStyleClasses(tag)));
+                assertEquals(Arrays.asList(LABEL_DEFAULT_STYLE, expectedCard.getTagStyleClasses(tag)),
+                        actualCard.getTagStyleClasses(tag)));
     }
 
     /**
@@ -46,37 +47,6 @@ public class GuiTestAssert {
     }
 
     /**
-     * Returns color style for {@code tagName}'s label.
-     *
-     * @see PersonCard#getTagColorStyleFor(String)
-     */
-    private static String getTagColorStyleFor(String tagName) {
-        switch (tagName) {
-        case "classmates":
-        case "owesMoney":
-            return "teal";
-
-        case "colleagues":
-        case "neighbours":
-            return "yellow";
-
-        case "family":
-        case "friend":
-            return "orange";
-
-        case "friends":
-            return "brown";
-
-        case "husband":
-            return "purple";
-
-        default:
-            fail(tagName + " does not have a color assigned.");
-            return "";
-        }
-    }
-
-    /**
      * Asserts that the tags in {@code actualCard} matches all the tags in {@code expectedPerson}
      * with the correct color
      */
@@ -84,9 +54,6 @@ public class GuiTestAssert {
         List<String> expectedTags = expectedPerson.getTags().stream()
                 .map(tag -> tag.tagName).collect(Collectors.toList());
         assertEquals(expectedTags, actualCard.getTags());
-        expectedTags.forEach(tag ->
-                assertEquals(Arrays.asList(LABEL_DEFAULT_STYLE, getTagColorStyleFor(tag)),
-                        actualCard.getTagStyleClasses(tag)));
     }
 
     /**
@@ -96,6 +63,36 @@ public class GuiTestAssert {
     public static void assertListMatching(PersonListPanelHandle personListPanelHandle, Person... persons) {
         for (int i = 0; i < persons.length; i++) {
             assertCardDisplaysPerson(persons[i], personListPanelHandle.getPersonCardHandle(i));
+        }
+    }
+
+    /**
+     * Returns color style for {@code tagName}'s label.
+     * @see PersonCard#getTagColorStyleFor(String)
+     */
+    private static String getTagColorStyleFor(String tagName) {
+        switch (tagName) {
+            case "classmates":
+            case "owesMoney":
+                return "teal";
+
+            case "colleagues":
+            case "neighbours":
+                return "yellow";
+
+            case "family":
+            case "friend":
+                return "orange";
+
+            case "friends":
+                return "blue";
+
+            case "husband":
+                return "salmon";
+
+            default:
+                fail(tagName + " does not have a color assigned.");
+                return "";
         }
     }
 
