@@ -816,6 +816,8 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`* * *` |As a part of a couple in NUS |locate my partner from his NUS timetable |easily meet up with my partner on campus
 
+|`* * *` |As a part of a couple in NUS |encrypt my NUSCouples save data |prevent strangers from reading personal information such as my journal entries
+
 |`* *` |user |hide <<private-contact-detail,private contact details>> by default |minimize chance of someone else seeing them by accident
 
 |`* *` |As a part of a couple in NUS |be notified of special events (e.g. Valentine's day) in my calendar |better plan for these dates
