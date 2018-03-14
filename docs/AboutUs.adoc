@@ -3,7 +3,7 @@
 :imagesDir: images
 :stylesDir: stylesheets
 
-AddressBook - Level 4 was developed by the https://github.com/CS2103JAN2018-T09-B4/main[FreshieCouple] team. +
+NUSCouples was developed by team https://github.com/CS2103JAN2018-T09-B4/main[T09-B4]. +
  +
 {empty} +
 We are a team based in the http://www.comp.nus.edu.sg[School of Computing, National University of Singapore].
@@ -37,7 +37,7 @@ Responsibilities: Storage
 
 '''
 
-=== Danial Ng
+=== Daniel Ng
 image::daniel.jpeg[width="150", align="left"]
 {empty}[https://github.com/HEARTOFAL1ON[github]]
 
