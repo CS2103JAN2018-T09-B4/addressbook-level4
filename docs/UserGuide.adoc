@@ -172,6 +172,30 @@ Lists all the commands that you have entered in reverse chronological order. +
 Format: `history` +
 Alias: `hist`
 
+=== Creating a new journal entry : `new`
+
+Creates a new window that allows the user to input and save text. +
+Format: `new` +
+Alias: `n`
+
+=== Scheduling new event : `schedule`
+
+Adds new event to Google calander. +
+Format: `schedule` +
+Alias: `shd`
+
+=== Finding building location : `location`
+
+Shows the location (by building) of the entered classroom name. +
+Format: `location` +
+Alias: `loc`
+
+=== Showing partner's timetable : `timetable`
+
+Shows the partner's timetable. +
+Format: `timetable` +
+Alias: `ttb`
+
 [NOTE]
 ====
 Pressing the kbd:[&uarr;] and kbd:[&darr;] arrows will display the previous and next input respectively in the command box.
@@ -275,3 +299,7 @@ e.g.`select 2`
 * *History* : `history`
 * *Undo* : `undo`
 * *Redo* : `redo`
+* *New* : `new`
+* *Schedule* : `schedule`
+* *Timetable* : `timetable`
+* *Location* : `location`
