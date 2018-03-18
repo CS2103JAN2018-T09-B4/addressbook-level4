@@ -1946,19 +1946,19 @@ for <code>RemarkCommandParser</code>.</p>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Chen Xing (Scheduler)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">This app allows user to schedule/edit/delete/view planned meetings</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">This app allows user to receive notification about important dates from scheduled meetings</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Chen Xing</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Scheduler: This app allows user to schedule/edit/delete/view planned meetings</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Notifications: Allows user to receive notification about important dates from scheduled meetings</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Marlene (Timetable viewer)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">To help couples identify common breaks during school term so they can plan meetings during their free time</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Data encryption to protect data and prevent people from accessing and reading plaintext files</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Marlene</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Timetable viewer: To help couples identify common breaks during school term so they can plan meetings during their free time</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Data encryption: To protect data and prevent people from accessing and reading plaintext files</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Samuel (Journal)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Allow couples to record their thoughts and feelings to remember the time spent with their partner</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Add/ delete tags to journal entries (happy, sad, angry, funny)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Samuel</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Journal: Allow couples to record their thoughts and feelings to remember the time spent with their partner</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Tag (emotions) : Add/delete tags to journal entries (happy, sad, angry, funny)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Daniel (Location)</p></td>
@@ -2011,19 +2011,13 @@ i.e. there is consistency at the very least should be prioritized over optimizat
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">pair of NUS students in a relationship</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">view my partner&#8217;s NUS timetable for the week</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">add/view my partner&#8217;s NUS timetable for the week</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">keep track of my partner&#8217;s free time</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">pair of NUS students in a relationship</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">replace my partner&#8217;s NUS timetable</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">see the most updated timetable</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">person in a relationship</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">add,edit,delete and view special events (e.g. Valentine&#8217;s day) in the same month</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">add,edit,delete and view special events/ meetings (e.g. Valentine&#8217;s day) in the same month</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">better plan for these dates</p></td>
 </tr>
 <tr>
@@ -2090,55 +2084,6 @@ i.e. there is consistency at the very least should be prioritized over optimizat
 <div class="sectionbody">
 <div class="paragraph">
 <p>(For all use cases below, the <strong>System</strong> is the <code>NUSCouples</code> app and the <strong>Actor</strong> is the <code>user</code>, unless specified otherwise)</p>
-</div>
-<h3 id="use-case-delete-person" class="discrete">Use case: Delete person</h3>
-<div class="paragraph">
-<p><strong>MSS</strong></p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>User requests to list persons.</p>
-</li>
-<li>
-<p>NUSCouples shows a list of persons.</p>
-</li>
-<li>
-<p>User requests to delete a specific person in the list</p>
-</li>
-<li>
-<p>NUSCouples deletes the person</p>
-<div class="paragraph">
-<p>Use case ends.</p>
-</div>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p><strong>Extensions</strong></p>
-</div>
-<div class="ulist none">
-<ul class="none">
-<li>
-<p>2a. The list is empty.</p>
-<div class="paragraph">
-<p>Use case ends.</p>
-</div>
-</li>
-<li>
-<p>3a. The given index is invalid.</p>
-<div class="ulist none">
-<ul class="none">
-<li>
-<p>3a1. NUSCouples shows an error message.</p>
-<div class="paragraph">
-<p>Use case resumes at step 2.</p>
-</div>
-</li>
-</ul>
-</div>
-</li>
-</ul>
 </div>
 <h3 id="use-case-add-timetable-to-person" class="discrete">Use case: Add Timetable to Person</h3>
 <div class="paragraph">
@@ -2312,10 +2257,10 @@ i.e. there is consistency at the very least should be prioritized over optimizat
 <p>Should be able to work on both 32-bit and 64-bit environments.</p>
 </li>
 <li>
-<p>A new user can have commands that are intuitive and easy to remember.</p>
+<p>Should have commands that are intuitive and easy to remember.</p>
 </li>
 <li>
-<p>A user who prefers typing over using the mouse be able to control almost everything from the CLI.</p>
+<p>Should be able to control almost everything from the CLI.</p>
 </li>
 </ol>
 </div>
@@ -2488,7 +2433,7 @@ Expected: Similar to previous.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-03-18 17:26:42 UTC
+Last updated 2018-03-18 17:39:06 UTC
 </div>
 </div>
 </body>
