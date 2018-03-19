@@ -387,7 +387,48 @@ Certain properties of the application can be controlled (e.g App name, logging l
 
 === [Proposed]
 
-=== [Proposed]
+=== [Proposed] Timetable Viewer feature
+==== Proposed Implementation
+The Timetable Viewer feature is implemented by `Timetable`, which will reside in `ModelManager`.
+
+Users are able to add a shortened https://nusmods.com/[NUSMods] timetable URL to their existing partner in NUSCouples. +
+[none]
+ Sample shortened NUSMods URL: http://modsn.us/wNuIW
+
+We pass the shortened URL through a `HttpURLConnection` to get the expanded URL. +
+[none]
+ Sample expanded NUSMods URL: https://nusmods.com/timetable/sem-2/share?CS2101=SEC:C01&CS2103T=TUT:C01&…
+
+The expanded NUSMods URL can be generalised and represented in the format
+`…/timetable/sem-[SEM_NUM]/share?[MODULE_CODE]=[LESSON_TYPE]:[CLASS_NUM]&[MODULE_CODE]=[LESSON_TYPE]:[CLASS_NUM]&…`
+
+We can parse this expanded NUSMods URL to get the `SEM_NUM`, as well as the
+`MODULE_CODE`, `LESSON_TYPE` and `CLASS_NUM` for each of the modules in the timetable.
+
+Using http://api.nusmods.com/[NUSMods API], we can get the `WEEK_TEXT`, `DAY_TEXT`, `START_TIME`, `END_TIME` and
+`VENUE` of each module.
+
+The sequence diagram below shows interactions within the `Logic` Component for the `execute("tadd http://modsn.us/wNuIW")`
+API call.
+
+image::AddTimetableSequenceDiagram.png[width="650"]
+
+==== Design Considerations
+===== Aspect: Implementation of add NUSMods timetable URL
+* **Alternative 1 (current choice):** Accept short URLs only
+** Pros: Easier to implement.
+** Cons: Less user friendly as users can only add one type of URL.
+* **Alternative 2:** Accept both short URLs and expanded URLs
+** Pros: More user friendly as users have the choice to add either short or expanded URLs.
+** Cons: Difficult to check if given expanded NUSMods URL is a valid.
+
+===== Aspect: Data Structure to support implementation of Timetable
+* **Alternative 1 (current choice):** Store information by days of the week
+** Pros: Easy to add new functions on top of this implementation such as compare timetables by days.
+** Cons: Have to sort information by day during parsing which can be tedious.
+* **Alternative 2:** Store information by modules taken
+** Pros: Easier to implement due to how NUSMods API is structured.
+** Cons: Difficult to extract out information for a particular time slot on a particular day.
 
 === [Proposed]
 
