@@ -48,6 +48,10 @@
 <li><a href="#proposed-data-encryption">3.2. [Proposed] Data Encryption</a></li>
 <li><a href="#logging">3.3. Logging</a></li>
 <li><a href="#Implementation-Configuration">3.4. Configuration</a></li>
+<li><a href="#proposed">3.5. [Proposed]</a></li>
+<li><a href="#proposed-2">3.6. [Proposed]</a></li>
+<li><a href="#proposed-3">3.7. [Proposed]</a></li>
+<li><a href="#proposed-4">3.8. [Proposed]</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -917,6 +921,22 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
+</div>
+<div class="sect2">
+<h3 id="proposed"><a class="link" href="#proposed">3.5. [Proposed]</a></h3>
+
+</div>
+<div class="sect2">
+<h3 id="proposed-2"><a class="link" href="#proposed-2">3.6. [Proposed]</a></h3>
+
+</div>
+<div class="sect2">
+<h3 id="proposed-3"><a class="link" href="#proposed-3">3.7. [Proposed]</a></h3>
+
+</div>
+<div class="sect2">
+<h3 id="proposed-4"><a class="link" href="#proposed-4">3.8. [Proposed]</a></h3>
+
 </div>
 </div>
 </div>
@@ -2029,6 +2049,12 @@ a Google Maps search result</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">prevent strangers from reading personal information such as my journal entries</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">As a part of a couple in NUS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">encrypt my NUSCouples save data</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">prevent strangers from reading personal information such as my journal entries</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">hide <a href="#private-contact-detail">private contact details</a> by default</p></td>
@@ -2068,23 +2094,67 @@ a Google Maps search result</p></td>
 <div class="paragraph">
 <p>(For all use cases below, the <strong>System</strong> is the <code>NUSCouples</code> app and the <strong>Actor</strong> is the <code>user</code>, unless specified otherwise)</p>
 </div>
-<h3 id="use-case-add-timetable-to-person" class="discrete">Use case: Add Timetable to Person</h3>
+<h3 id="use-case-add-timetable-to-partner" class="discrete">Use case: Add Timetable to Partner</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>User requests to list persons.</p>
+<p>User request to add a shortened <a href="http://nusmods.com">NUSMODS</a> timetable url to his/her partner.</p>
 </li>
 <li>
-<p>NUSCouples shows a list of persons.</p>
+<p>NUSCouples adds the url to the partner.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1a. The partner already has a timetable.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1a1. NUSCouples prompts user to override existing timetable.</p>
 </li>
 <li>
-<p>User request to add a shortened <a href="http://nusmods.com">NUSMODS</a> timetable url to a specific person in the list.</p>
+<p>1a2. User confirms change.</p>
+<div class="paragraph">
+<p>Use case resumes at step 2.</p>
+</div>
+</li>
+</ul>
+</div>
 </li>
 <li>
-<p>NUSCouples adds the url to the person in the list.</p>
+<p>1b. The given url is invalid.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1b1. NUSCouples shows an error message.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-view-timetable-of-partner" class="discrete">Use case: View Timetable of Partner</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to view timetable of his/her partner.</p>
 </li>
 <li>
 <p>NUSCouples displays the timetable.</p>
@@ -2100,110 +2170,13 @@ a Google Maps search result</p></td>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>2a. The list is empty.</p>
+<p>1a. The specified person does not have a timetable.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1a1. NUSCouples shows an error message.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
-</div>
-</li>
-<li>
-<p>3a. The given index is invalid.</p>
-<div class="ulist none">
-<ul class="none">
-<li>
-<p>3a1. NUSCouples shows an error message.</p>
-<div class="paragraph">
-<p>Use case resumes at step 2.</p>
-</div>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>3b. The specified person already has a timetable.</p>
-<div class="ulist none">
-<ul class="none">
-<li>
-<p>3b1. NUSCouples prompts user to override existing timetable.</p>
-</li>
-<li>
-<p>3b2. User confirms change.</p>
-<div class="paragraph">
-<p>Use case resumes at step 4.</p>
-</div>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>3c. The given url is invalid.</p>
-<div class="ulist none">
-<ul class="none">
-<li>
-<p>3c1. NUSCouples shows an error message.</p>
-<div class="paragraph">
-<p>Use case resumes at step 2.</p>
-</div>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<h3 id="use-case-view-timetable-of-person" class="discrete">Use case: View Timetable of Person</h3>
-<div class="paragraph">
-<p><strong>MSS</strong></p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>User requests to list persons.</p>
-</li>
-<li>
-<p>NUSCouples shows a list of persons.</p>
-</li>
-<li>
-<p>User request view timetable of a specified person in the list.</p>
-</li>
-<li>
-<p>NUSCouples displays the timetable.</p>
-<div class="paragraph">
-<p>Use case ends.</p>
-</div>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p><strong>Extensions</strong></p>
-</div>
-<div class="ulist none">
-<ul class="none">
-<li>
-<p>2a. The list is empty.</p>
-<div class="paragraph">
-<p>Use case ends.</p>
-</div>
-</li>
-<li>
-<p>3a. The given index is invalid.</p>
-<div class="ulist none">
-<ul class="none">
-<li>
-<p>3a1. NUSCouples shows an error message.</p>
-<div class="paragraph">
-<p>Use case resumes at step 2.</p>
-</div>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>3b. The specified person does not have a timetable.</p>
-<div class="ulist none">
-<ul class="none">
-<li>
-<p>3b1. NUSCouples shows an error message.</p>
-<div class="paragraph">
-<p>Use case resumes at step 2.</p>
 </div>
 </li>
 </ul>
@@ -2416,7 +2389,7 @@ Expected: Similar to previous.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-03-19 13:35:29 UTC
+Last updated 2018-03-19 13:51:16 UTC
 </div>
 </div>
 </body>
