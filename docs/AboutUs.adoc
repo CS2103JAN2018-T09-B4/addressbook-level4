@@ -23,7 +23,7 @@ Responsibilities: Model
 image::marlene.jpeg[width="150", align="left"]
 {empty}[https://github.com/marlenekoh[github]]
 
-Role: Developer +
+Role: Team Lead +
 Responsibilities: UI
 
 '''

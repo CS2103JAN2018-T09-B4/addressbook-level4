@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -27,7 +28,7 @@ public class XmlUtil {
      */
     @SuppressWarnings("unchecked")
     public static <T> T getDataFromFile(File file, Class<T> classToConvert)
-            throws FileNotFoundException, JAXBException {
+            throws IOException, JAXBException {
 
         requireNonNull(file);
         requireNonNull(classToConvert);
@@ -51,7 +52,7 @@ public class XmlUtil {
      * @throws JAXBException         Thrown if there is an error during converting the data
      *                               into xml and writing to the file.
      */
-    public static <T> void saveDataToFile(File file, T data) throws FileNotFoundException, JAXBException {
+    public static <T> void saveDataToFile(File file, T data) throws IOException, JAXBException {
 
         requireNonNull(file);
         requireNonNull(data);

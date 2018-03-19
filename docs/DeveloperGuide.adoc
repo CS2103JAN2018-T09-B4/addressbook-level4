@@ -12,7 +12,7 @@ ifdef::env-github[]
 endif::[]
 :repoURL: https://github.com/CS2103JAN2018-T09-B4/main
 
-By: `Team SE-EDU`      Since: `Jun 2016`      Licence: `MIT`
+By: `Team T09-B4`      Since: `Feb 2018`      Licence: `NUS School Of Computing `
 
 == Setting up
 
@@ -780,19 +780,54 @@ See this https://github.com/se-edu/addressbook-level4/pull/599[PR] for the step-
 [appendix]
 == Product Scope
 
-*Target user profile*: Couples in NUS who:
+*Target user profile:*
 
-* want to plan dates, in and out of school
-* want to store their memories via private journal entries
+* is currently a student in a relationship with another student in NUS
+* needs to remember special dates and moments
+* needs to schedule meetings to find a good time to meet
 * prefer desktop apps over other types
 * can type fast
 * prefer typing over mouse input
 * are reasonably comfortable using CLI apps
 
-*Value proposition*: Help couples in NUS to create new memories and remember them through:
+*Value proposition:* all-in-one desktop app to help NUS couples make and remember memories with each other
 
-* Providing features such as NUS timetable comparator to allow couples in NUS to plan dates more easily
-* Jot down journal entries to remember their dates
+*Feature contribution:*
+
+
+|===
+|Assignee |Major|Minor
+
+|Chen Xing
+|Scheduler: This app allows user to schedule/edit/delete/view planned meetings
+|Notifications: Allows user to receive notification about important dates from scheduled meetings
+
+|Marlene
+|Timetable viewer: To help couples identify common breaks during school term so they can plan meetings during their free time
+|Data encryption: To protect data and prevent people from accessing and reading plaintext files
+
+|Samuel
+|Journal: Allow couples to record their thoughts and feelings to remember the time spent with their partner
+|Tag (emotions) : Add/delete tags to journal entries (happy, sad, angry, funny)
+
+|Daniel (Location)
+|1. To allow the user to find the venue of a particular lesson of interest from their own timetable using a
+Google Maps search result, and also possibly allow the user to share that location with their partner who is
+also officially registered together with them as a _couple_ in the app. (How it is achieved is that NUSMods
+API will have to send the location of the venue, and then the user could possibly type the address via command
+line and then the app will then communicate with Google Maps API to give the search result) +
+
+2. (optional) User could also specify that he/she wants to send a motivational image to their partner by
+simply typing "Motivational" (not case-sensitive) in the CLI. It will then communicate with Google Images API
+to randomly generate a suitable image. If user is not satisfied, type "search again" in CLI and finally if
+satisfied type "send". There is also an option to exit this feature by typing "exit feature".
+|Can communicate with different certain external APIs from Google such as Google Maps API (must have) and
+Google Images API (optional). Also, suggested enhancements to codes in the _Logic_ component (as well as
+other(s) if necessary) would be good. Readability and how the project looks like it is written by one person
+i.e. there is consistency at the very least should be prioritized over optimization.
+
+|===
+
 
 [appendix]
 == User Stories
@@ -804,63 +839,38 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 |Priority |As a ... |I want to ... |So that I can...
 |`* * *` |new user |see usage instructions |refer to instructions when I forget how to use the App
 
-|`* * *` |user |add a new person |
+|`* * *` |pair of NUS students in a relationship |add/view my partner's NUS timetable for the week |keep track of my partner's free time
 
-|`* * *` |user |delete a person |remove entries that I no longer need
+|`* * *` |person in a relationship |add,edit,delete and view special events/ meetings (e.g. Valentine's day) in the same month |better plan for these dates
 
-|`* * *` |As a part of a couple in NUS |view my partner's NUS timetable for the week |keep track of my partner's free time
+|`* * *` |person in a relationship |add/view Journal entries |remember special memories
 
-|`* * *` |As a part of a couple in NUS |add and view special events (e.g. Valentine's day) in the same month |better plan for these dates
+|`* * *` |pair of NUS students in a relationship |locate my partner from his NUS timetable |easily meet up with my partner on campus
 
-|`* * *` |As a part of a couple in NUS |add/view Journal entries |remember memories of our dates
-
-|`* * *` |As a part of a couple in NUS |locate my partner from his NUS timetable |easily meet up with my partner on campus
+|`* * *` |user who values their privacy |encrypt my NUSCouples save data |prevent strangers from reading personal information such as my journal entries
 
 |`* * *` |As a part of a couple in NUS |encrypt my NUSCouples save data |prevent strangers from reading personal information such as my journal entries
 
 |`* *` |user |hide <<private-contact-detail,private contact details>> by default |minimize chance of someone else seeing them by accident
 
-|`* *` |As a part of a couple in NUS |be notified of special events (e.g. Valentine's day) in my calendar |better plan for these dates
-
 |`*` |user with many persons in the address book |sort persons by name |locate a person easily
 
-|`*`| As a user who likes to customize things |change the theme or customize text color |
+|`*`|user who likes to customize things |change the theme or customize text color |
 
+|`*` |experienced user |have shortcut keys| do the same thing in a shorter time
+
+|`*`| user with a romantic partner  | send motivational pictures | encourage my partner
+=======
+|`*` |user |receive notification of upcoming scheduled events| so i can get notified and prepare earlier
 
 |=======================================================================
 
-_{More to be added}_
+
 
 [appendix]
 == Use Cases
 
-(For all use cases below, the *System* is the `AddressBook` and the *Actor* is the `user`, unless specified otherwise)
-
-[discrete]
-=== Use case: Delete person
-
-*MSS*
-
-1.  User requests to list persons.
-2.  NUSCouples shows a list of persons.
-3.  User requests to delete a specific person in the list
-4.  NUSCouples deletes the person
-+
-Use case ends.
-
-*Extensions*
-
-[none]
-* 2a. The list is empty.
-+
-Use case ends.
-
-* 3a. The given index is invalid.
-+
-[none]
-** 3a1. NUSCouples shows an error message.
-+
-Use case resumes at step 2.
+(For all use cases below, the *System* is the `NUSCouples` app and the *Actor* is the `user`, unless specified otherwise)
 
 [discrete]
 === Use case: Add Timetable to Person
@@ -937,7 +947,7 @@ Use case resumes at step 2.
 +
 Use case resumes at step 2.
 
-_{More to be added}_
+
 
 [appendix]
 == Non Functional Requirements
@@ -949,8 +959,8 @@ _{More to be added}_
 .  Should be able to handle any invalid inputs.
 .  Should respond to user inputs within 2 seconds.
 .  Should be able to work on both 32-bit and 64-bit environments.
-
-_{More to be added}_
+.  Should have commands that are intuitive and easy to remember.
+.  Should be able to control almost everything from the CLI.
 
 [appendix]
 == Glossary

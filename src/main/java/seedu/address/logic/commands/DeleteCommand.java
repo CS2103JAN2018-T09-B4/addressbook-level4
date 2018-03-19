@@ -34,10 +34,13 @@ public class DeleteCommand extends UndoableCommand {
         this.targetIndex = targetIndex;
     }
 
-
     @Override
     public CommandResult executeUndoableCommand() {
         requireNonNull(personToDelete);
+        return getCommandResult();
+    }
+
+    private CommandResult getCommandResult() {
         try {
             model.deletePerson(personToDelete);
         } catch (PersonNotFoundException pnfe) {
@@ -65,4 +68,5 @@ public class DeleteCommand extends UndoableCommand {
                 && this.targetIndex.equals(((DeleteCommand) other).targetIndex) // state check
                 && Objects.equals(this.personToDelete, ((DeleteCommand) other).personToDelete));
     }
+
 }

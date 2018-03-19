@@ -10,6 +10,7 @@ lib/*
 *.csv
 config.json
 src/test/data/sandbox/
+src/test/data/XmlUtilTest/*.xml
 preferences.json
 .DS_Store
 ./screenshot*.png
