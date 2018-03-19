@@ -873,80 +873,52 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 (For all use cases below, the *System* is the `NUSCouples` app and the *Actor* is the `user`, unless specified otherwise)
 
 [discrete]
-=== Use case: Add Timetable to Person
+=== Use case: Add Timetable to Partner
 
 *MSS*
 
-1.  User requests to list persons.
-2.  NUSCouples shows a list of persons.
-3.  User request to add a shortened http://nusmods.com[NUSMODS] timetable url to a specific person in the list.
-4.  NUSCouples adds the url to the person in the list.
-5.  NUSCouples displays the timetable.
+1.  User request to add a shortened http://nusmods.com[NUSMODS] timetable url to his/her partner.
+2.  NUSCouples adds the url to the partner.
 +
 Use case ends.
 
 *Extensions*
 
 [none]
-* 2a. The list is empty.
+* 1a. The partner already has a timetable.
++
+[none]
+** 1a1. NUSCouples prompts user to override existing timetable.
+** 1a2. User confirms change.
++
+Use case resumes at step 2.
+
+* 1b. The given url is invalid.
++
+[none]
+** 1b1. NUSCouples shows an error message.
 +
 Use case ends.
-
-* 3a. The given index is invalid.
-+
-[none]
-** 3a1. NUSCouples shows an error message.
-+
-Use case resumes at step 2.
-
-* 3b. The specified person already has a timetable.
-+
-[none]
-** 3b1. NUSCouples prompts user to override existing timetable.
-** 3b2. User confirms change.
-+
-Use case resumes at step 4.
-
-* 3c. The given url is invalid.
-+
-[none]
-** 3c1. NUSCouples shows an error message.
-+
-Use case resumes at step 2.
 
 [discrete]
-=== Use case: View Timetable of Person
+=== Use case: View Timetable of Partner
 
 *MSS*
 
-1.  User requests to list persons.
-2.  NUSCouples shows a list of persons.
-3.  User request view timetable of a specified person in the list.
-4.  NUSCouples displays the timetable.
+1.  User requests to view timetable of his/her partner.
+2.  NUSCouples displays the timetable.
 +
 Use case ends.
 
 *Extensions*
 
 [none]
-* 2a. The list is empty.
+* 1a. The specified person does not have a timetable.
++
+[none]
+** 1a1. NUSCouples shows an error message.
 +
 Use case ends.
-
-* 3a. The given index is invalid.
-+
-[none]
-** 3a1. NUSCouples shows an error message.
-+
-Use case resumes at step 2.
-
-* 3b. The specified person does not have a timetable.
-+
-[none]
-** 3b1. NUSCouples shows an error message.
-+
-Use case resumes at step 2.
-
 
 
 [appendix]
