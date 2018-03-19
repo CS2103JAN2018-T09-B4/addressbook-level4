@@ -818,21 +818,10 @@ See this https://github.com/se-edu/addressbook-level4/pull/599[PR] for the step-
 |Journal: Allow couples to record their thoughts and feelings to remember the time spent with their partner
 |Tag (emotions) : Add/delete tags to journal entries (happy, sad, angry, funny)
 
-|Daniel (Location)
-|1. To allow the user to find the venue of a particular lesson of interest from their own timetable using a
-Google Maps search result, and also possibly allow the user to share that location with their partner who is
-also officially registered together with them as a _couple_ in the app. (How it is achieved is that NUSMods
-API will have to send the location of the venue, and then the user could possibly type the address via command
-line and then the app will then communicate with Google Maps API to give the search result) +
-
-2. (optional) User could also specify that he/she wants to send a motivational image to their partner by
-simply typing "Motivational" (not case-sensitive) in the CLI. It will then communicate with Google Images API
-to randomly generate a suitable image. If user is not satisfied, type "search again" in CLI and finally if
-satisfied type "send". There is also an option to exit this feature by typing "exit feature".
-|Can communicate with different certain external APIs from Google such as Google Maps API (must have) and
-Google Images API (optional). Also, suggested enhancements to codes in the _Logic_ component (as well as
-other(s) if necessary) would be good. Readability and how the project looks like it is written by one person
-i.e. there is consistency at the very least should be prioritized over optimization.
+|Daniel
+|Location Finder: To allow the user to find the venue of a particular lesson of interest from their own timetable using
+a Google Maps search result
+|Communication with Google API: Can communicate with different certain external APIs from Google such as Google Maps API
 
 |===
 
@@ -867,8 +856,6 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`*` |experienced user |have shortcut keys| do the same thing in a shorter time
 
-|`*`| user with a romantic partner  | send motivational pictures | encourage my partner
-=======
 |`*` |user |receive notification of upcoming scheduled events| so i can get notified and prepare earlier
 
 |=======================================================================
