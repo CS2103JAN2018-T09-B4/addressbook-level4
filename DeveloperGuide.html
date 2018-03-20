@@ -48,10 +48,10 @@
 <li><a href="#proposed-data-encryption">3.2. [Proposed] Data Encryption</a></li>
 <li><a href="#logging">3.3. Logging</a></li>
 <li><a href="#Implementation-Configuration">3.4. Configuration</a></li>
-<li><a href="#proposed">3.5. [Proposed]</a></li>
+<li><a href="#proposed-calendar-viewer-feature">3.5. [Proposed] Calendar Viewer Feature</a></li>
 <li><a href="#proposed-timetable-viewer-feature">3.6. [Proposed] Timetable Viewer feature</a></li>
-<li><a href="#proposed-2">3.7. [Proposed]</a></li>
-<li><a href="#proposed-3">3.8. [Proposed]</a></li>
+<li><a href="#proposed">3.7. [Proposed]</a></li>
+<li><a href="#proposed-2">3.8. [Proposed]</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -923,8 +923,124 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed"><a class="link" href="#proposed">3.5. [Proposed]</a></h3>
-
+<h3 id="proposed-calendar-viewer-feature"><a class="link" href="#proposed-calendar-viewer-feature">3.5. [Proposed] Calendar Viewer Feature</a></h3>
+<div class="sect3">
+<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">3.5.1. Current Implementation</a></h4>
+<div class="paragraph">
+<p>The Calendar Viewer mechanism is facilitated by <code>Google Calendar API</code> and reside in the <code>ModelManager</code>.
+It supports viewing/add/editing/deleting capability that modifies the state of the NUSCouples App.
+Firstly, it uses OAuth 2.0 endpoints to allow users to share specific data with the application while keeping their usernames, passwords, and other information private. For example, an application can use OAuth 2.0 to obtain permission from users to store files in their Google Drives which sync to the calendar.
+This implementation requires the user to connect to the internet because NUSCouples app needs to open the system browser and supply a local redirect URI to handle responses from Google&#8217;s authorization server.</p>
+</div>
+<div class="paragraph">
+<p><strong>Basic steps</strong></p>
+</div>
+<div class="paragraph">
+<p>All applications follow a basic pattern when accessing a Google API using OAuth 2.0. At a high level, this are the four steps:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Obtain OAuth 2.0 credentials from the Google API Console.
+Visit the Google API Console to obtain OAuth 2.0 credentials such as a client ID and client secret that are known to both Google and your application. The set of values varies based on what type of application you are building. For example, a JavaScript application does not require a secret, but a web server application does.</p>
+</li>
+<li>
+<p>Obtain an access token from the Google Authorization Server.
+Before your application can access private data using a Google API, it must obtain an access token that grants access to that API. A single access token can grant varying degrees of access to multiple APIs. A variable parameter called scope controls the set of resources and operations that an access token permits. During the access-token request, your application sends one or more values in the scope parameter.
+There are several ways to make this request, and they vary based on the type of application you are building. For example, a JavaScript application might request an access token using a browser redirect to Google, while an application installed on a device that has no browser uses web service requests.
+Some requests require an authentication step where the user logs in with their Google account. After logging in, the user is asked whether they are willing to grant the permissions that your application is requesting. This process is called user consent.
+If the user grants the permission, the Google Authorization Server sends your application an access token (or an authorization code that your application can use to obtain an access token). If the user does not grant the permission, the server returns an error.
+It is generally a best practice to request scopes incrementally, at the time access is required, rather than up front. For example, an app that wants to support purchases should not request Google Wallet access until the user presses the “buy” button; see Incremental authorization.</p>
+</li>
+<li>
+<p>Send the access token to an API.
+After an application obtains an access token, it sends the token to a Google API in an HTTP authorization header. It is possible to send tokens as URI query-string parameters, but we don&#8217;t recommend it, because URI parameters can end up in log files that are not completely secure. Also, it is good REST practice to avoid creating unnecessary URI parameter names.
+Access tokens are valid only for the set of operations and resources described in the scope of the token request. For example, if an access token is issued for the Google+ API, it does not grant access to the Google Contacts API. You can, however, send that access token to the Google+ API multiple times for similar operations.</p>
+</li>
+<li>
+<p>Refresh the access token, if necessary.
+Access tokens have limited lifetimes. If your application needs access to a Google API beyond the lifetime of a single access token, it can obtain a refresh token. A refresh token allows your application to obtain new access tokens</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The sequence diagram below shows interactions within the <code>Logic</code> Component for Outh 2.0 endpoints:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/viewCalendarSeqDiagram.png" alt="viewCalendarSeqDiagram" width="850">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.5.2. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-implementation-of-view-calendar-feature"><a class="link" href="#aspect-implementation-of-view-calendar-feature">Aspect: Implementation of view Calendar feature</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Display only current month event.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easier to implement and Neater rather than displaying more than 1 mth.</p>
+</li>
+<li>
+<p>Cons: Need to input cmd to filter through other month.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Don&#8217;t display any month until user defines.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: More interaction.</p>
+</li>
+<li>
+<p>Cons: The UI will be blank at initial stage which is ugly.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-using-open-source-or-proprietary-calendar-api"><a class="link" href="#aspect-using-open-source-or-proprietary-calendar-api">Aspect: Using Open-source or proprietary Calendar API</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Using Google API (open source)</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: I will learnt more even if I failed at the end of the project and Google API is more versatile</p>
+</li>
+<li>
+<p>Cons: Tedious to implement it.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Using Restful API (proprietary)</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easier to implement due to everything is assisted.</p>
+</li>
+<li>
+<p>Cons: Restrictive, need more money for more features to add on.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="proposed-timetable-viewer-feature"><a class="link" href="#proposed-timetable-viewer-feature">3.6. [Proposed] Timetable Viewer feature</a></h3>
@@ -972,7 +1088,7 @@ API call.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.6.2. Design Considerations</a></h4>
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.6.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-implementation-of-add-nusmods-timetable-url"><a class="link" href="#aspect-implementation-of-add-nusmods-timetable-url">Aspect: Implementation of add NUSMods timetable URL</a></h5>
 <div class="ulist">
@@ -1042,11 +1158,11 @@ API call.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-2"><a class="link" href="#proposed-2">3.7. [Proposed]</a></h3>
+<h3 id="proposed"><a class="link" href="#proposed">3.7. [Proposed]</a></h3>
 
 </div>
 <div class="sect2">
-<h3 id="proposed-3"><a class="link" href="#proposed-3">3.8. [Proposed]</a></h3>
+<h3 id="proposed-2"><a class="link" href="#proposed-2">3.8. [Proposed]</a></h3>
 
 </div>
 </div>
@@ -2500,7 +2616,7 @@ Expected: Similar to previous.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-03-20 12:01:44 UTC
+Last updated 2018-03-20 16:00:25 UTC
 </div>
 </div>
 </body>
