@@ -50,8 +50,8 @@
 <li><a href="#Implementation-Configuration">3.4. Configuration</a></li>
 <li><a href="#proposed-calendar-viewer-feature">3.5. [Proposed] Calendar Viewer Feature</a></li>
 <li><a href="#proposed-timetable-viewer-feature">3.6. [Proposed] Timetable Viewer feature</a></li>
-<li><a href="#proposed">3.7. [Proposed]</a></li>
-<li><a href="#proposed-2">3.8. [Proposed]</a></li>
+<li><a href="#proposed-journal-feature">3.7. [Proposed] Journal feature</a></li>
+<li><a href="#proposed">3.8. [Proposed]</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -1158,11 +1158,99 @@ API call.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed"><a class="link" href="#proposed">3.7. [Proposed]</a></h3>
-
+<h3 id="proposed-journal-feature"><a class="link" href="#proposed-journal-feature">3.7. [Proposed] Journal feature</a></h3>
+<div class="sect3">
+<h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">3.7.1. Current Implementation</a></h4>
+<div class="paragraph">
+<p>The journal feature is implemented by a <code>Journal</code>, which resides inside <code>ModelManager</code>. It allows the user to create and save journal entries.</p>
+</div>
+<div class="paragraph">
+<p>As you can see from the diagram,</p>
+</div>
+<div class="paragraph">
+<p>Suppose that the user has just launched the application for the first time. The <code>Journal</code> will be empty at the beginning.</p>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how the newJournal operation works:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/JournalWindowUIComponentSequenceDiagram.png" alt="JournalWindowUIComponentSequenceDiagram" width="800">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.7.2. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-implementation-of-code-journalwindow-code"><a class="link" href="#aspect-implementation-of-code-journalwindow-code">Aspect: Implementation of <code>JournalWindow</code></a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1:</strong> Use javafx to directly make a new window.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easy to implement. Only requires a few lines of code in one or two files.</p>
+</li>
+<li>
+<p>Cons: Not consistent with the rest of the app. Needs more effort to maintain when changes are made.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Make use of the UI framework.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Consistent with rest of app.</p>
+</li>
+<li>
+<p>Cons: Harder to implement. Requires understanding of the UI component. Required minor edits in many files.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-naming-of-journal-entries"><a class="link" href="#aspect-naming-of-journal-entries">Aspect: Naming of journal entries</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Automatically uses current date "YYYYMMDD" as file name.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: No need to worry about duplicate names. Easy to implement filtering (can filter by value easily).</p>
+</li>
+<li>
+<p>Cons: Lack of personalisation. Hard to distinguish between files.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Allow user to name journal entries.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: User can distinguish between files easily.</p>
+</li>
+<li>
+<p>Cons: If duplicate names are allowed, we need to distinguish them with another method. If duplicate names are not allowed, user may struggle to find unique names for every entry.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
 </div>
 <div class="sect2">
-<h3 id="proposed-2"><a class="link" href="#proposed-2">3.8. [Proposed]</a></h3>
+<h3 id="proposed"><a class="link" href="#proposed">3.8. [Proposed]</a></h3>
 
 </div>
 </div>
@@ -2616,7 +2704,7 @@ Expected: Similar to previous.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-03-21 18:50:02 UTC
+Last updated 2018-03-21 19:07:56 UTC
 </div>
 </div>
 </body>
