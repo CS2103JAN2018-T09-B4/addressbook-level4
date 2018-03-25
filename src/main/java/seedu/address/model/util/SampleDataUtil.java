@@ -4,7 +4,10 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.Journal;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyJournal;
+import seedu.address.model.journalentry.JournalEntry;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -41,6 +44,16 @@ public class SampleDataUtil {
         };
     }
 
+    public static JournalEntry[] getSampleJournalEntries() {
+        return new JournalEntry[]{
+            new JournalEntry("20180205", "Sample Text One"),
+
+            new JournalEntry("20180301", "Sample Text Two"),
+
+            new JournalEntry("20180305", "Sample Text Three")
+        };
+    }
+
     public static ReadOnlyAddressBook getSampleAddressBook() {
         try {
             AddressBook sampleAb = new AddressBook();
@@ -50,6 +63,18 @@ public class SampleDataUtil {
             return sampleAb;
         } catch (DuplicatePersonException e) {
             throw new AssertionError("sample data cannot contain duplicate persons", e);
+        }
+    }
+
+    public static ReadOnlyJournal getSampleJournal() {
+        try {
+            Journal sampleJ = new Journal();
+            for (JournalEntry sampleJournalEntries : getSampleJournalEntries()) {
+                sampleJ.addJournalEntry(sampleJournalEntries);
+            }
+            return sampleJ;
+        } catch (Exception e) {
+            throw new AssertionError("sample data cannot contain duplicate journal entries", e);
         }
     }
 

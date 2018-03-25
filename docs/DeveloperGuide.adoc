@@ -1003,9 +1003,9 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 *MSS*
 
-1. User are required to generate and download their credential from google API credentials: https://console.developers.google.com/apis/dashboard?
-2. User are required to import their credential into the project resources directory.
-3. NUSCouples add the credential of the User to authenticate with Google.
+1. User are required to generate and download their credential from google API credentials: https://console.developers.google.com/apis/dashboard?[Google Dashboard] and import into project resource directory.
+2. NusCouples use the credential to authenticate with Google API using Auth2.0.
+
 +
 Use case ends.
 
@@ -1033,8 +1033,7 @@ Use case ends.
 *MSS*
 
 1.User inside browser panel enter's the command to view calendar.
-2.NUSCouple redirects to google Calendar to retrieve data.
-3.NUSCouple Display the UI accordingly.
+2.NUSCouple redirects to google Calendar to retrieve data and display the UI accordingly.
 
 +
 Use case ends.

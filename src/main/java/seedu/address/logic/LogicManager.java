@@ -2,9 +2,12 @@ package seedu.address.logic;
 
 import java.util.logging.Logger;
 
+import com.google.common.eventbus.Subscribe;
+
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.ComponentManager;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.events.model.SaveEntryEvent;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -44,6 +47,18 @@ public class LogicManager extends ComponentManager implements Logic {
             history.add(commandText);
         }
     }
+
+    @Subscribe
+    public void handleSaveEntryEvent(SaveEntryEvent event) {
+        logger.info(LogsCenter.getEventHandlingLogMessage(event, "Attempt to save"));
+        try {
+            model.addJournalEntry(event.journalEntry);
+        } catch (Exception e) {
+            logger.info("Save failed");
+        }
+    }
+
+
 
     @Override
     public ObservableList<Person> getFilteredPersonList() {

@@ -37,4 +37,28 @@ public class XmlFileStorage {
         }
     }
 
+    /**
+     * Returns address book in the file or an empty address book
+     */
+    public static XmlSerializableJournal loadJournalFromSaveFile(File file) throws DataConversionException,
+            IOException {
+        try {
+            XmlSerializableJournal xmlJournal =  XmlUtil.getDataFromFile(file, XmlSerializableJournal.class);
+            return xmlJournal;
+        } catch (JAXBException e) {
+            throw new DataConversionException(e);
+        }
+    }
+
+    /**
+     * Saves the given journal data to the specified file.
+     */
+    public static void saveJournalToFile(File file, XmlSerializableJournal journal)
+            throws IOException {
+        try {
+            XmlUtil.saveDataToFile(file, journal);
+        } catch (JAXBException e) {
+            throw new AssertionError("Unexpected exception " + e.getMessage());
+        }
+    }
 }

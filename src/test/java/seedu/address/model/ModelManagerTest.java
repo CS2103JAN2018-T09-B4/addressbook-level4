@@ -38,20 +38,22 @@ public class ModelManagerTest {
     @Test
     public void deleteTag_nonExistentTag_modelUnchanged() throws Exception {
         AddressBook addressBook = new AddressBookBuilder().withPerson(AMY).withPerson(BOB).build();
+        Journal journal = new Journal();
         UserPrefs userPrefs = new UserPrefs();
 
-        ModelManager modelManager = new ModelManager(addressBook, userPrefs);
+        ModelManager modelManager = new ModelManager(addressBook, journal, userPrefs);
         modelManager.deleteTag(new Tag(VALID_TAG_UNUSED));
 
-        assertEquals(new ModelManager(addressBook, userPrefs), modelManager);
+        assertEquals(new ModelManager(addressBook, journal, userPrefs), modelManager);
     }
 
     @Test
     public void deleteTag_tagUsedByMultiplePersons_tagRemoved() throws Exception {
         AddressBook addressBook = new AddressBookBuilder().withPerson(AMY).withPerson(BOB).build();
+        Journal journal = new Journal();
         UserPrefs userPrefs = new UserPrefs();
 
-        ModelManager modelManager = new ModelManager(addressBook, userPrefs);
+        ModelManager modelManager = new ModelManager(addressBook, journal, userPrefs);
         modelManager.deleteTag(new Tag(VALID_TAG_FRIEND));
 
         Person amyWithoutFriendTag = new PersonBuilder(AMY).withTags().build();
@@ -59,18 +61,19 @@ public class ModelManagerTest {
         AddressBook expectedAddressBook = new AddressBookBuilder().withPerson(amyWithoutFriendTag)
                 .withPerson(bobWithoutFriendTag).build();
 
-        assertEquals(new ModelManager(expectedAddressBook, userPrefs), modelManager);
+        assertEquals(new ModelManager(expectedAddressBook, journal, userPrefs), modelManager);
     }
 
     @Test
     public void equals() {
         AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
+        Journal journal = new Journal();
         AddressBook differentAddressBook = new AddressBook();
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
-        ModelManager modelManager = new ModelManager(addressBook, userPrefs);
-        ModelManager modelManagerCopy = new ModelManager(addressBook, userPrefs);
+        ModelManager modelManager = new ModelManager(addressBook, journal, userPrefs);
+        ModelManager modelManagerCopy = new ModelManager(addressBook, journal, userPrefs);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -83,12 +86,12 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(5));
 
         // different addressBook -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, journal, userPrefs)));
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
         modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(addressBook, journal, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
@@ -96,6 +99,6 @@ public class ModelManagerTest {
         // different userPrefs -> returns true
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setAddressBookName("differentName");
-        assertTrue(modelManager.equals(new ModelManager(addressBook, differentUserPrefs)));
+        assertTrue(modelManager.equals(new ModelManager(addressBook, journal, differentUserPrefs)));
     }
 }
