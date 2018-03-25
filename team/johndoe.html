@@ -154,7 +154,7 @@
 <div class="sect2">
 <h3 id="undoing-previous-command-code-undo-code"><a class="link" href="#undoing-previous-command-code-undo-code">Undoing previous command : <code>undo</code></a></h3>
 <div class="paragraph">
-<p>Restores the address book to the state before the previous <em>undoable</em> command was executed.<br>
+<p>Restores NUSCouples to the state before the previous <em>undoable</em> command was executed.<br>
 Format: <code>undo</code><br>
 Alias: <code>u</code></p>
 </div>
@@ -166,7 +166,7 @@ Alias: <code>u</code></p>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Undoable commands: those commands that modify the address book&#8217;s content (<code>add</code>, <code>delete</code>, <code>edit</code> and <code>clear</code>).</p>
+<p>Undoable commands: those commands that modify NUSCouples' content (<code>add</code>, <code>delete</code>, <code>edit</code> and <code>clear</code>).</p>
 </div>
 </td>
 </tr>
@@ -178,21 +178,20 @@ Alias: <code>u</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>delete 1</code><br>
-<code>list</code><br>
-<code>undo</code> (reverses the <code>delete 1</code> command)<br></p>
+<p><code>delete</code><br>
+<code>undo</code> (reverses the <code>delete</code> command)<br></p>
 </li>
 <li>
-<p><code>select 1</code><br>
-<code>list</code><br>
+<p><code>select</code><br>
+<code>help</code><br>
 <code>undo</code><br>
 The <code>undo</code> command fails as there are no undoable commands executed previously.</p>
 </li>
 <li>
-<p><code>delete 1</code><br>
-<code>clear</code><br>
-<code>undo</code> (reverses the <code>clear</code> command)<br>
-<code>undo</code> (reverses the <code>delete 1</code> command)<br></p>
+<p><code>edit n/John Doe</code><br>
+<code>delete</code><br>
+<code>undo</code> (reverses the <code>delete</code> command)<br>
+<code>undo</code> (reverses the <code>edit n/John Doe</code> command)<br></p>
 </li>
 </ul>
 </div>
@@ -210,22 +209,22 @@ Alias: <code>r</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>delete 1</code><br>
-<code>undo</code> (reverses the <code>delete 1</code> command)<br>
-<code>redo</code> (reapplies the <code>delete 1</code> command)<br></p>
+<p><code>delete</code><br>
+<code>undo</code> (reverses the <code>delete</code> command)<br>
+<code>redo</code> (reapplies the <code>delete</code> command)<br></p>
 </li>
 <li>
-<p><code>delete 1</code><br>
+<p><code>delete</code><br>
 <code>redo</code><br>
 The <code>redo</code> command fails as there are no <code>undo</code> commands executed previously.</p>
 </li>
 <li>
-<p><code>delete 1</code><br>
-<code>clear</code><br>
-<code>undo</code> (reverses the <code>clear</code> command)<br>
-<code>undo</code> (reverses the <code>delete 1</code> command)<br>
-<code>redo</code> (reapplies the <code>delete 1</code> command)<br>
-<code>redo</code> (reapplies the <code>clear</code> command)<br></p>
+<p><code>edit n/John Doe</code><br>
+<code>delete</code><br>
+<code>undo</code> (reverses the <code>delete</code> command)<br>
+<code>undo</code> (reverses the <code>edit n/John Doe</code> command)<br>
+<code>redo</code> (reapplies the <code>edit n/John Doe</code> command)<br>
+<code>redo</code> (reapplies the <code>delete</code> command)<br></p>
 </li>
 </ul>
 </div>
@@ -563,7 +562,7 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-03-23 16:49:41 UTC
+Last updated 2018-03-25 05:26:18 UTC
 </div>
 </div>
 </body>
