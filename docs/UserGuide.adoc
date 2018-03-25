@@ -1,6 +1,6 @@
-= NUSCouples - User Guide
+= _NUSCouples_ - User Guide
 :toc:
-:toc-title:
+:toc-title: Table of Contents
 :toc-placement: preamble
 :sectnums:
 :imagesDir: images
@@ -15,9 +15,15 @@ endif::[]
 
 By: `Team T09-B4`      Since: `Feb 2018`      Licence: `MIT`
 
-== Introduction
+Welcome to the User Guide for _NUSCouples_!
 
-AddressBook Level 4 (AB4) is for those who *prefer to use a desktop app for managing contacts*. More importantly, AB4 is *optimized for those who prefer to work with a Command Line Interface* (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB4 can get your contact management tasks done faster than traditional GUI apps. Interested? Jump to the <<Quick Start>> to get started. Enjoy!
+_NUSCouples_ is a desktop app *specially made for you*, couples from National University of Singapore (NUS),
+to create and remember memories with ease amid our *hectic school term*. Imagine what it would be like to be able
+identify common breaks, schedule meetings and view important dates with your partner, and record your thoughts or
+feelings, *all in the same application* mere keystrokes away. Best of all, *everything* can be controlled from the
+handy Command Line Interface (CLI). Experience the *clarity* that comes with a Graphical User Interface (GUI), with
+none of the *pain* of searching for and remembering where each button is. Interested yet? Jump to <<Quick Start>> to
+get started. Enjoy!
 
 == Quick Start
 
@@ -27,9 +33,9 @@ AddressBook Level 4 (AB4) is for those who *prefer to use a desktop app for mana
 Having any Java 8 version is not enough. +
 This app will not work with earlier versions of Java 8.
 +
-.  Download the latest `addressbook.jar` link:{repoURL}/releases[here].
-.  Copy the file to the folder you want to use as the home folder for your Address Book.
-.  Double-click the file to start the app. The GUI should appear in a few seconds.
+.  Download the latest `NUSCouples.jar` link:{repoURL}/releases[here].
+.  Copy the file to the folder you want to use as the home folder for _NUSCouples_.
+.  Double-click the file to start the app. The app window should appear in a few seconds.
 +
 image::Ui.png[width="790"]
 +
@@ -37,12 +43,13 @@ image::Ui.png[width="790"]
 e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 .  Some example commands you can try:
 
-* *`list`* : lists all contacts
-* **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : adds a contact named `John Doe` to the Address Book.
-* **`delete`**`3` : deletes the 3rd contact shown in the current list
+* **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` :
+ adds a partner named `John Doe` to _NUSCouples_.
 * *`exit`* : exits the app
 
-.  Refer to <<Features>> for details of each command.
+.  Refer to <<Features>> for details of each command. +
+
+return to <<toc,Table of Contents>>
 
 [[Features]]
 == Features
@@ -50,28 +57,33 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 ====
 *Command Format*
 
-* Some commands have an alias, which you can also use to execute the command e.g. to add your partner to NUSCouples, you can type either `add n/John Doe` or `a n/John Doe`.
-* Words in `UPPER_CASE` are the parameters to be supplied by the user e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+* Some commands have an alias, which you can also use to execute the command e.g. to add your partner to
+_NUSCouples_, you can type either `add n/John Doe` or `a n/John Doe`.
+* Words in `UPPER_CASE` are the parameters to be supplied by the user e.g. in `add n/NAME`, `NAME` is a
+ parameter which can be used as `add n/John Doe`.
 * Items in square brackets are optional e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-* Items with `…`​ after them can be used multiple times including zero times e.g. `[t/TAG]...` can be used as `{nbsp}` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
-* Parameters can be in any order e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+* Items with `…`​ after them can be used multiple times including zero times e.g. `[t/TAG]...` can
+be used as `{nbsp}` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+* Parameters can be in any order e.g. if the command specifies `n/NAME p/PHONE_NUMBER`,
+`p/PHONE_NUMBER n/NAME` is also acceptable.
 ====
 
-=== Viewing help : `help`
+=== General Features
+==== Viewing help : `help`
 
 Format: `help` +
 Alias: `hlp`
 
-=== Adding your partner: `add`
+==== Adding your partner: `add`
 
-Adds your partner to NUSCouples. +
+Adds your partner to _NUSCouples_. +
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS tt/TIMETABLE_URL [t/TAG]...` +
 Alias: `a n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS tt/TIMETABLE_URL [t/TAG]...`
 
 ****
 * Your partner can have any number of tags (including 0).
 * The timetable url provided has to be a valid https://nusmods.com[NUSMods] short URL.
-* You can only have one partner in NUSCouples at any one time.
+* You can only have one partner in _NUSCouples_ at any one time.
 ****
 
 Examples:
@@ -79,9 +91,9 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 tt/http://modsn.us/IO4n5`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 tt/http://modsn.us/wNuIW t/criminal`
 
-=== Editing your partner : `edit`
+==== Editing your partner : `edit`
 
-Edits your existing partner in NUSCouples. +
+Edits your existing partner in _NUSCouples_. +
 Format: `edit [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [tt/TIMETABLE_URL] [t/TAG]...` +
 Alias: `ed [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [tt/TIMETABLE_URL] [t/TAG]...`
 
@@ -90,7 +102,7 @@ Alias: `ed [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [tt/TIMETABLE_URL] [t/TAG]..
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of your partner will be removed i.e adding of tags is not cumulative.
 * You can remove all tags of your partner by typing `t/` without specifying any tags after it.
-* Your partner must exist in NUSCouples before this command can be executed.
+* Your partner must exist in _NUSCouples_ before this command can be executed.
 ****
 
 Examples:
@@ -100,29 +112,18 @@ Edits the phone number and email address of your partner to be `91234567` and `j
 * `edit n/Betsy Crower t/` +
 Edits the name of your partner to be `Betsy Crower` and clears all existing tags.
 
-=== Deleting your partner : `delete`
+==== Deleting your partner : `delete`
 
-Deletes your partner from NUSCouples. +
+Deletes your partner from _NUSCouples_. +
 Format: `delete` +
 Alias: `d`
 
 ****
 * Deletes your partner.
-* Your partner must exist in NUSCouples before this command can be executed.
+* Your partner must exist in _NUSCouples_ before this command can be executed.
 ****
 
-=== Selecting a person : `select`
-
-Selects your partner. +
-Format: `select` +
-Alias: `s`
-
-****
-* Selects your partner and loads the Google search page of your partner.
-* Your partner must exist in NUSCouples before this command can be executed.
-****
-
-=== Listing entered commands : `history`
+==== Listing entered commands : `history`
 
 Lists all the commands that you have entered in reverse chronological order. +
 Format: `history` +
@@ -133,16 +134,15 @@ Alias: `hist`
 Pressing the kbd:[&uarr;] and kbd:[&darr;] arrows will display the previous and next input respectively in the command box.
 ====
 
-// tag::undoredo[]
-=== Undoing previous command : `undo`
+==== Undoing previous command : `undo`
 
-Restores NUSCouples to the state before the previous _undoable_ command was executed. +
+Restores _NUSCouples_ to the state before the previous "undoable command" was executed. +
 Format: `undo` +
 Alias: `u`
 
 [NOTE]
 ====
-Undoable commands: those commands that modify NUSCouples' content (`add`, `delete`, `edit` and `clear`).
+Undoable commands: those commands that modify _NUSCouples_ content (`add`, `delete`, `edit` and `clear`).
 ====
 
 Examples:
@@ -160,7 +160,7 @@ The `undo` command fails as there are no undoable commands executed previously.
 `undo` (reverses the `delete` command) +
 `undo` (reverses the `edit n/John Doe` command) +
 
-=== Redoing the previously undone command : `redo`
+==== Redoing the previously undone command : `redo`
 
 Reverses the most recent `undo` command. +
 Format: `redo` +
@@ -182,84 +182,32 @@ The `redo` command fails as there are no `undo` commands executed previously.
 `undo` (reverses the `edit n/John Doe` command) +
 `redo` (reapplies the `edit n/John Doe` command) +
 `redo` (reapplies the `delete` command) +
-// end::undoredo[]
 
-=== Viewing your partner's timetable : `tview`
+==== Saving the data
+
+NUSCouples data are saved in the hard disk automatically after any command that changes the data. +
+There is no need to save manually.
+
+==== Exiting the program : `exit`
+
+Exits the program. +
+Format: `exit` +
+Alias: `ex` +
+
+Return to <<toc,Table of Contents>>  +
+
+=== Timetable
+
+==== Adding your partner's timetable
+Refer to <<Adding your partner: `add`>>
+
+==== Viewing your partner's timetable : `tview`
 
 Shows the current saved timetable of your partner. +
 Format: `tview` +
 Alias: `tv`
 
-=== Viewing all journal entries : `jview`
-
-View all journal entries. +
-Format: `jview` +
-Alias: `jv`
-
-=== Creating a new journal entry : `jnew`
-
-Creates a new window that allows the user to input and save journal entries. +
-Format: `jnew` +
-Alias: `jn`
-
-=== Deleting a journal entry : `jdelete`
-
-Deletes a journal entry on the specified date. +
-Format: `jdelete` +
-Alias: `jd`
-
-=== Viewing current calendar : `cview`
-
-View Google calendar. +
-Format: `cview` +
-Alias: `cv`
-
-=== Adding new event to Google calendar : `cadd`
-
-Adds new event to Google calendar. +
-Format: `cadd` +
-Alias: `ca`
-
-=== Deleting event from Google calendar: `cdelete`
-
-Delete specified event from Google calendar. +
-Format: `cdelete` +
-Alias: `cd`
-
-=== Editing event on Google calendar : `cedit`
-
-Edit event on Google calendar. +
-Format: `cedit` +
-Alias: `ce`
-
-=== Finding building location : `location`
-
-Shows the location (by building) of the entered classroom name. +
-Format: `location` +
-Alias: `loc`
-
-=== Exiting the program : `exit`
-
-Exits the program. +
-Format: `exit` +
-Alias: `ex`
-
-=== Saving the data
-
-NUSCouples data are saved in the hard disk automatically after any command that changes the data. +
-There is no need to save manually.
-
-// tag::dataencryption[]
-=== Encrypting data files `[coming in v2.0]`
-
-_{explain how the user can enable/disable data encryption}_
-// end::dataencryption[]
-
-=== Archiving journal entries `[coming in v2.0]`
-
-_{explain how the user can export old journal entries to another storage location in their computer}_
-
-=== Comparing timetable `[coming in v2.0]`
+==== Comparing timetable : `tcompare`
 
 Displays the common breaks shared by the given timetable and your partner's timetable in a timetable format. +
 Format: `tcompare tt/TIMETABLE_URL` +
@@ -267,28 +215,105 @@ Alias: `tc tt/TIMETABLE_URL`
 
 ****
 * The timetable url provided has to be a valid https://nusmods.com[NUSMods] short URL.
-* Your partner must exist in NUSCouples before this command can be executed.
+* Your partner must exist in _NUSCouples_ before this command can be executed.
 ****
 
 Examples:
 
 * `tcompare tt/http://modsn.us/IO4n5`
-* `tc tt/http://modsn.us/wNuIW`
+* `tc tt/http://modsn.us/wNuIW` +
 
-=== Send Google Maps location to phone `[coming in v2.0]`
+Return to <<toc,Table of Contents>>  +
+
+=== Calendar
+==== Viewing current calendar : `cview`
+
+View Google calendar. +
+Format: `cview` +
+Alias: `cv`
+
+==== Adding new event to Google calendar : `cadd`
+
+Adds new event to Google calendar. +
+Format: `cadd` +
+Alias: `ca`
+
+==== Deleting event from Google calendar: `cdelete`
+
+Delete specified event from Google calendar. +
+Format: `cdelete` +
+Alias: `cd`
+
+==== Editing event on Google calendar : `cedit`
+
+Edit event on Google calendar. +
+Format: `cedit` +
+Alias: `ce`
+
+Return to <<toc,Table of Contents>>  +
+
+=== Journal
+==== Viewing all journal entries : `jview`
+
+View all journal entries. +
+Format: `jview` +
+Alias: `jv`
+
+==== Creating a new journal entry : `jnew`
+
+Creates a new window that allows the user to input and save journal entries. The journal entry is identified by
+the date it was created in the format `yyyymmdd`. If an entry with that date already exists, it will open
+that entry in the new window. Saving not required as the journal entry will be automatically saved when the
+journal window is closed. +
+Format: `jnew` +
+Alias: `jn`
+
+==== Deleting a journal entry : `jdelete`
+
+Deletes a journal entry in the specified index. +
+Format: `jdelete` +
+Alias: `jd`
+
+Return to <<toc,Table of Contents>>  +
+
+=== Location
+==== Finding building location : `location`
+
+Shows the location (by building) of the entered classroom name. +
+Format: `location` +
+Alias: `loc`
+
+Return to <<toc,Table of Contents>>  +
+
+=== `Coming in v2.0`
+// tag::dataencryption[]
+==== Encrypting data files `[coming in v2.0]`
+
+_{explain how the user can enable/disable data encryption}_
+// end::dataencryption[]
+
+==== Archiving journal entries `[coming in v2.0]`
+
+_{explain how the user can export old journal entries to another storage location in their computer}_
+
+==== Send Google Maps location to phone `[coming in v2.0]`
 
 _{explain how the user can use their phones to navigate to a location in NUS by sending the location to the user's phone from the Google Maps API}_
 
-=== Filtering journal entries by date `[coming in v2.0]`
+==== Filtering journal entries by date `[coming in v2.0]`
 
 Filters journal entries by the specified interval. +
 Format: `jfilter` +
 Alias: `jf`
 
+Return to <<toc,Table of Contents>>  +
+
 == FAQ
 
 *Q*: How do I transfer my data to another Computer? +
 *A*: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous NUSCouples folder.
+
+Return to <<toc,Table of Contents>>  +
 
 == Command Summary
 
@@ -329,6 +354,9 @@ Alias: `jf`
 
 |location, loc |Finding building location |`location` |
 
-|exit, ex |Exits NUSCouples |`exit` |
+|exit, ex |Exits _NUSCouples_ |`exit` |
 
 |=======================================================================
+
+Return to <<toc,Table of Contents>>  +
+
