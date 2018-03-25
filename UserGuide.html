@@ -12,7 +12,7 @@
 </head>
 <body class="article">
 <div id="header">
-<h1>NUSCouples - User Guide</h1>
+<h1><em>NUSCouples</em> - User Guide</h1>
 </div>
 <div id="content">
 <div id="preamble">
@@ -20,55 +20,40 @@
 <div class="paragraph">
 <p>By: <code>Team T09-B4</code>      Since: <code>Feb 2018</code>      Licence: <code>MIT</code></p>
 </div>
+<div class="paragraph">
+<p>Welcome to the User Guide for <em>NUSCouples</em>!</p>
+</div>
+<div class="paragraph">
+<p><em>NUSCouples</em> is a desktop app <strong>specially made for you</strong>, couples from National University of Singapore (NUS),
+to create and remember memories with ease amid our <strong>hectic school term</strong>. Imagine what it would be like to be able
+identify common breaks, schedule meetings and view important dates with your partner, and record your thoughts or
+feelings, <strong>all in the same application</strong> mere keystrokes away. Best of all, <strong>everything</strong> can be controlled from the
+handy Command Line Interface (CLI). Experience the <strong>clarity</strong> that comes with a Graphical User Interface (GUI), with
+none of the <strong>pain</strong> of searching for and remembering where each button is. Interested yet? Jump to <a href="#quick-start">Section 1, &#8220;Quick Start&#8221;</a> to
+get started. Enjoy!</p>
+</div>
 </div>
 <div id="toc" class="toc">
-<div id="toctitle"></div>
+<div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#introduction">1. Introduction</a></li>
-<li><a href="#quick-start">2. Quick Start</a></li>
-<li><a href="#Features">3. Features</a>
+<li><a href="#quick-start">1. Quick Start</a></li>
+<li><a href="#Features">2. Features</a>
 <ul class="sectlevel2">
-<li><a href="#viewing-help-code-help-code">3.1. Viewing help : <code>help</code></a></li>
-<li><a href="#adding-your-partner-code-add-code">3.2. Adding your partner: <code>add</code></a></li>
-<li><a href="#editing-your-partner-code-edit-code">3.3. Editing your partner : <code>edit</code></a></li>
-<li><a href="#deleting-your-partner-code-delete-code">3.4. Deleting your partner : <code>delete</code></a></li>
-<li><a href="#selecting-a-person-code-select-code">3.5. Selecting a person : <code>select</code></a></li>
-<li><a href="#listing-entered-commands-code-history-code">3.6. Listing entered commands : <code>history</code></a></li>
-<li><a href="#undoing-previous-command-code-undo-code">3.7. Undoing previous command : <code>undo</code></a></li>
-<li><a href="#redoing-the-previously-undone-command-code-redo-code">3.8. Redoing the previously undone command : <code>redo</code></a></li>
-<li><a href="#viewing-your-partner-s-timetable-code-tview-code">3.9. Viewing your partner&#8217;s timetable : <code>tview</code></a></li>
-<li><a href="#viewing-all-journal-entries-code-jview-code">3.10. Viewing all journal entries : <code>jview</code></a></li>
-<li><a href="#creating-a-new-journal-entry-code-jnew-code">3.11. Creating a new journal entry : <code>jnew</code></a></li>
-<li><a href="#deleting-a-journal-entry-code-jdelete-code">3.12. Deleting a journal entry : <code>jdelete</code></a></li>
-<li><a href="#viewing-current-calendar-code-cview-code">3.13. Viewing current calendar : <code>cview</code></a></li>
-<li><a href="#adding-new-event-to-google-calendar-code-cadd-code">3.14. Adding new event to Google calendar : <code>cadd</code></a></li>
-<li><a href="#deleting-event-from-google-calendar-code-cdelete-code">3.15. Deleting event from Google calendar: <code>cdelete</code></a></li>
-<li><a href="#editing-event-on-google-calendar-code-cedit-code">3.16. Editing event on Google calendar : <code>cedit</code></a></li>
-<li><a href="#finding-building-location-code-location-code">3.17. Finding building location : <code>location</code></a></li>
-<li><a href="#exiting-the-program-code-exit-code">3.18. Exiting the program : <code>exit</code></a></li>
-<li><a href="#saving-the-data">3.19. Saving the data</a></li>
-<li><a href="#encrypting-data-files-code-coming-in-v2-0-code">3.20. Encrypting data files <code>[coming in v2.0]</code></a></li>
-<li><a href="#archiving-journal-entries-code-coming-in-v2-0-code">3.21. Archiving journal entries <code>[coming in v2.0]</code></a></li>
-<li><a href="#comparing-timetable-code-coming-in-v2-0-code">3.22. Comparing timetable <code>[coming in v2.0]</code></a></li>
-<li><a href="#send-google-maps-location-to-phone-code-coming-in-v2-0-code">3.23. Send Google Maps location to phone <code>[coming in v2.0]</code></a></li>
-<li><a href="#filtering-journal-entries-by-date-code-coming-in-v2-0-code">3.24. Filtering journal entries by date <code>[coming in v2.0]</code></a></li>
+<li><a href="#general-features">2.1. General Features</a></li>
+<li><a href="#timetable">2.2. Timetable</a></li>
+<li><a href="#calendar">2.3. Calendar</a></li>
+<li><a href="#journal">2.4. Journal</a></li>
+<li><a href="#location">2.5. Location</a></li>
+<li><a href="#code-coming-in-v2-0-code">2.6. <code>Coming in v2.0</code></a></li>
 </ul>
 </li>
-<li><a href="#faq">4. FAQ</a></li>
-<li><a href="#command-summary">5. Command Summary</a></li>
+<li><a href="#faq">3. FAQ</a></li>
+<li><a href="#command-summary">4. Command Summary</a></li>
 </ul>
 </div>
 </div>
 <div class="sect1">
-<h2 id="introduction"><a class="link" href="#introduction">1. Introduction</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>AddressBook Level 4 (AB4) is for those who <strong>prefer to use a desktop app for managing contacts</strong>. More importantly, AB4 is <strong>optimized for those who prefer to work with a Command Line Interface</strong> (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB4 can get your contact management tasks done faster than traditional GUI apps. Interested? Jump to the <a href="#quick-start">Section 2, &#8220;Quick Start&#8221;</a> to get started. Enjoy!</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="quick-start"><a class="link" href="#quick-start">2. Quick Start</a></h2>
+<h2 id="quick-start"><a class="link" href="#quick-start">1. Quick Start</a></h2>
 <div class="sectionbody">
 <div class="olist arabic">
 <ol class="arabic">
@@ -89,13 +74,13 @@ This app will not work with earlier versions of Java 8.
 </div>
 </li>
 <li>
-<p>Download the latest <code>addressbook.jar</code> <a href="https://github.com/CS2103JAN2018-T09-B4/main/releases">here</a>.</p>
+<p>Download the latest <code>NUSCouples.jar</code> <a href="https://github.com/CS2103JAN2018-T09-B4/main/releases">here</a>.</p>
 </li>
 <li>
-<p>Copy the file to the folder you want to use as the home folder for your Address Book.</p>
+<p>Copy the file to the folder you want to use as the home folder for <em>NUSCouples</em>.</p>
 </li>
 <li>
-<p>Double-click the file to start the app. The GUI should appear in a few seconds.</p>
+<p>Double-click the file to start the app. The app window should appear in a few seconds.</p>
 <div class="imageblock">
 <div class="content">
 <img src="images/Ui.png" alt="Ui" width="790">
@@ -111,13 +96,8 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="ulist">
 <ul>
 <li>
-<p><strong><code>list</code></strong> : lists all contacts</p>
-</li>
-<li>
-<p><strong><code>add</code></strong><code>n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01</code> : adds a contact named <code>John Doe</code> to the Address Book.</p>
-</li>
-<li>
-<p><strong><code>delete</code></strong><code>3</code> : deletes the 3rd contact shown in the current list</p>
+<p><strong><code>add</code></strong><code>n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01</code> :
+adds a partner named <code>John Doe</code> to <em>NUSCouples</em>.</p>
 </li>
 <li>
 <p><strong><code>exit</code></strong> : exits the app</p>
@@ -126,14 +106,17 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 </div>
 </li>
 <li>
-<p>Refer to <a href="#Features">Section 3, &#8220;Features&#8221;</a> for details of each command.</p>
+<p>Refer to <a href="#Features">Section 2, &#8220;Features&#8221;</a> for details of each command.<br></p>
 </li>
 </ol>
+</div>
+<div class="paragraph">
+<p>return to <a href="#toc">Table of Contents</a></p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="Features"><a class="link" href="#Features">3. Features</a></h2>
+<h2 id="Features"><a class="link" href="#Features">2. Features</a></h2>
 <div class="sectionbody">
 <div class="exampleblock">
 <div class="content">
@@ -143,35 +126,41 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="ulist">
 <ul>
 <li>
-<p>Some commands have an alias, which you can also use to execute the command e.g. to add your partner to NUSCouples, you can type either <code>add n/John Doe</code> or <code>a n/John Doe</code>.</p>
+<p>Some commands have an alias, which you can also use to execute the command e.g. to add your partner to
+<em>NUSCouples</em>, you can type either <code>add n/John Doe</code> or <code>a n/John Doe</code>.</p>
 </li>
 <li>
-<p>Words in <code>UPPER_CASE</code> are the parameters to be supplied by the user e.g. in <code>add n/NAME</code>, <code>NAME</code> is a parameter which can be used as <code>add n/John Doe</code>.</p>
+<p>Words in <code>UPPER_CASE</code> are the parameters to be supplied by the user e.g. in <code>add n/NAME</code>, <code>NAME</code> is a
+parameter which can be used as <code>add n/John Doe</code>.</p>
 </li>
 <li>
 <p>Items in square brackets are optional e.g <code>n/NAME [t/TAG]</code> can be used as <code>n/John Doe t/friend</code> or as <code>n/John Doe</code>.</p>
 </li>
 <li>
-<p>Items with <code>…</code>​ after them can be used multiple times including zero times e.g. <code>[t/TAG]&#8230;&#8203;</code> can be used as <code>&#160;</code> (i.e. 0 times), <code>t/friend</code>, <code>t/friend t/family</code> etc.</p>
+<p>Items with <code>…</code>​ after them can be used multiple times including zero times e.g. <code>[t/TAG]&#8230;&#8203;</code> can
+be used as <code>&#160;</code> (i.e. 0 times), <code>t/friend</code>, <code>t/friend t/family</code> etc.</p>
 </li>
 <li>
-<p>Parameters can be in any order e.g. if the command specifies <code>n/NAME p/PHONE_NUMBER</code>, <code>p/PHONE_NUMBER n/NAME</code> is also acceptable.</p>
+<p>Parameters can be in any order e.g. if the command specifies <code>n/NAME p/PHONE_NUMBER</code>,
+<code>p/PHONE_NUMBER n/NAME</code> is also acceptable.</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="viewing-help-code-help-code"><a class="link" href="#viewing-help-code-help-code">3.1. Viewing help : <code>help</code></a></h3>
+<h3 id="general-features"><a class="link" href="#general-features">2.1. General Features</a></h3>
+<div class="sect3">
+<h4 id="viewing-help-code-help-code"><a class="link" href="#viewing-help-code-help-code">2.1.1. Viewing help : <code>help</code></a></h4>
 <div class="paragraph">
 <p>Format: <code>help</code><br>
 Alias: <code>hlp</code></p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="adding-your-partner-code-add-code"><a class="link" href="#adding-your-partner-code-add-code">3.2. Adding your partner: <code>add</code></a></h3>
+<div class="sect3">
+<h4 id="adding-your-partner-code-add-code"><a class="link" href="#adding-your-partner-code-add-code">2.1.2. Adding your partner: <code>add</code></a></h4>
 <div class="paragraph">
-<p>Adds your partner to NUSCouples.<br>
+<p>Adds your partner to <em>NUSCouples</em>.<br>
 Format: <code>add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS tt/TIMETABLE_URL [t/TAG]&#8230;&#8203;</code><br>
 Alias: <code>a n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS tt/TIMETABLE_URL [t/TAG]&#8230;&#8203;</code></p>
 </div>
@@ -186,7 +175,7 @@ Alias: <code>a n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS tt/TIMETABLE_URL [t/TAG]&
 <p>The timetable url provided has to be a valid <a href="https://nusmods.com">NUSMods</a> short URL.</p>
 </li>
 <li>
-<p>You can only have one partner in NUSCouples at any one time.</p>
+<p>You can only have one partner in <em>NUSCouples</em> at any one time.</p>
 </li>
 </ul>
 </div>
@@ -206,10 +195,10 @@ Alias: <code>a n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS tt/TIMETABLE_URL [t/TAG]&
 </ul>
 </div>
 </div>
-<div class="sect2">
-<h3 id="editing-your-partner-code-edit-code"><a class="link" href="#editing-your-partner-code-edit-code">3.3. Editing your partner : <code>edit</code></a></h3>
+<div class="sect3">
+<h4 id="editing-your-partner-code-edit-code"><a class="link" href="#editing-your-partner-code-edit-code">2.1.3. Editing your partner : <code>edit</code></a></h4>
 <div class="paragraph">
-<p>Edits your existing partner in NUSCouples.<br>
+<p>Edits your existing partner in <em>NUSCouples</em>.<br>
 Format: <code>edit [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [tt/TIMETABLE_URL] [t/TAG]&#8230;&#8203;</code><br>
 Alias: <code>ed [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [tt/TIMETABLE_URL] [t/TAG]&#8230;&#8203;</code></p>
 </div>
@@ -230,7 +219,7 @@ Alias: <code>ed [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [tt/TIMETABLE_URL] [t/T
 <p>You can remove all tags of your partner by typing <code>t/</code> without specifying any tags after it.</p>
 </li>
 <li>
-<p>Your partner must exist in NUSCouples before this command can be executed.</p>
+<p>Your partner must exist in <em>NUSCouples</em> before this command can be executed.</p>
 </li>
 </ul>
 </div>
@@ -252,10 +241,10 @@ Edits the name of your partner to be <code>Betsy Crower</code> and clears all ex
 </ul>
 </div>
 </div>
-<div class="sect2">
-<h3 id="deleting-your-partner-code-delete-code"><a class="link" href="#deleting-your-partner-code-delete-code">3.4. Deleting your partner : <code>delete</code></a></h3>
+<div class="sect3">
+<h4 id="deleting-your-partner-code-delete-code"><a class="link" href="#deleting-your-partner-code-delete-code">2.1.4. Deleting your partner : <code>delete</code></a></h4>
 <div class="paragraph">
-<p>Deletes your partner from NUSCouples.<br>
+<p>Deletes your partner from <em>NUSCouples</em>.<br>
 Format: <code>delete</code><br>
 Alias: <code>d</code></p>
 </div>
@@ -267,37 +256,15 @@ Alias: <code>d</code></p>
 <p>Deletes your partner.</p>
 </li>
 <li>
-<p>Your partner must exist in NUSCouples before this command can be executed.</p>
+<p>Your partner must exist in <em>NUSCouples</em> before this command can be executed.</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="selecting-a-person-code-select-code"><a class="link" href="#selecting-a-person-code-select-code">3.5. Selecting a person : <code>select</code></a></h3>
-<div class="paragraph">
-<p>Selects your partner.<br>
-Format: <code>select</code><br>
-Alias: <code>s</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>Selects your partner and loads the Google search page of your partner.</p>
-</li>
-<li>
-<p>Your partner must exist in NUSCouples before this command can be executed.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="listing-entered-commands-code-history-code"><a class="link" href="#listing-entered-commands-code-history-code">3.6. Listing entered commands : <code>history</code></a></h3>
+<div class="sect3">
+<h4 id="listing-entered-commands-code-history-code"><a class="link" href="#listing-entered-commands-code-history-code">2.1.5. Listing entered commands : <code>history</code></a></h4>
 <div class="paragraph">
 <p>Lists all the commands that you have entered in reverse chronological order.<br>
 Format: <code>history</code><br>
@@ -318,10 +285,10 @@ Alias: <code>hist</code></p>
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="undoing-previous-command-code-undo-code"><a class="link" href="#undoing-previous-command-code-undo-code">3.7. Undoing previous command : <code>undo</code></a></h3>
+<div class="sect3">
+<h4 id="undoing-previous-command-code-undo-code"><a class="link" href="#undoing-previous-command-code-undo-code">2.1.6. Undoing previous command : <code>undo</code></a></h4>
 <div class="paragraph">
-<p>Restores NUSCouples to the state before the previous <em>undoable</em> command was executed.<br>
+<p>Restores <em>NUSCouples</em> to the state before the previous "undoable command" was executed.<br>
 Format: <code>undo</code><br>
 Alias: <code>u</code></p>
 </div>
@@ -333,7 +300,7 @@ Alias: <code>u</code></p>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Undoable commands: those commands that modify NUSCouples' content (<code>add</code>, <code>delete</code>, <code>edit</code> and <code>clear</code>).</p>
+<p>Undoable commands: those commands that modify <em>NUSCouples</em> content (<code>add</code>, <code>delete</code>, <code>edit</code> and <code>clear</code>).</p>
 </div>
 </td>
 </tr>
@@ -363,8 +330,8 @@ The <code>undo</code> command fails as there are no undoable commands executed p
 </ul>
 </div>
 </div>
-<div class="sect2">
-<h3 id="redoing-the-previously-undone-command-code-redo-code"><a class="link" href="#redoing-the-previously-undone-command-code-redo-code">3.8. Redoing the previously undone command : <code>redo</code></a></h3>
+<div class="sect3">
+<h4 id="redoing-the-previously-undone-command-code-redo-code"><a class="link" href="#redoing-the-previously-undone-command-code-redo-code">2.1.7. Redoing the previously undone command : <code>redo</code></a></h4>
 <div class="paragraph">
 <p>Reverses the most recent <code>undo</code> command.<br>
 Format: <code>redo</code><br>
@@ -396,107 +363,43 @@ The <code>redo</code> command fails as there are no <code>undo</code> commands e
 </ul>
 </div>
 </div>
+<div class="sect3">
+<h4 id="saving-the-data"><a class="link" href="#saving-the-data">2.1.8. Saving the data</a></h4>
+<div class="paragraph">
+<p>NUSCouples data are saved in the hard disk automatically after any command that changes the data.<br>
+There is no need to save manually.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">2.1.9. Exiting the program : <code>exit</code></a></h4>
+<div class="paragraph">
+<p>Exits the program.<br>
+Format: <code>exit</code><br>
+Alias: <code>ex</code><br></p>
+</div>
+<div class="paragraph">
+<p>Return to <a href="#toc">Table of Contents</a> <br></p>
+</div>
+</div>
+</div>
 <div class="sect2">
-<h3 id="viewing-your-partner-s-timetable-code-tview-code"><a class="link" href="#viewing-your-partner-s-timetable-code-tview-code">3.9. Viewing your partner&#8217;s timetable : <code>tview</code></a></h3>
+<h3 id="timetable"><a class="link" href="#timetable">2.2. Timetable</a></h3>
+<div class="sect3">
+<h4 id="adding-your-partner-s-timetable"><a class="link" href="#adding-your-partner-s-timetable">2.2.1. Adding your partner&#8217;s timetable</a></h4>
+<div class="paragraph">
+<p>Refer to <a href="#adding-your-partner-code-add-code">Section 2.1.2, &#8220;Adding your partner: <code>add</code>&#8221;</a></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="viewing-your-partner-s-timetable-code-tview-code"><a class="link" href="#viewing-your-partner-s-timetable-code-tview-code">2.2.2. Viewing your partner&#8217;s timetable : <code>tview</code></a></h4>
 <div class="paragraph">
 <p>Shows the current saved timetable of your partner.<br>
 Format: <code>tview</code><br>
 Alias: <code>tv</code></p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="viewing-all-journal-entries-code-jview-code"><a class="link" href="#viewing-all-journal-entries-code-jview-code">3.10. Viewing all journal entries : <code>jview</code></a></h3>
-<div class="paragraph">
-<p>View all journal entries.<br>
-Format: <code>jview</code><br>
-Alias: <code>jv</code></p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="creating-a-new-journal-entry-code-jnew-code"><a class="link" href="#creating-a-new-journal-entry-code-jnew-code">3.11. Creating a new journal entry : <code>jnew</code></a></h3>
-<div class="paragraph">
-<p>Creates a new window that allows the user to input and save journal entries.<br>
-Format: <code>jnew</code><br>
-Alias: <code>jn</code></p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="deleting-a-journal-entry-code-jdelete-code"><a class="link" href="#deleting-a-journal-entry-code-jdelete-code">3.12. Deleting a journal entry : <code>jdelete</code></a></h3>
-<div class="paragraph">
-<p>Deletes a journal entry on the specified date.<br>
-Format: <code>jdelete</code><br>
-Alias: <code>jd</code></p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="viewing-current-calendar-code-cview-code"><a class="link" href="#viewing-current-calendar-code-cview-code">3.13. Viewing current calendar : <code>cview</code></a></h3>
-<div class="paragraph">
-<p>View Google calendar.<br>
-Format: <code>cview</code><br>
-Alias: <code>cv</code></p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="adding-new-event-to-google-calendar-code-cadd-code"><a class="link" href="#adding-new-event-to-google-calendar-code-cadd-code">3.14. Adding new event to Google calendar : <code>cadd</code></a></h3>
-<div class="paragraph">
-<p>Adds new event to Google calendar.<br>
-Format: <code>cadd</code><br>
-Alias: <code>ca</code></p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="deleting-event-from-google-calendar-code-cdelete-code"><a class="link" href="#deleting-event-from-google-calendar-code-cdelete-code">3.15. Deleting event from Google calendar: <code>cdelete</code></a></h3>
-<div class="paragraph">
-<p>Delete specified event from Google calendar.<br>
-Format: <code>cdelete</code><br>
-Alias: <code>cd</code></p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="editing-event-on-google-calendar-code-cedit-code"><a class="link" href="#editing-event-on-google-calendar-code-cedit-code">3.16. Editing event on Google calendar : <code>cedit</code></a></h3>
-<div class="paragraph">
-<p>Edit event on Google calendar.<br>
-Format: <code>cedit</code><br>
-Alias: <code>ce</code></p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="finding-building-location-code-location-code"><a class="link" href="#finding-building-location-code-location-code">3.17. Finding building location : <code>location</code></a></h3>
-<div class="paragraph">
-<p>Shows the location (by building) of the entered classroom name.<br>
-Format: <code>location</code><br>
-Alias: <code>loc</code></p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">3.18. Exiting the program : <code>exit</code></a></h3>
-<div class="paragraph">
-<p>Exits the program.<br>
-Format: <code>exit</code><br>
-Alias: <code>ex</code></p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="saving-the-data"><a class="link" href="#saving-the-data">3.19. Saving the data</a></h3>
-<div class="paragraph">
-<p>NUSCouples data are saved in the hard disk automatically after any command that changes the data.<br>
-There is no need to save manually.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="encrypting-data-files-code-coming-in-v2-0-code"><a class="link" href="#encrypting-data-files-code-coming-in-v2-0-code">3.20. Encrypting data files <code>[coming in v2.0]</code></a></h3>
-<div class="paragraph">
-<p><em>{explain how the user can enable/disable data encryption}</em></p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="archiving-journal-entries-code-coming-in-v2-0-code"><a class="link" href="#archiving-journal-entries-code-coming-in-v2-0-code">3.21. Archiving journal entries <code>[coming in v2.0]</code></a></h3>
-<div class="paragraph">
-<p><em>{explain how the user can export old journal entries to another storage location in their computer}</em></p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="comparing-timetable-code-coming-in-v2-0-code"><a class="link" href="#comparing-timetable-code-coming-in-v2-0-code">3.22. Comparing timetable <code>[coming in v2.0]</code></a></h3>
+<div class="sect3">
+<h4 id="comparing-timetable-code-tcompare-code"><a class="link" href="#comparing-timetable-code-tcompare-code">2.2.3. Comparing timetable : <code>tcompare</code></a></h4>
 <div class="paragraph">
 <p>Displays the common breaks shared by the given timetable and your partner&#8217;s timetable in a timetable format.<br>
 Format: <code>tcompare tt/TIMETABLE_URL</code><br>
@@ -510,7 +413,7 @@ Alias: <code>tc tt/TIMETABLE_URL</code></p>
 <p>The timetable url provided has to be a valid <a href="https://nusmods.com">NUSMods</a> short URL.</p>
 </li>
 <li>
-<p>Your partner must exist in NUSCouples before this command can be executed.</p>
+<p>Your partner must exist in <em>NUSCouples</em> before this command can be executed.</p>
 </li>
 </ul>
 </div>
@@ -525,38 +428,148 @@ Alias: <code>tc tt/TIMETABLE_URL</code></p>
 <p><code>tcompare tt/http://modsn.us/IO4n5</code></p>
 </li>
 <li>
-<p><code>tc tt/http://modsn.us/wNuIW</code></p>
+<p><code>tc tt/http://modsn.us/wNuIW</code><br></p>
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>Return to <a href="#toc">Table of Contents</a> <br></p>
+</div>
+</div>
 </div>
 <div class="sect2">
-<h3 id="send-google-maps-location-to-phone-code-coming-in-v2-0-code"><a class="link" href="#send-google-maps-location-to-phone-code-coming-in-v2-0-code">3.23. Send Google Maps location to phone <code>[coming in v2.0]</code></a></h3>
+<h3 id="calendar"><a class="link" href="#calendar">2.3. Calendar</a></h3>
+<div class="sect3">
+<h4 id="viewing-current-calendar-code-cview-code"><a class="link" href="#viewing-current-calendar-code-cview-code">2.3.1. Viewing current calendar : <code>cview</code></a></h4>
+<div class="paragraph">
+<p>View Google calendar.<br>
+Format: <code>cview</code><br>
+Alias: <code>cv</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="adding-new-event-to-google-calendar-code-cadd-code"><a class="link" href="#adding-new-event-to-google-calendar-code-cadd-code">2.3.2. Adding new event to Google calendar : <code>cadd</code></a></h4>
+<div class="paragraph">
+<p>Adds new event to Google calendar.<br>
+Format: <code>cadd</code><br>
+Alias: <code>ca</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="deleting-event-from-google-calendar-code-cdelete-code"><a class="link" href="#deleting-event-from-google-calendar-code-cdelete-code">2.3.3. Deleting event from Google calendar: <code>cdelete</code></a></h4>
+<div class="paragraph">
+<p>Delete specified event from Google calendar.<br>
+Format: <code>cdelete</code><br>
+Alias: <code>cd</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="editing-event-on-google-calendar-code-cedit-code"><a class="link" href="#editing-event-on-google-calendar-code-cedit-code">2.3.4. Editing event on Google calendar : <code>cedit</code></a></h4>
+<div class="paragraph">
+<p>Edit event on Google calendar.<br>
+Format: <code>cedit</code><br>
+Alias: <code>ce</code></p>
+</div>
+<div class="paragraph">
+<p>Return to <a href="#toc">Table of Contents</a> <br></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="journal"><a class="link" href="#journal">2.4. Journal</a></h3>
+<div class="sect3">
+<h4 id="viewing-all-journal-entries-code-jview-code"><a class="link" href="#viewing-all-journal-entries-code-jview-code">2.4.1. Viewing all journal entries : <code>jview</code></a></h4>
+<div class="paragraph">
+<p>View all journal entries.<br>
+Format: <code>jview</code><br>
+Alias: <code>jv</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="creating-a-new-journal-entry-code-jnew-code"><a class="link" href="#creating-a-new-journal-entry-code-jnew-code">2.4.2. Creating a new journal entry : <code>jnew</code></a></h4>
+<div class="paragraph">
+<p>Creates a new window that allows the user to input and save journal entries. The journal entry is identified by
+the date it was created in the format <code>yyyymmdd</code>. If an entry with that date already exists, it will open
+that entry in the new window. Saving not required as the journal entry will be automatically saved when the
+journal window is closed.<br>
+Format: <code>jnew</code><br>
+Alias: <code>jn</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="deleting-a-journal-entry-code-jdelete-code"><a class="link" href="#deleting-a-journal-entry-code-jdelete-code">2.4.3. Deleting a journal entry : <code>jdelete</code></a></h4>
+<div class="paragraph">
+<p>Deletes a journal entry in the specified index.<br>
+Format: <code>jdelete</code><br>
+Alias: <code>jd</code></p>
+</div>
+<div class="paragraph">
+<p>Return to <a href="#toc">Table of Contents</a> <br></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="location"><a class="link" href="#location">2.5. Location</a></h3>
+<div class="sect3">
+<h4 id="finding-building-location-code-location-code"><a class="link" href="#finding-building-location-code-location-code">2.5.1. Finding building location : <code>location</code></a></h4>
+<div class="paragraph">
+<p>Shows the location (by building) of the entered classroom name.<br>
+Format: <code>location</code><br>
+Alias: <code>loc</code></p>
+</div>
+<div class="paragraph">
+<p>Return to <a href="#toc">Table of Contents</a> <br></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="code-coming-in-v2-0-code"><a class="link" href="#code-coming-in-v2-0-code">2.6. <code>Coming in v2.0</code></a></h3>
+<div class="sect3">
+<h4 id="encrypting-data-files-code-coming-in-v2-0-code"><a class="link" href="#encrypting-data-files-code-coming-in-v2-0-code">2.6.1. Encrypting data files <code>[coming in v2.0]</code></a></h4>
+<div class="paragraph">
+<p><em>{explain how the user can enable/disable data encryption}</em></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="archiving-journal-entries-code-coming-in-v2-0-code"><a class="link" href="#archiving-journal-entries-code-coming-in-v2-0-code">2.6.2. Archiving journal entries <code>[coming in v2.0]</code></a></h4>
+<div class="paragraph">
+<p><em>{explain how the user can export old journal entries to another storage location in their computer}</em></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="send-google-maps-location-to-phone-code-coming-in-v2-0-code"><a class="link" href="#send-google-maps-location-to-phone-code-coming-in-v2-0-code">2.6.3. Send Google Maps location to phone <code>[coming in v2.0]</code></a></h4>
 <div class="paragraph">
 <p><em>{explain how the user can use their phones to navigate to a location in NUS by sending the location to the user&#8217;s phone from the Google Maps API}</em></p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="filtering-journal-entries-by-date-code-coming-in-v2-0-code"><a class="link" href="#filtering-journal-entries-by-date-code-coming-in-v2-0-code">3.24. Filtering journal entries by date <code>[coming in v2.0]</code></a></h3>
+<div class="sect3">
+<h4 id="filtering-journal-entries-by-date-code-coming-in-v2-0-code"><a class="link" href="#filtering-journal-entries-by-date-code-coming-in-v2-0-code">2.6.4. Filtering journal entries by date <code>[coming in v2.0]</code></a></h4>
 <div class="paragraph">
 <p>Filters journal entries by the specified interval.<br>
 Format: <code>jfilter</code><br>
 Alias: <code>jf</code></p>
 </div>
+<div class="paragraph">
+<p>Return to <a href="#toc">Table of Contents</a> <br></p>
+</div>
+</div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="faq"><a class="link" href="#faq">4. FAQ</a></h2>
+<h2 id="faq"><a class="link" href="#faq">3. FAQ</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p><strong>Q</strong>: How do I transfer my data to another Computer?<br>
 <strong>A</strong>: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous NUSCouples folder.</p>
 </div>
+<div class="paragraph">
+<p>Return to <a href="#toc">Table of Contents</a> <br></p>
+</div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="command-summary"><a class="link" href="#command-summary">5. Command Summary</a></h2>
+<h2 id="command-summary"><a class="link" href="#command-summary">4. Command Summary</a></h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -672,18 +685,21 @@ Alias: <code>jf</code></p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">exit, ex</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Exits NUSCouples</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Exits <em>NUSCouples</em></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>exit</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
 </table>
+<div class="paragraph">
+<p>Return to <a href="#toc">Table of Contents</a> <br></p>
+</div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-03-25 15:03:44 UTC
+Last updated 2018-03-25 17:26:26 UTC
 </div>
 </div>
 </body>
