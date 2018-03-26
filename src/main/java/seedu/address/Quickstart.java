@@ -33,14 +33,14 @@ public class Quickstart {
             System.getProperty("user.home"), ".credentials/calendar-java-quickstart");
 
     /** Global instance of the {@link FileDataStoreFactory}. */
-    private static FileDataStoreFactory dataStoreFactory;
+    private static FileDataStoreFactory DATA_STORE_FACTORY;
 
     /** Global instance of the JSON factory. */
     private static final JsonFactory JSON_FACTORY =
             JacksonFactory.getDefaultInstance();
 
     /** Global instance of the HTTP transport. */
-    private static HttpTransport httpTransport;
+    private static HttpTransport HTTP_TRANSPORT;
 
     /** Global instance of the scopes required by this quickstart.
      *
@@ -52,8 +52,8 @@ public class Quickstart {
 
     static {
         try {
-            httpTransport = GoogleNetHttpTransport.newTrustedTransport();
-            dataStoreFactory = new FileDataStoreFactory(DATA_STORE_DIR);
+            HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
+            DATA_STORE_FACTORY = new FileDataStoreFactory(DATA_STORE_DIR);
         } catch (Throwable t) {
             t.printStackTrace();
             System.exit(1);
@@ -75,8 +75,8 @@ public class Quickstart {
         // Build flow and trigger user authorization request.
         GoogleAuthorizationCodeFlow flow =
                 new GoogleAuthorizationCodeFlow.Builder(
-                        httpTransport, JSON_FACTORY, clientSecrets, SCOPES)
-                        .setDataStoreFactory(dataStoreFactory)
+                        HTTP_TRANSPORT, JSON_FACTORY, clientSecrets, SCOPES)
+                        .setDataStoreFactory(DATA_STORE_FACTORY)
                         .setAccessType("offline")
                         .build();
         Credential credential = new AuthorizationCodeInstalledApp(
@@ -95,14 +95,14 @@ public class Quickstart {
         getCalendarService() throws IOException {
         Credential credential = authorize();
         return new com.google.api.services.calendar.Calendar.Builder(
-                httpTransport, JSON_FACTORY, credential)
+                HTTP_TRANSPORT, JSON_FACTORY, credential)
                 .setApplicationName(APPLICATION_NAME)
                 .build();
     }
     /**
      * Main execute method
      */
-    public static void run() throws IOException {
+    public static String run() throws IOException {
         // Build a new authorized API client service.
         // Note: Do not confuse this class with the
         //   com.google.api.services.calendar.model.Calendar class.
@@ -119,7 +119,9 @@ public class Quickstart {
                 .execute();
         List<Event> items = events.getItems();
         if (items.size() == 0) {
-            System.out.println("No upcoming events found.");
+
+           // System.out.println("No upcoming events found.");
+            return "No upcoming events found.";
         } else {
             System.out.println("Upcoming events");
             for (Event event : items) {
@@ -127,9 +129,11 @@ public class Quickstart {
                 if (start == null) {
                     start = event.getStart().getDate();
                 }
-                System.out.printf("%s (%s)\n", event.getSummary(), start);
+                //System.out.printf("%s (%s)\n", event.getSummary(), start);
+                return "found something.";
             }
         }
+    return null;
     }
 
 }
