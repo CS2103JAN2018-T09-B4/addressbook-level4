@@ -23,7 +23,7 @@ import com.google.api.services.calendar.model.Events;
 
 
 /** Quickstart engine to authenticate Google API */
-public class Quickstart extends MainApp {
+public class Quickstart {
     /** Application name. */
     private static final String APPLICATION_NAME =
             "NUSCouples";
