@@ -82,7 +82,7 @@ public class Quickstart {
     public static Credential authorize() throws IOException {
         // Load client secrets.
         InputStream in =
-                Quickstart.class.getResourceAsStream("/client_secret.json");
+                Quickstart.class.getResourceAsStream("client_secret.json.enc");
         GoogleClientSecrets clientSecrets =
                 GoogleClientSecrets.load(JSON_FACTORY, new InputStreamReader(in));
 
@@ -118,7 +118,7 @@ public class Quickstart {
     /**
      * Main execute method
      */
-    public static String run() throws IOException {
+    public static void run() throws IOException {
         // Build a new authorized API client service.
         // Note: Do not confuse this class with the
         //   com.google.api.services.calendar.model.Calendar class.
@@ -135,9 +135,7 @@ public class Quickstart {
                 .execute();
         List<Event> items = events.getItems();
         if (items.size() == 0) {
-
-            // System.out.println("No upcoming events found.");
-            return "No upcoming events found.";
+            System.out.println("No upcoming events found.");
         } else {
             System.out.println("Upcoming events");
             for (Event event : items) {
@@ -145,12 +143,9 @@ public class Quickstart {
                 if (start == null) {
                     start = event.getStart().getDate();
                 }
-                //System.out.printf("%s (%s)\n", event.getSummary(), start);
-                return "found something.";
+                System.out.printf("%s (%s)\n", event.getSummary(), start);
             }
         }
-        return null;
     }
 
 }
-
