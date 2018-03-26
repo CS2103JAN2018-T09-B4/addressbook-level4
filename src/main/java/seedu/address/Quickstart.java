@@ -22,33 +22,46 @@ import com.google.api.services.calendar.model.Event;
 import com.google.api.services.calendar.model.Events;
 
 
-/** Quickstart engine to authenticate Google API */
+/**
+ * Quickstart engine to authenticate Google API
+ */
 public class Quickstart {
-    /** Application name. */
+    /**
+     * Application name.
+     */
     private static final String APPLICATION_NAME =
             "NUSCouples";
 
-    /** Directory to store user credentials for this application. */
+    /**
+     * Directory to store user credentials for this application.
+     */
     private static final java.io.File DATA_STORE_DIR = new java.io.File(
             System.getProperty("user.home"), ".credentials/calendar-java-quickstart");
 
-    /** Global instance of the {@link FileDataStoreFactory}. */
+    /**
+     * Global instance of the {@link FileDataStoreFactory}.
+     */
     private static FileDataStoreFactory dataStoreFactory;
 
-    /** Global instance of the JSON factory. */
+    /**
+     * Global instance of the JSON factory.
+     */
     private static final JsonFactory JSON_FACTORY =
             JacksonFactory.getDefaultInstance();
 
-    /** Global instance of the HTTP transport. */
+    /**
+     * Global instance of the HTTP transport.
+     */
     private static HttpTransport httpTransport;
 
-    /** Global instance of the scopes required by this quickstart.
-     *
+    /**
+     * Global instance of the scopes required by this quickstart.
+     * <p>
      * If modifying these scopes, delete your previously saved credentials
      * at ~/.credentials/calendar-java-quickstart
      */
     private static final List<String> SCOPES =
-            Arrays.asList(CalendarScopes.CALENDAR_READONLY) ;
+            Arrays.asList(CalendarScopes.CALENDAR_READONLY);
 
     static {
         try {
@@ -62,6 +75,7 @@ public class Quickstart {
 
     /**
      * Creates an authorized Credential object.
+     *
      * @return an authorized Credential object.
      * @throws IOException
      */
@@ -88,17 +102,19 @@ public class Quickstart {
 
     /**
      * Build and return an authorized Calendar client service.
+     *
      * @return an authorized Calendar client service
      * @throws IOException
      */
     public static com.google.api.services.calendar.Calendar
-        getCalendarService() throws IOException {
+    getCalendarService() throws IOException {
         Credential credential = authorize();
         return new com.google.api.services.calendar.Calendar.Builder(
                 httpTransport, JSON_FACTORY, credential)
                 .setApplicationName(APPLICATION_NAME)
                 .build();
     }
+
     /**
      * Main execute method
      */
@@ -120,7 +136,7 @@ public class Quickstart {
         List<Event> items = events.getItems();
         if (items.size() == 0) {
 
-           // System.out.println("No upcoming events found.");
+            // System.out.println("No upcoming events found.");
             return "No upcoming events found.";
         } else {
             System.out.println("Upcoming events");
@@ -133,7 +149,7 @@ public class Quickstart {
                 return "found something.";
             }
         }
-    return null;
+        return null;
     }
 
 }
