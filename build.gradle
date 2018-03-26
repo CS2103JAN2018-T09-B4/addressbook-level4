@@ -41,6 +41,9 @@ jacocoTestReport {
 dependencies {
     String testFxVersion = '4.0.7-alpha'
 
+    compile group: 'com.google.api-client', name: 'google-api-client', version: '1.23.0'
+    compile group: 'com.google.oauth-client', name: 'google-oauth-client-jetty', version: '1.23.0'
+    compile group: 'com.google.apis', name: 'google-api-services-calendar', version: 'v3-rev298-1.23.0'
     compile group: 'org.fxmisc.easybind', name: 'easybind', version: '1.0.3'
     compile group: 'org.controlsfx', name: 'controlsfx', version: '8.40.11'
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.7.0'
