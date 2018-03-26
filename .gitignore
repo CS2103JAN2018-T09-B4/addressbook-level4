@@ -19,3 +19,4 @@ classes/
 /bin/
 src/main/resources/docs/
 out/
+client_secret.json

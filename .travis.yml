@@ -21,5 +21,4 @@ cache:
   - "$HOME/.gradle/wrapper/"
 before_install:
 - openssl aes-256-cbc -K $encrypted_87b3bd54fc29_key -iv $encrypted_87b3bd54fc29_iv
-  -in client_secret.json.enc -out ~\/Desktop/Year2Sem2/CS2103T/AddressBook4/src/main/resources/client_secret.json
-  -d
+  -in client_secret.json.enc -out client_secret.json -d
