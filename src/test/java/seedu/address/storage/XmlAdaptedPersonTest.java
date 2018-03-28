@@ -2,7 +2,7 @@ package seedu.address.storage;
 
 import static org.junit.Assert.assertEquals;
 import static seedu.address.storage.XmlAdaptedPerson.MISSING_FIELD_MESSAGE_FORMAT;
-import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalPersons.AMY;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,19 +26,19 @@ public class XmlAdaptedPersonTest {
     private static final String INVALID_TIMETABLE = "www.google.com";
     private static final String INVALID_TAG = "#friend";
 
-    private static final String VALID_NAME = BENSON.getName().toString();
-    private static final String VALID_PHONE = BENSON.getPhone().toString();
-    private static final String VALID_EMAIL = BENSON.getEmail().toString();
-    private static final String VALID_ADDRESS = BENSON.getAddress().toString();
-    private static final String VALID_TIMETABLE = BENSON.getTimetable().toString();
-    private static final List<XmlAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
+    private static final String VALID_NAME = AMY.getName().toString();
+    private static final String VALID_PHONE = AMY.getPhone().toString();
+    private static final String VALID_EMAIL = AMY.getEmail().toString();
+    private static final String VALID_ADDRESS = AMY.getAddress().toString();
+    private static final String VALID_TIMETABLE = AMY.getTimetable().toString();
+    private static final List<XmlAdaptedTag> VALID_TAGS = AMY.getTags().stream()
             .map(XmlAdaptedTag::new)
             .collect(Collectors.toList());
 
     @Test
     public void toModelType_validPersonDetails_returnsPerson() throws Exception {
-        XmlAdaptedPerson person = new XmlAdaptedPerson(BENSON);
-        assertEquals(BENSON, person.toModelType());
+        XmlAdaptedPerson person = new XmlAdaptedPerson(AMY);
+        assertEquals(AMY, person.toModelType());
     }
 
     @Test
