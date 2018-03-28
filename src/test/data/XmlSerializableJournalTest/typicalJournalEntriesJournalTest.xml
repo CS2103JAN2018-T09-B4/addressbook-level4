@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<journal>
+    <journalEntries>
+        <date>20180101</date>
+        <text>Sample text here.</text>
+    </journalEntries>
+    <journalEntries>
+        <date>20181001</date>
+        <text>Sample two here.</text>
+    </journalEntries>
+    <journalEntries>
+        <date>20181111</date>
+        <text>Sample three text.</text>
+    </journalEntries>
+</journal>

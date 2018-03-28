@@ -4,6 +4,8 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
+import seedu.address.model.Journal;
+
 /**
  * Represents a JournalEntry in the journal.
  */
@@ -27,6 +29,21 @@ public class JournalEntry {
 
     public String getText() {
         return text;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof JournalEntry)) {
+            return false;
+        }
+
+        JournalEntry otherJournalEntry = (JournalEntry) other;
+        return otherJournalEntry.getDate().equals(this.getDate())
+                && otherJournalEntry.getText().equals(this.getText());
     }
 
     @Override

@@ -89,11 +89,15 @@ public class Journal implements ReadOnlyJournal {
         }
     }
 
+    @Override
+    public String toString() {
+        return journalEntries.asObservableList().size() + " journalEntries.";
+    }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
+                || (other instanceof Journal // instanceof handles nulls
                 && this.journalEntries.equals(((Journal) other).journalEntries));
     }
 

@@ -1,5 +1,7 @@
 package seedu.address.logic.commands;
 
+import seedu.address.commons.core.EventsCenter;
+import seedu.address.commons.events.ui.ShowJournalWindowRequestEvent;
 import seedu.address.ui.JournalWindow;
 
 /**
@@ -14,9 +16,7 @@ public class NewJournal extends Command {
 
     @Override
     public CommandResult execute() {
-        JournalWindow journalWindow = new JournalWindow();
-        journalWindow.show();
-
+        EventsCenter.getInstance().post(new ShowJournalWindowRequestEvent());
         return new CommandResult(NEW_JOURNAL_ENTRY_CREATED);
     }
 }
