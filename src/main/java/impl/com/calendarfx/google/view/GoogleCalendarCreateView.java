@@ -20,6 +20,7 @@ import java.util.function.Consumer;
 
 import com.calendarfx.model.Calendar;
 import com.calendarfx.view.CalendarView;
+
 import javafx.beans.binding.Bindings;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;

@@ -23,6 +23,9 @@ import java.time.Duration;
 import java.time.ZonedDateTime;
 import java.util.function.Consumer;
 
+import javafx.beans.binding.StringBinding;
+import org.controlsfx.control.StatusBar;
+
 import com.calendarfx.model.CalendarSource;
 import com.calendarfx.model.Entry;
 import com.calendarfx.model.LoadEvent;
@@ -31,8 +34,11 @@ import com.calendarfx.view.CalendarView;
 import com.calendarfx.view.DateControl;
 import com.calendarfx.view.DeveloperConsole;
 import com.calendarfx.view.VirtualGrid;
+
 import javafx.application.Platform;
+
 import javafx.beans.binding.Bindings;
+
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -46,7 +52,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.web.WebView;
 import javafx.stage.Window;
 import javafx.util.Callback;
-import org.controlsfx.control.StatusBar;
+
 import seedu.address.model.GoogleAccount;
 import seedu.address.model.GoogleCalendar;
 import seedu.address.model.GoogleEntry;
@@ -103,9 +109,10 @@ public class GoogleCalendarAppViewSkin extends SkinBase<GoogleCalendarAppView> {
         });
 
         Bindings.bindContentBidirectional(control.getLogPane().getItems(), GoogleTaskExecutor.getInstance().getLog());
-
+        StringBinding check;
         StatusBar statusBar = new StatusBar();
-        statusBar.textProperty().bind(Bindings.when(GoogleTaskExecutor.getInstance().progressProperty().isEqualTo(0)).then("").otherwise("Loading..."));
+        check = Bindings.when(GoogleTaskExecutor.getInstance().progressProperty().isEqualTo(0)).then("").otherwise("k");
+        statusBar.textProperty().bind(check);
         statusBar.progressProperty().bind(GoogleTaskExecutor.getInstance().progressProperty());
 
         calendarView.addEventFilter(LoadEvent.LOAD, dataManager);
@@ -133,6 +140,9 @@ public class GoogleCalendarAppViewSkin extends SkinBase<GoogleCalendarAppView> {
         attemptAutoLogin();
     }
 
+    /**
+     * This method return Menu
+     */
     private MenuBar createMenuBar(GoogleAutoRefreshThread autoRefreshThread) {
         MenuItem logoutItem = new MenuItem("Logout");
         logoutItem.setOnAction(evt -> logout());
@@ -171,6 +181,9 @@ public class GoogleCalendarAppViewSkin extends SkinBase<GoogleCalendarAppView> {
         return menuBar;
     }
 
+    /**
+     * execute auto login
+     */
     private void attemptAutoLogin() {
         if (SecurityService.getInstance().isAuthorized()) {
             login();
@@ -179,6 +192,9 @@ public class GoogleCalendarAppViewSkin extends SkinBase<GoogleCalendarAppView> {
         }
     }
 
+    /**
+     * execute login
+     */
     private void login() {
         GoogleAccount account = SecurityService.getInstance().login();
         if (account != null) {
@@ -191,6 +207,9 @@ public class GoogleCalendarAppViewSkin extends SkinBase<GoogleCalendarAppView> {
         }
     }
 
+    /**
+     * This method logout the application
+     */
     private void logout() {
         if (SecurityService.getInstance().isLoggedIn()) {
             GoogleAccount account = SecurityService.getInstance().getLoggedAccount();
@@ -203,6 +222,9 @@ public class GoogleCalendarAppViewSkin extends SkinBase<GoogleCalendarAppView> {
         showLoginView();
     }
 
+    /**
+     *
+     * */
     private void showLoginView() {
         cookieManager.getCookieStore().removeAll();
         loginView.getEngine().load(GoogleConnector.getInstance().getAuthorizationURL());
@@ -210,6 +232,9 @@ public class GoogleCalendarAppViewSkin extends SkinBase<GoogleCalendarAppView> {
         calendarPane.setVisible(false);
     }
 
+    /**
+     *
+     * */
     private void showCalendarPane() {
         cookieManager.getCookieStore().removeAll();
         loginView.getEngine().load(GoogleConnector.getInstance().getAuthorizationURL());
@@ -219,7 +244,7 @@ public class GoogleCalendarAppViewSkin extends SkinBase<GoogleCalendarAppView> {
 
     /**
      * Factory for calendars.
-     *
+     * <p>
      * Created by gdiaz on 5/05/2017.
      */
     private static class GoogleCalendarCreateCallback implements
@@ -250,10 +275,9 @@ public class GoogleCalendarAppViewSkin extends SkinBase<GoogleCalendarAppView> {
     }
 
 
-
     /**
      * Factory for google entries.
-     *
+     * <p>
      * Created by gdiaz on 5/05/2017.
      */
     private static class GoogleEntryCreateCallback implements Callback<DateControl.CreateEntryParameter, Entry<?>> {
