@@ -12,11 +12,14 @@ import seedu.address.model.journalentry.JournalEntry;
  */
 public class TypicalJournalEntries {
 
-    public static final JournalEntry SAMPLE_ONE = new JournalEntry("20180205", "Sample Text One");
+    public static final JournalEntry SAMPLE_ONE = new JournalEntry("20180101", "Sample text here.");
 
-    public static final JournalEntry SAMPLE_TWO = new JournalEntry("20180301", "Sample Text Two");
+    public static final JournalEntry SAMPLE_TWO = new JournalEntry("20181001", "Sample two here.");
 
-    public static final JournalEntry SAMPLE_THREE = new JournalEntry("20180305", "Sample Text Three");
+    public static final JournalEntry SAMPLE_THREE = new JournalEntry("20181111", "Sample three text.");
+
+    //for manual adding during tests
+    public static final JournalEntry TEST = new JournalEntry("20180328", "Testing.");
 
     private TypicalJournalEntries() {} // prevents instantiation
 

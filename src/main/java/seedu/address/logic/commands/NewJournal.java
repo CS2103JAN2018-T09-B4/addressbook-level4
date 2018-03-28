@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
-import seedu.address.ui.JournalWindow;
+import seedu.address.commons.core.EventsCenter;
+import seedu.address.commons.events.ui.ShowJournalWindowRequestEvent;
 
 /**
  * Creates a new window for typing journal entries
@@ -14,9 +15,7 @@ public class NewJournal extends Command {
 
     @Override
     public CommandResult execute() {
-        JournalWindow journalWindow = new JournalWindow();
-        journalWindow.show();
-
+        EventsCenter.getInstance().post(new ShowJournalWindowRequestEvent());
         return new CommandResult(NEW_JOURNAL_ENTRY_CREATED);
     }
 }

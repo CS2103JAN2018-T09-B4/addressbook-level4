@@ -30,6 +30,21 @@ public class JournalEntry {
     }
 
     @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof JournalEntry)) {
+            return false;
+        }
+
+        JournalEntry otherJournalEntry = (JournalEntry) other;
+        return otherJournalEntry.getDate().equals(this.getDate())
+                && otherJournalEntry.getText().equals(this.getText());
+    }
+
+    @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(date);
