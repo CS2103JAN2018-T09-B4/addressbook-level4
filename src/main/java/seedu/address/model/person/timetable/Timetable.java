@@ -18,20 +18,21 @@ public class Timetable {
             + "2. The code-part should only contain alphanumeric characters.";
     private static final String SHORT_NUSMODS_URL_REGEX = "http://modsn.us/";
     private static final String CODE_PART_REGEX = "[\\w]+";
-    public static final String TIMETABLE_VALIDATION_REGEX = SHORT_NUSMODS_URL_REGEX + CODE_PART_REGEX;
+    private static final String TIMETABLE_VALIDATION_REGEX = SHORT_NUSMODS_URL_REGEX + CODE_PART_REGEX;
+    private static int currentSemester;
+    private static HashMap<String, ArrayList<TimetableModuleSlot>>
+            listOfDays; // HashMap of <Day, Sorted list of TimetableModuleSlots>
+    private static HashMap<String, TimetableModule> listOfModules; // HashMap of <module code, TimetableModule>
+    private static String expandedUrl;
 
     public final String value;
-
-    private int currentSemester;
-    private HashMap<String, ArrayList<TimetableModuleSlot>> listOfDays; // HashMap of <Day, TimetableModuleSlots>
-    private HashMap<String, TimetableModule> listOfModules; // HashMap of <module code, TimetableModule>
-    private String expandedUrl;
 
     public Timetable(String timetableUrl) {
         requireNonNull(timetableUrl);
         checkArgument(isValidTimetable(timetableUrl), MESSAGE_TIMETABLE_CONSTRAINTS);
         this.value = timetableUrl;
-        TimetableUtil.setUpTimetableInfo(this);
+        TimetableParserUtil.setUpTimetableInfo(this);
+        TimetableDisplayUtil.setUpTimetableDisplayInfo(this);
     }
 
     public String getExpandedUrl() {
@@ -60,6 +61,10 @@ public class Timetable {
 
     public void setListOfDays(HashMap<String, ArrayList<TimetableModuleSlot>> listOfDays) {
         this.listOfDays = listOfDays;
+    }
+
+    public static HashMap<String, ArrayList<TimetableModuleSlot>> getListOfDays() {
+        return listOfDays;
     }
 
     /**

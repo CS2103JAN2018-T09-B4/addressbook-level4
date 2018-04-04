@@ -1,34 +1,179 @@
-package seedu.address.model.person.timetable;
+# marlenekoh
+###### \java\seedu\address\model\person\timetable\Timetable.java
+``` java
+/**
+ * Represents the NUSMODS timetable of the partner
+ */
+public class Timetable {
+    public static final String MESSAGE_TIMETABLE_CONSTRAINTS = "Short NUSMods timetable URL should be of the format "
+            + "http://modsn.us/code-part "
+            + "and adhere to the following constraints:\n"
+            + "1. The URL should start with http://modsn.us/\n"
+            + "2. The code-part should only contain alphanumeric characters.";
+    private static final String SHORT_NUSMODS_URL_REGEX = "http://modsn.us/";
+    private static final String CODE_PART_REGEX = "[\\w]+";
+    public static final String TIMETABLE_VALIDATION_REGEX = SHORT_NUSMODS_URL_REGEX + CODE_PART_REGEX;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
+    public final String value;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
-import java.util.logging.Logger;
+    private int currentSemester;
+    private HashMap<String, ArrayList<TimetableModuleSlot>> listOfDays; // HashMap of <Day, TimetableModuleSlots>
+    private HashMap<String, TimetableModule> listOfModules; // HashMap of <module code, TimetableModule>
+    private String expandedUrl;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
+    public Timetable(String timetableUrl) {
+        requireNonNull(timetableUrl);
+        checkArgument(isValidTimetable(timetableUrl), MESSAGE_TIMETABLE_CONSTRAINTS);
+        this.value = timetableUrl;
+        TimetableUtil.setUpTimetableInfo(this);
+    }
 
-import seedu.address.MainApp;
-import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.logic.parser.exceptions.ParseException;
+    public String getExpandedUrl() {
+        return expandedUrl;
+    }
 
-//@@author marlenekoh
+    public void setExpandedUrl(String expandedUrl) {
+        this.expandedUrl = expandedUrl;
+    }
+
+    public void setListOfModules(HashMap<String, TimetableModule> listOfModules) {
+        this.listOfModules = listOfModules;
+    }
+
+    public HashMap<String, TimetableModule> getListOfModules() {
+        return listOfModules;
+    }
+
+    public int getCurrentSemester() {
+        return currentSemester;
+    }
+
+    public void setCurrentSemester(int currentSemester) {
+        this.currentSemester = currentSemester;
+    }
+
+    public void setListOfDays(HashMap<String, ArrayList<TimetableModuleSlot>> listOfDays) {
+        this.listOfDays = listOfDays;
+    }
+
+    /**
+     * Returns if a given string is a valid short NUSMods timetable URL.
+     */
+    public static boolean isValidTimetable(String test) {
+        return test.matches(TIMETABLE_VALIDATION_REGEX);
+    }
+
+    @Override
+    public String toString() {
+        return value;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof Timetable // instanceof handles nulls
+                && this.value.equals(((Timetable) other).value)); // state check
+    }
+}
+```
+###### \java\seedu\address\model\person\timetable\TimetableModule.java
+``` java
+/**
+ * Represents a module from NUSMods timetable.
+ */
+public class TimetableModule {
+    private final String moduleCode;
+    private HashMap<String, String> listOfLessons; // Key is lesson type, Value is class type
+
+    public TimetableModule(String moduleCode, HashMap<String, String> listOfLessons) {
+        this.moduleCode = moduleCode;
+        this.listOfLessons = listOfLessons;
+    }
+
+    public String getModuleCode() {
+        return moduleCode;
+    }
+
+    public HashMap<String, String> getListOfLessons() {
+        return listOfLessons;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return (other == this // short circuit if same object
+                || (other instanceof TimetableModule // instanceof handles nulls
+                && this.moduleCode.equals(((TimetableModule) other).moduleCode)
+                && this.listOfLessons.equals(((TimetableModule) other).listOfLessons))); // state check
+    }
+}
+```
+###### \java\seedu\address\model\person\timetable\TimetableModuleSlot.java
+``` java
+/**
+ * Represents the module information of one module slot in one day
+ */
+public class TimetableModuleSlot implements Comparable<TimetableModuleSlot> {
+    private String moduleCode;
+    private String lessonType;
+    private String classType;
+    private String weekFreq;
+    private String day;
+    private String venue;
+    private String startTime;
+    private String endTime;
+
+    public TimetableModuleSlot(String moduleCode, String lessonType, String classType, String weekFreq, String day,
+                               String venue, String startTime, String endTime) {
+        this.moduleCode = moduleCode;
+        this.lessonType = lessonType;
+        this.classType = classType;
+        this.weekFreq = weekFreq;
+        this.day = day;
+        this.venue = venue;
+        this.startTime = startTime;
+        this.endTime = endTime;
+    }
+
+    @Override
+    public int compareTo(TimetableModuleSlot other) {
+        return this.startTime.compareTo(other.startTime);
+    }
+
+    public String getModuleCode() {
+        return moduleCode;
+    }
+
+    public String getLessonType() {
+        return lessonType;
+    }
+
+    public String getClassType() {
+        return classType;
+    }
+
+    public String getWeekFreq() {
+        return weekFreq;
+    }
+
+    public String getDay() {
+        return day;
+    }
+
+    public String getVenue() {
+        return venue;
+    }
+
+    public String getStartTime() {
+        return startTime;
+    }
+
+    public String getEndTime() {
+        return endTime;
+    }
+}
+```
+###### \java\seedu\address\model\person\timetable\TimetableUtil.java
+``` java
 /**
  * A class containing utility methods for Timetable
  */
@@ -385,3 +530,4 @@ public class TimetableUtil {
         }
     }
 }
+```

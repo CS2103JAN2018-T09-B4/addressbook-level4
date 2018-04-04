@@ -21,6 +21,7 @@ import seedu.address.model.person.ReadOnlyPerson;
 public class BrowserPanel extends UiPart<Region> {
 
     public static final String DEFAULT_PAGE = "default.html";
+    public static final String TIMETABLE_PAGE = "TimetablePage.html";
     public static final String SEARCH_PAGE_URL =
             "https://se-edu.github.io/addressbook-level4/DummySearchPage.html?name=";
 
@@ -45,6 +46,11 @@ public class BrowserPanel extends UiPart<Region> {
         loadPage(SEARCH_PAGE_URL + person.getName().fullName);
     }
 
+    private void loadTimetablePage(ReadOnlyPerson person) {
+        URL timetablePage = MainApp.class.getResource(FXML_FILE_FOLDER + TIMETABLE_PAGE);
+        loadPage(timetablePage.toExternalForm());
+    }
+
     public void loadPage(String url) {
         Platform.runLater(() -> browser.getEngine().load(url));
     }
@@ -67,6 +73,6 @@ public class BrowserPanel extends UiPart<Region> {
     @Subscribe
     private void handlePersonPanelSelectionChangedEvent(PersonPanelSelectionChangedEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
-        loadPersonPage(event.getNewSelection().person);
+        loadTimetablePage(event.getNewSelection().person);
     }
 }

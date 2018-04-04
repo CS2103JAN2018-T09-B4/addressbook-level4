@@ -4,6 +4,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.testfx.api.FxToolkit;
 
@@ -23,12 +24,14 @@ public class JournalWindowTest extends GuiUnitTest {
         journalWindowHandle = new JournalWindowHandle(journalWindowStage);
     }
 
+    @Ignore
     @Test
     public void isShowing_journalWindowIsShowing_true() {
         guiRobot.interact(() -> journalWindow.show());
         assertTrue(journalWindow.isShowing());
     }
 
+    @Ignore
     @Test
     public void isShowing_journalWindowIsHiding_false() {
         guiRobot.interact(() -> journalWindow.getRoot().hide());

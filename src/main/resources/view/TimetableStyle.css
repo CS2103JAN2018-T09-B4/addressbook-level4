@@ -1,0 +1,24 @@
+/* @@author marlenekoh */
+body {
+    font-family: "Arial";
+}
+
+th,td {
+    margin: 0;
+    text-align: center;
+    border-collapse: collapse;
+    -webkit-column-width: 100px; /* Chrome, Safari, Opera */
+    -moz-column-width: 100px; /* Firefox */
+    column-width: 100px;
+    outline: 1px solid #e3e3e3;
+}
+
+td {
+    padding: 5px 10px;
+}
+
+th {
+    background: #666;
+    color: white;
+    padding: 5px 10px;
+}
