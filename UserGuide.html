@@ -44,8 +44,7 @@ get started. Enjoy!</p>
 <li><a href="#calendar">2.3. Calendar</a></li>
 <li><a href="#journal">2.4. Journal</a></li>
 <li><a href="#motivational-picture">2.5. Motivational Picture</a></li>
-<li><a href="#location">2.6. Location</a></li>
-<li><a href="#code-coming-in-v2-0-code">2.7. <code>Coming in v2.0</code></a></li>
+<li><a href="#future-features">2.6. Future Features</a></li>
 </ul>
 </li>
 <li><a href="#faq">3. FAQ</a></li>
@@ -205,6 +204,16 @@ Alias: <code>a n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS tt/TIMETABLE_URL [t/TAG]&
 </div>
 <div class="sect3">
 <h4 id="editing-your-partner-code-edit-code"><a class="link" href="#editing-your-partner-code-edit-code">2.1.3. Editing your partner : <code>edit</code></a></h4>
+<div class="sect4">
+<h5 id="current-implementation"><a class="link" href="#current-implementation">CURRENT IMPLEMENTATION</a></h5>
+<div class="paragraph">
+<p>Edits your existing partner in <em>NUSCouples</em>.<br>
+Format: <code>edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [tt/TIMETABLE_URL] [t/TAG]&#8230;&#8203;</code><br>
+Alias: <code>ed INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [tt/TIMETABLE_URL] [t/TAG]&#8230;&#8203;</code></p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="future-implementation-coming-in-v1-5"><a class="link" href="#future-implementation-coming-in-v1-5">FUTURE IMPLEMENTATION [Coming in v1.5]</a></h5>
 <div class="paragraph">
 <p>Edits your existing partner in <em>NUSCouples</em>.<br>
 Format: <code>edit [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [tt/TIMETABLE_URL] [t/TAG]&#8230;&#8203;</code><br>
@@ -249,8 +258,19 @@ Edits the name of your partner to be <code>Betsy Crower</code> and clears all ex
 </ul>
 </div>
 </div>
+</div>
 <div class="sect3">
 <h4 id="deleting-your-partner-code-delete-code"><a class="link" href="#deleting-your-partner-code-delete-code">2.1.4. Deleting your partner : <code>delete</code></a></h4>
+<div class="sect4">
+<h5 id="current-implementation-2"><a class="link" href="#current-implementation-2">CURRENT IMPLEMENTATION</a></h5>
+<div class="paragraph">
+<p>Deletes your partner from <em>NUSCouples</em>.<br>
+Format: <code>delete INDEX</code><br>
+Alias: <code>d INDEX</code></p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="future-implementation-coming-in-v1-5-2"><a class="link" href="#future-implementation-coming-in-v1-5-2">FUTURE IMPLEMENTATION [Coming in v1.5]</a></h5>
 <div class="paragraph">
 <p>Deletes your partner from <em>NUSCouples</em>.<br>
 Format: <code>delete</code><br>
@@ -267,6 +287,7 @@ Alias: <code>d</code></p>
 <p>Your partner must exist in <em>NUSCouples</em> before this command can be executed.</p>
 </li>
 </ul>
+</div>
 </div>
 </div>
 </div>
@@ -418,6 +439,20 @@ Alias: <code>ex</code><br></p>
 Format: <code>select</code><br>
 Alias: <code>s</code></p>
 </div>
+<div class="sect4">
+<h5 id="current-implementation-3"><a class="link" href="#current-implementation-3">CURRENT IMPLEMENTATION</a></h5>
+<div class="paragraph">
+<p>Only the timetable of the first person clicked will be loaded. This timetable will be shared among all persons.
+Timetable display will not be updated when editing timetable field. However, timetable link will be updated in the
+person card at the left.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="future-implementation-coming-in-v1-5-3"><a class="link" href="#future-implementation-coming-in-v1-5-3">FUTURE IMPLEMENTATION [Coming in v1.5]</a></h5>
+<div class="paragraph">
+<p>NUSCouples will be modified to only hold one person. Timetable display will be updated after editing timetable field.</p>
+</div>
+</div>
 </div>
 <div class="sect3">
 <h4 id="comparing-timetable-code-tcompare-code-coming-in-v1-5"><a class="link" href="#comparing-timetable-code-tcompare-code-coming-in-v1-5">2.2.4. Comparing timetable : <code>tcompare</code> [Coming in v1.5]</a></h4>
@@ -468,7 +503,7 @@ Alias: <code>tc tt/TIMETABLE_URL</code></p>
 <div class="sect2">
 <h3 id="calendar"><a class="link" href="#calendar">2.3. Calendar</a></h3>
 <div class="sect3">
-<h4 id="viewing-current-calendar-code-cview-code"><a class="link" href="#viewing-current-calendar-code-cview-code">2.3.1. Viewing current calendar : <code>cview</code></a></h4>
+<h4 id="viewing-current-calendar-code-cview-code-coming-in-v1-5"><a class="link" href="#viewing-current-calendar-code-cview-code-coming-in-v1-5">2.3.1. Viewing current calendar : <code>cview</code> [Coming in v1.5]</a></h4>
 <div class="paragraph">
 <p>View Google calendar.<br>
 Format: <code>cview</code><br>
@@ -476,7 +511,7 @@ Alias: <code>cv</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="adding-new-event-to-google-calendar-code-cadd-code"><a class="link" href="#adding-new-event-to-google-calendar-code-cadd-code">2.3.2. Adding new event to Google calendar : <code>cadd</code></a></h4>
+<h4 id="adding-new-event-to-google-calendar-code-cadd-code-coming-in-v1-5"><a class="link" href="#adding-new-event-to-google-calendar-code-cadd-code-coming-in-v1-5">2.3.2. Adding new event to Google calendar : <code>cadd</code> [Coming in v1.5]</a></h4>
 <div class="paragraph">
 <p>Adds new event to Google calendar.<br>
 Format: <code>cadd</code><br>
@@ -484,7 +519,7 @@ Alias: <code>ca</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="deleting-event-from-google-calendar-code-cdelete-code"><a class="link" href="#deleting-event-from-google-calendar-code-cdelete-code">2.3.3. Deleting event from Google calendar: <code>cdelete</code></a></h4>
+<h4 id="deleting-event-from-google-calendar-code-cdelete-code-coming-in-v1-5"><a class="link" href="#deleting-event-from-google-calendar-code-cdelete-code-coming-in-v1-5">2.3.3. Deleting event from Google calendar: <code>cdelete</code> [Coming in v1.5]</a></h4>
 <div class="paragraph">
 <p>Delete specified event from Google calendar.<br>
 Format: <code>cdelete</code><br>
@@ -492,7 +527,7 @@ Alias: <code>cd</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="editing-event-on-google-calendar-code-cedit-code"><a class="link" href="#editing-event-on-google-calendar-code-cedit-code">2.3.4. Editing event on Google calendar : <code>cedit</code></a></h4>
+<h4 id="editing-event-on-google-calendar-code-cedit-code-coming-in-v1-5"><a class="link" href="#editing-event-on-google-calendar-code-cedit-code-coming-in-v1-5">2.3.4. Editing event on Google calendar : <code>cedit</code> [Coming in v1.5]</a></h4>
 <div class="paragraph">
 <p>Edit event on Google calendar.<br>
 Format: <code>cedit</code><br>
@@ -512,31 +547,57 @@ Alias: <code>ce</code><br></p>
 </div>
 <div class="sect2">
 <h3 id="journal"><a class="link" href="#journal">2.4. Journal</a></h3>
-<div class="sect3">
-<h4 id="viewing-all-journal-entries-code-jview-code"><a class="link" href="#viewing-all-journal-entries-code-jview-code">2.4.1. Viewing all journal entries : <code>jview</code></a></h4>
 <div class="paragraph">
-<p>View all journal entries.<br>
-Format: <code>jview</code><br>
-Alias: <code>jv</code></p>
+<p><em>NUSCouples</em> provides you with a space to write, save and view journal entries. The list of saved journal entries will
+be shown in the main window. Read on for more details about how to use this feature.</p>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Saved journal entries can only be edited on the same day. Once saved, a journal entry cannot be deleted.
+</td>
+</tr>
+</table>
 </div>
 <div class="sect3">
-<h4 id="creating-a-new-journal-entry-code-jnew-code"><a class="link" href="#creating-a-new-journal-entry-code-jnew-code">2.4.2. Creating a new journal entry : <code>jnew</code></a></h4>
+<h4 id="creating-a-new-journal-entry-code-jnew-code-since-v1-2"><a class="link" href="#creating-a-new-journal-entry-code-jnew-code-since-v1-2">2.4.1. Creating a new journal entry : <code>jnew</code> [Since v1.2]</a></h4>
 <div class="paragraph">
-<p>Creates a new window that allows the user to input and save journal entries. The journal entry is identified by
-the date it was created in the format <code>yyyymmdd</code>. If an entry with that date already exists, it will open
-that entry in the new window. Saving not required as the journal entry will be automatically saved when the
-journal window is closed.<br>
-Format: <code>jnew</code><br>
+<p>Creates a new window that allows the user to input text. The window title will reflect the date
+it was created on in the format <code>yyyymmdd - journal</code>. For example, a journal window opened on the 5th of March
+ 2018 will have a title of <code>20180305 - journal</code>. If an entry with that date already exists, it will open
+that entry in the window. Saving is not required as the journal entry will be automatically saved when the
+journal window is closed.<br></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If saving fails, a new window will appear containing your last session data with a warning above your text. You should
+copy your text to your computer clipboard using <kbd>ctr</kbd> + <kbd>c</kbd> so you will not lose your data if you need to
+restart the app.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Format: <code>jnew</code><br>
 Alias: <code>jn</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="deleting-a-journal-entry-code-jdelete-code"><a class="link" href="#deleting-a-journal-entry-code-jdelete-code">2.4.3. Deleting a journal entry : <code>jdelete</code></a></h4>
+<h4 id="viewing-journal-entries-code-jview-code-coming-in-v1-5"><a class="link" href="#viewing-journal-entries-code-jview-code-coming-in-v1-5">2.4.2. Viewing journal entries : <code>jview</code> [Coming in v1.5]</a></h4>
 <div class="paragraph">
-<p>Deletes a journal entry in the specified index.<br>
-Format: <code>jdelete</code><br>
-Alias: <code>jd</code><br></p>
+<p>Selects a journal entry from the list seen in the GUI. The contents of the journal entry will be shown in the main
+window.<br>
+Format: <code>jview</code><br>
+Alias: <code>jv</code></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -565,52 +626,39 @@ Format: <code>motivate</code><br>
 </div>
 </div>
 <div class="sect2">
-<h3 id="location"><a class="link" href="#location">2.6. Location</a></h3>
+<h3 id="future-features"><a class="link" href="#future-features">2.6. Future Features</a></h3>
 <div class="sect3">
-<h4 id="finding-building-location-code-location-code"><a class="link" href="#finding-building-location-code-location-code">2.6.1. Finding building location : <code>location</code></a></h4>
-<div class="paragraph">
-<p>Shows the location (by building) of the entered classroom name.<br>
-Format: <code>location</code><br>
-Alias: <code>loc</code><br></p>
-</div>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 100%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="small">Return to <a href="#toc">Table of Contents</a></span><br></p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="code-coming-in-v2-0-code"><a class="link" href="#code-coming-in-v2-0-code">2.7. <code>Coming in v2.0</code></a></h3>
-<div class="sect3">
-<h4 id="encrypting-data-files-code-coming-in-v2-0-code"><a class="link" href="#encrypting-data-files-code-coming-in-v2-0-code">2.7.1. Encrypting data files <code>[coming in v2.0]</code></a></h4>
+<h4 id="encrypting-data-files-code-coming-in-v2-0-code"><a class="link" href="#encrypting-data-files-code-coming-in-v2-0-code">2.6.1. Encrypting data files <code>[coming in v2.0]</code></a></h4>
 <div class="paragraph">
 <p><em>{explain how the user can enable/disable data encryption}</em></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="archiving-journal-entries-code-coming-in-v2-0-code"><a class="link" href="#archiving-journal-entries-code-coming-in-v2-0-code">2.7.2. Archiving journal entries <code>[coming in v2.0]</code></a></h4>
+<h4 id="archiving-journal-entries-code-coming-in-v2-0-code"><a class="link" href="#archiving-journal-entries-code-coming-in-v2-0-code">2.6.2. Archiving journal entries <code>[coming in v2.0]</code></a></h4>
 <div class="paragraph">
 <p><em>{explain how the user can export old journal entries to another storage location in their computer}</em></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="send-google-maps-location-to-phone-code-coming-in-v2-0-code"><a class="link" href="#send-google-maps-location-to-phone-code-coming-in-v2-0-code">2.7.3. Send Google Maps location to phone <code>[coming in v2.0]</code></a></h4>
+<h4 id="send-google-maps-location-to-phone-code-coming-in-v2-0-code"><a class="link" href="#send-google-maps-location-to-phone-code-coming-in-v2-0-code">2.6.3. Send Google Maps location to phone <code>[coming in v2.0]</code></a></h4>
 <div class="paragraph">
 <p><em>{explain how the user can use their phones to navigate to a location in NUS by sending the location to the user&#8217;s phone from the Google Maps API}</em></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="filtering-journal-entries-by-date-code-coming-in-v2-0-code"><a class="link" href="#filtering-journal-entries-by-date-code-coming-in-v2-0-code">2.7.4. Filtering journal entries by date <code>[coming in v2.0]</code></a></h4>
+<h4 id="filtering-journal-entries-by-date-code-coming-in-v2-0-code"><a class="link" href="#filtering-journal-entries-by-date-code-coming-in-v2-0-code">2.6.4. Filtering journal entries by date <code>[coming in v2.0]</code></a></h4>
 <div class="paragraph">
 <p>Filters journal entries by the specified interval.<br>
 Format: <code>jfilter</code><br>
 Alias: <code>jf</code><br></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="finding-building-location-code-coming-in-v2-0-code"><a class="link" href="#finding-building-location-code-coming-in-v2-0-code">2.6.5. Finding building location <code>[coming in v2.0]</code></a></h4>
+<div class="paragraph">
+<p>Shows the location (by building) of the entered classroom name.<br>
+Format: <code>location</code><br>
+Alias: <code>loc</code><br></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -708,20 +756,14 @@ Alias: <code>jf</code><br></p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">jview, jv</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">View your journal</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">View a journal entry</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>jview</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">jnew, jn</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Create a new journal entry</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Create/edit a journal entry</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>jnew</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">jdelete, jd</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Delete a journal entry</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>jdelete</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
@@ -749,12 +791,6 @@ Alias: <code>jf</code><br></p>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">location, loc</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Finding building location</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>location</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">exit, ex</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Exits <em>NUSCouples</em></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>exit</code></p></td>
@@ -777,7 +813,7 @@ Alias: <code>jf</code><br></p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-04 20:57:56 UTC
+Last updated 2018-04-06 08:05:36 UTC
 </div>
 </div>
 </body>
