@@ -83,6 +83,39 @@ public class BrowserPanel extends UiPart<Region> {
         calendarView.showDayPage();
     }
 
+
+    /**
+     * Explicitly set the Root object to CalendarView
+     */
+    //@@author chenxing1992
+    public CalendarView getRoot() {
+
+
+        return this.calendarView;
+    }
+    /**
+     * Changes calendar view accordingly
+     */
+    private void showPage(Character c) {
+        switch(c) {
+        case ('d'):
+            calendarView.showDayPage();
+            return;
+        case ('w'):
+            calendarView.showWeekPage();
+            return;
+        case ('m'):
+            calendarView.showMonthPage();
+            return;
+        case ('y'):
+            calendarView.showYearPage();
+            return;
+        default:
+        //should not reach here
+        assert (false);
+        }
+    }
+
     //@@author chenxing1992
     private void setTime() {
         calendarView.setToday(LocalDate.now());
@@ -134,6 +167,12 @@ public class BrowserPanel extends UiPart<Region> {
         }
         calendarView.getCalendarSources().add(calendarSource);
     }
+    //@@author chenxing1992
+    @Subscribe
+    private void handleCalendarViewEvent(CalendarViewEvent event) {
+        Character c = event.c;
+        Platform.runLater(() -> showPage(c));
+    }
 
     private void loadPersonPage(ReadOnlyPerson person) {
         loadPage(SEARCH_PAGE_URL + person.getName().fullName);
@@ -169,14 +208,7 @@ public class BrowserPanel extends UiPart<Region> {
         browser = null;
     }
 
-    /**
-     * Explicitly set the Root object to CalendarView
-     */
-    //@@author chenxing1992
-    //public CalendarView getRoot() {
-
-    //return this.calendarView;
-    //}
+ 
     @Subscribe
     private void handlePersonPanelSelectionChangedEvent(PersonPanelSelectionChangedEvent event) {
 
