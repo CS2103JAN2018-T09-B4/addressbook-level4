@@ -7,6 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.CalendarViewCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
@@ -54,7 +55,6 @@ public class AddressBookParser {
 
     private Command getCommand(String commandWord, String arguments) throws ParseException {
         switch (commandWord) {
-
         case AddCommand.COMMAND_WORD:
         case AddCommand.COMMAND_ALIAS: //@@author HEARTOFAL1ON
             return new AddCommandParser().parse(arguments); //@@author
@@ -70,7 +70,6 @@ public class AddressBookParser {
         case DeleteCommand.COMMAND_WORD:
         case DeleteCommand.COMMAND_ALIAS: //@@author HEARTOFAL1ON
             return new DeleteCommandParser().parse(arguments); //@@author
-
         case ClearCommand.COMMAND_WORD:
         case ClearCommand.COMMAND_ALIAS: //@@author HEARTOFAL1ON
             return new ClearCommand(); //@@author
@@ -110,6 +109,11 @@ public class AddressBookParser {
         case ViewTimetableCommand.COMMAND_WORD:
         case ViewTimetableCommand.COMMAND_ALIAS:
             return new ViewTimetableCommand();
+
+
+        case CalendarViewCommand.COMMAND_WORD:
+        case CalendarViewCommand.COMMAND_ALIAS:
+            return new CalendarViewParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

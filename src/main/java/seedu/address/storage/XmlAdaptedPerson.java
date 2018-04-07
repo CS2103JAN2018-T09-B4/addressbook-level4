@@ -1,5 +1,6 @@
 package seedu.address.storage;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -10,6 +11,7 @@ import javax.xml.bind.annotation.XmlElement;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Appointment.Appointment;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -35,7 +37,8 @@ public class XmlAdaptedPerson {
     private String address;
     @XmlElement(required = true)
     private String timetable;
-
+    @XmlElement
+    private List<XmlAdaptedAppointment> appointments = new ArrayList<>();
     @XmlElement
     private List<XmlAdaptedTag> tagged = new ArrayList<>();
 
@@ -82,7 +85,7 @@ public class XmlAdaptedPerson {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted person
      */
-    public Person toModelType() throws IllegalValueException {
+    public Person toModelType() throws IllegalValueException, ParseException {
         final List<Tag> personTags = new ArrayList<>();
         for (XmlAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
@@ -130,7 +133,11 @@ public class XmlAdaptedPerson {
         final Timetable timetable = new Timetable(this.timetable);
 
         final Set<Tag> tags = new HashSet<>(personTags);
-        return new Person(name, phone, email, address, timetable, tags);
+        final List<Appointment> personAppointmentList = new ArrayList<>();
+        for (XmlAdaptedAppointment appointment : appointments) {
+            personAppointmentList.add(appointment.toModelType());
+        }
+        return new Person(name, phone, email, address, timetable, tags, personAppointmentList);
     }
 
     @Override

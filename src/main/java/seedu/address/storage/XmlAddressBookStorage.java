@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -41,7 +42,7 @@ public class XmlAddressBookStorage implements AddressBookStorage {
      * @throws DataConversionException if the file is not in the correct format.
      */
     public Optional<ReadOnlyAddressBook> readAddressBook(String filePath) throws DataConversionException,
-                                                                                 IOException {
+            IOException {
         requireNonNull(filePath);
 
         File addressBookFile = new File(filePath);
@@ -57,7 +58,10 @@ public class XmlAddressBookStorage implements AddressBookStorage {
         } catch (IllegalValueException ive) {
             logger.info("Illegal values found in " + addressBookFile + ": " + ive.getMessage());
             throw new DataConversionException(ive);
+        } catch (ParseException e) {
+            e.printStackTrace();
         }
+        return Optional.empty();
     }
 
     @Override

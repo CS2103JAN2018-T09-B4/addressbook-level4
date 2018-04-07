@@ -2,14 +2,18 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import com.calendarfx.view.CalendarView;
 import com.google.common.eventbus.Subscribe;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.Config;
@@ -24,16 +28,18 @@ import seedu.address.model.UserPrefs;
  * The Main Window. Provides the basic application layout containing
  * a menu bar and space where other JavaFX elements can be placed.
  */
-public class MainWindow extends UiPart<Stage> {
+public class MainWindow extends UiPart<Region> {
 
     private static final String FXML = "MainWindow.fxml";
-
+    private static final int MIN_HEIGHT = 600;
+    private static final int MIN_WIDTH = 450;
     private final Logger logger = LogsCenter.getLogger(this.getClass());
 
     private Stage primaryStage;
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
+    private CalendarView calendarView;
     private BrowserPanel browserPanel;
     private ListPanel listPanel;
     private Config config;
@@ -58,7 +64,7 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane statusbarPlaceholder;
 
     public MainWindow(Stage primaryStage, Config config, UserPrefs prefs, Logic logic) {
-        super(FXML, primaryStage);
+        super(FXML);
 
         // Set dependencies
         this.primaryStage = primaryStage;
@@ -68,8 +74,10 @@ public class MainWindow extends UiPart<Stage> {
 
         // Configure the UI
         setTitle(config.getAppTitle());
+        setWindowMinSize();
         setWindowDefaultSize(prefs);
-
+        Scene scene = new Scene(getRoot());
+        primaryStage.setScene(scene);
         setAccelerators();
         registerAsAnEventHandler(this);
     }
@@ -116,7 +124,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        browserPanel = new BrowserPanel();
+        browserPanel = new BrowserPanel(logic.getFilteredPersonList());
         browserPlaceholder.getChildren().add(browserPanel.getRoot());
 
         listPanel = new ListPanel(logic.getFilteredPersonList(), logic.getJournalEntryList());
@@ -130,6 +138,8 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(logic);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        Platform.runLater(() -> commandBox.getCommandTextField().requestFocus());
     }
 
     void hide() {
@@ -151,7 +161,10 @@ public class MainWindow extends UiPart<Stage> {
             primaryStage.setY(prefs.getGuiSettings().getWindowCoordinates().getY());
         }
     }
-
+    private void setWindowMinSize() {
+        primaryStage.setMinHeight(MIN_HEIGHT);
+        primaryStage.setMinWidth(MIN_WIDTH);
+    }
     /**
      * Returns the current size and the position of the main Window.
      */

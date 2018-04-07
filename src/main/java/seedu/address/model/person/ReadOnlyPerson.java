@@ -1,11 +1,16 @@
 package seedu.address.model.person;
 
+import java.util.List;
 import java.util.Set;
 
 import javafx.beans.property.ObjectProperty;
+import seedu.address.model.person.Appointment.Appointment;
+import seedu.address.model.person.Appointment.AppointmentList;
 import seedu.address.model.person.timetable.Timetable;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueTagList;
+
+
 
 //@@author chenxing1992
 /**
@@ -26,8 +31,8 @@ public interface ReadOnlyPerson {
     Timetable getTimetable();
     ObjectProperty<UniqueTagList> tagProperty();
     Set<Tag> getTags();
-    //ObjectProperty<AppointmentList> appointmentProperty();
-    // List<Appointment> getAppointments();
+    ObjectProperty<AppointmentList> appointmentProperty();
+    List<Appointment> getAppointments();
     /**Same state detected will return true.
      */
     default boolean isSameStateAs(ReadOnlyPerson rp) {
