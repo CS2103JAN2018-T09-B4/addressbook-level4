@@ -23,6 +23,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.web.WebView;
 import seedu.address.MainApp;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.events.ui.CalendarViewEvent;
 import seedu.address.commons.events.ui.PersonPanelSelectionChangedEvent;
 import seedu.address.model.person.Appointment.Appointment;
 import seedu.address.model.person.ReadOnlyPerson;
@@ -83,7 +84,6 @@ public class BrowserPanel extends UiPart<Region> {
         calendarView.showDayPage();
     }
 
-
     /**
      * Explicitly set the Root object to CalendarView
      */
@@ -98,24 +98,23 @@ public class BrowserPanel extends UiPart<Region> {
      */
     private void showPage(Character c) {
         switch(c) {
-        case ('d'):
-            calendarView.showDayPage();
-            return;
-        case ('w'):
-            calendarView.showWeekPage();
-            return;
-        case ('m'):
-            calendarView.showMonthPage();
-            return;
-        case ('y'):
-            calendarView.showYearPage();
-            return;
-        default:
-        //should not reach here
-        assert (false);
+            case ('d'):
+                calendarView.showDayPage();
+                return;
+            case ('w'):
+                calendarView.showWeekPage();
+                return;
+            case ('m'):
+                calendarView.showMonthPage();
+                return;
+            case ('y'):
+                calendarView.showYearPage();
+                return;
+            default:
+                //should not reach here
+                assert (false);
         }
     }
-
     //@@author chenxing1992
     private void setTime() {
         calendarView.setToday(LocalDate.now());
@@ -178,11 +177,6 @@ public class BrowserPanel extends UiPart<Region> {
         loadPage(SEARCH_PAGE_URL + person.getName().fullName);
     }
 
-    private CalendarView loadCalendarPage() {
-
-        return this.calendarView;
-    }
-
     private void loadTimetablePage(ReadOnlyPerson person) {
         URL timetablePage = MainApp.class.getResource(FXML_FILE_FOLDER + TIMETABLE_PAGE);
         loadPage(timetablePage.toExternalForm());
@@ -198,7 +192,6 @@ public class BrowserPanel extends UiPart<Region> {
     private void loadDefaultPage() {
         URL defaultPage = MainApp.class.getResource(FXML_FILE_FOLDER + DEFAULT_PAGE);
         loadPage(defaultPage.toExternalForm());
-
     }
 
     /**
@@ -208,13 +201,9 @@ public class BrowserPanel extends UiPart<Region> {
         browser = null;
     }
 
- 
     @Subscribe
     private void handlePersonPanelSelectionChangedEvent(PersonPanelSelectionChangedEvent event) {
-
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
         loadTimetablePage(event.getNewSelection().person);
-
     }
-
 }
