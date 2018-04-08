@@ -47,7 +47,11 @@ get started. Enjoy!</p>
 <li><a href="#future-features">2.6. Future Features</a></li>
 </ul>
 </li>
-<li><a href="#faq">3. FAQ</a></li>
+<li><a href="#faq">3. FAQ</a>
+<ul class="sectlevel2">
+<li><a href="#data">3.1. Data</a></li>
+</ul>
+</li>
 <li><a href="#command-summary">4. Command Summary</a></li>
 </ul>
 </div>
@@ -395,8 +399,36 @@ The <code>redo</code> command fails as there are no <code>undo</code> commands e
 <div class="sect3">
 <h4 id="saving-the-data"><a class="link" href="#saving-the-data">2.1.8. Saving the data</a></h4>
 <div class="paragraph">
-<p>NUSCouples data are saved in the hard disk automatically after any command that changes the data.<br>
-There is no need to save manually.</p>
+<p><em>NUSCouples</em> data is saved in the hard disk automatically after any command that changes the data.<br>
+There is no need to save manually. Data is stored in a data folder created in the same directory as <em>NUSCouples</em>.jar.
+For example, if the .jar file is in <code>C:\Program Files (x86)\NUSCouples</code>, <em>NUSCouples</em> data will be stored in
+<code>C:\Program Files (x86)\NUSCouples\data</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If the <em>NUSCouples</em>.jar file is moved to another location, you should move the data folder as well.  Refer to
+<a href="#data">FAQ Section 3.1, Questions about Data</a> for more information.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+The data is stored as an editable xml file. If the user manually edits this file, <em>NUSCouples</em> may not be able to read
+it properly. Refer to <a href="#data">FAQ Section 3.1, Questions about Data</a>  for more information.
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect3">
@@ -677,9 +709,37 @@ Alias: <code>loc</code><br></p>
 <div class="sect1">
 <h2 id="faq"><a class="link" href="#faq">3. FAQ</a></h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="data"><a class="link" href="#data">3.1. Data</a></h3>
 <div class="paragraph">
-<p><strong>Q</strong>: How do I transfer my data to another Computer?<br>
-<strong>A</strong>: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous NUSCouples folder.<br></p>
+<p>This section is for questions related to <em>NUSCouples</em> data. For more information, refer to <a href="#saving-the-data">Section 2.1.8, &#8220;Saving the data&#8221;</a><br></p>
+</div>
+<div class="paragraph">
+<p><strong>Q: How do I transfer my data to another Computer?</strong><br></p>
+</div>
+<div class="paragraph">
+<p><strong>A:</strong> Install the app in the other computer and overwrite the empty data folder it creates with the folder that contains
+the data of your previous NUSCouples folder.<br></p>
+</div>
+<div class="paragraph">
+<p><strong>Q: Why is the app not showing my previous session data?</strong><br></p>
+</div>
+<div class="paragraph">
+<p><strong>A:</strong> Verify that the .jar file was not moved to a new directory recently. If you have done so, ensure that the data
+folder in the original directory was moved to the new directory. For example, if you have moved <em>NUSCouples</em>.jar from
+<code>C:\Program Files (x86)\NUSCouples</code> to <code>C:\Users\[Username]\Desktop\NUSCouples</code>, you should move the data folder
+<code>C:\Program Files (x86)\NUSCouples\data</code> to <code>C:\Users\[Username]\Desktop\NUSCouples\data</code><br></p>
+</div>
+<div class="paragraph">
+<p>If the files in the data folder have been manually edited, <em>NUSCouples</em> may not be able to read the data properly.
+<em>NUSCouples</em> takes no responsibility for data loss/ data corruption due to unintended user behavior affecting the data
+folder, such as deletion or editing of files manually.<br></p>
+</div>
+<div class="paragraph">
+<p>If the solutions above are not related to your issue, it may be due to a bug. Please contact us at //CONTACT US
+and attach the log file that should be stored in the same location as the <em>NUSCouples</em>.jar file. The log file is named
+<code><em>NUSCouples</em>.log.0</code>. The number at the end may be different. If there are multiple log files, you should attach the
+<strong>latest</strong> one or attach all of them to be safe.<br></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -691,6 +751,7 @@ Alias: <code>loc</code><br></p>
 </tr>
 </tbody>
 </table>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -813,7 +874,7 @@ Alias: <code>loc</code><br></p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-08 08:30:54 UTC
+Last updated 2018-04-08 08:36:11 UTC
 </div>
 </div>
 </body>
