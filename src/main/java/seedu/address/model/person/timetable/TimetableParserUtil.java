@@ -179,12 +179,15 @@ public class TimetableParserUtil {
 
     /**
      * Sets {@code listOfDays} in {@code timetable} given
-     * @param timetable w
+     * @param timetable timetable to set List of days
      */
     public static void setListOfDays(Timetable timetable) {
         requireNonNull(timetable.getListOfModules());
         ArrayList<TimetableModuleSlot> allTimetableModuleSlots = retrieveModuleSlotsFromApi(timetable);
-        timetable.setListOfDays(sortModuleSlotsByDay(allTimetableModuleSlots));
+        timetable.setAllModulesSlots(allTimetableModuleSlots);
+        HashMap<String, ArrayList<TimetableModuleSlot>> sortedTimetableModuleSlots =
+                sortModuleSlotsByDay(allTimetableModuleSlots);
+        timetable.setListOfDays(sortedTimetableModuleSlots);
     }
 
     /**
@@ -199,9 +202,9 @@ public class TimetableParserUtil {
         for (Map.Entry<String, TimetableModule> currentModule : entrySet) {
             //TODO: Remove magic number acadYear
             currentModuleInfo = getJsonContentsFromNusModsApiForModule("2017-2018",
-                    Integer.toString(timetable.getCurrentSemester()), currentModule.getKey().toString());
+                    Integer.toString(timetable.getCurrentSemester()), currentModule.getKey());
             allTimetableModuleSlots.addAll(getAllTimetableModuleSlots(currentModuleInfo, timetable,
-                    currentModule.getKey().toString()));
+                    currentModule.getKey()));
         }
         return allTimetableModuleSlots;
     }
@@ -316,7 +319,7 @@ public class TimetableParserUtil {
      * Sorts TimetableModuleSlots
      * @return HashMap of {@code Day}, {@code list of TimetableModuleSlots sorted by time}
      */
-    private static HashMap<String, ArrayList<TimetableModuleSlot>> sortModuleSlotsByDay(
+    public static HashMap<String, ArrayList<TimetableModuleSlot>> sortModuleSlotsByDay(
             ArrayList<TimetableModuleSlot> unsortedTimetableModuleSlots) {
         ArrayList<ArrayList<TimetableModuleSlot>> listOfDays = new ArrayList<ArrayList<TimetableModuleSlot>>();
 
@@ -374,6 +377,15 @@ public class TimetableParserUtil {
         int j = 0;
         for (int i = 0; i < TIMES.length; i++) {
             if (j < timetableModuleSlots.size() && timetableModuleSlots.get(j).getStartTime().equals(TIMES[i])) {
+                while (!timetableModuleSlots.get(j).getEndTime().equals(TIMES[i])) {
+                    filled.add(timetableModuleSlots.get(j));
+                    i++;
+                }
+                j++;
+                i--;
+            } else if (j < timetableModuleSlots.size()
+                    && Integer.valueOf(timetableModuleSlots.get(j).getStartTime()) < Integer.valueOf(TIMES[i])
+                    && Integer.valueOf(timetableModuleSlots.get(j).getEndTime()) > Integer.valueOf(TIMES[i])) {
                 while (!timetableModuleSlots.get(j).getEndTime().equals(TIMES[i])) {
                     filled.add(timetableModuleSlots.get(j));
                     i++;

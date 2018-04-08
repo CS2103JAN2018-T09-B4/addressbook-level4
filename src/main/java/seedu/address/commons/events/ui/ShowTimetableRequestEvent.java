@@ -8,10 +8,8 @@ import seedu.address.model.person.timetable.Timetable;
  * An event requesting to view the partner's timetable.
  */
 public class ShowTimetableRequestEvent extends BaseEvent {
-    public final Timetable timetable;
 
-    public ShowTimetableRequestEvent(Timetable timetable) {
-        this.timetable = timetable;
+    public ShowTimetableRequestEvent() {
     }
 
     @Override

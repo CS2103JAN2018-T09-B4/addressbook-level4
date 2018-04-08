@@ -11,8 +11,6 @@ lib/*
 config.json
 src/test/data/sandbox/
 src/test/data/XmlUtilTest/*.xml
-src/main/resources/timetableDisplayInfo
-src/main/resources/view/TimetablePageScript.js
 preferences.json
 .DS_Store
 ./screenshot*.png

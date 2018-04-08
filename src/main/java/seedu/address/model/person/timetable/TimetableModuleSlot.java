@@ -13,7 +13,8 @@ public class TimetableModuleSlot implements Comparable<TimetableModuleSlot> {
     private String venue;
     private String startTime;
     private String endTime;
-    private final boolean isEmpty;
+    private boolean isComparing; // for comparing timetables
+    private final boolean isEmpty; // for displaying normal timetable
 
     public TimetableModuleSlot() {
         this.moduleCode = null;
@@ -25,6 +26,7 @@ public class TimetableModuleSlot implements Comparable<TimetableModuleSlot> {
         this.startTime = null;
         this.endTime = null;
         isEmpty = true;
+        isComparing = false;
     }
 
     public TimetableModuleSlot(String moduleCode, String lessonType, String classType, String weekFreq, String day,
@@ -38,6 +40,7 @@ public class TimetableModuleSlot implements Comparable<TimetableModuleSlot> {
         this.startTime = startTime;
         this.endTime = endTime;
         isEmpty = false;
+        isComparing = false;
     }
 
     public String getModuleCode() {
@@ -72,6 +75,10 @@ public class TimetableModuleSlot implements Comparable<TimetableModuleSlot> {
         return endTime;
     }
 
+    public void setComparing(boolean comparing) {
+        isComparing = comparing;
+    }
+
     @Override
     public int compareTo(TimetableModuleSlot other) {
         return this.startTime.compareTo(other.startTime);
@@ -79,7 +86,12 @@ public class TimetableModuleSlot implements Comparable<TimetableModuleSlot> {
 
     @Override
     public String toString() {
-        return isEmpty
-                ? "\"\"" : "\"" + moduleCode + "\"";
+        if (isComparing) {
+            return isEmpty
+                    ? "\"\"" : "\"X\"";
+        } else {
+            return isEmpty
+                    ? "\"\"" : "\"" + moduleCode + "\"";
+        }
     }
 }

@@ -11,6 +11,7 @@ import seedu.address.commons.events.ui.JumpToListRequestEvent;
 import seedu.address.commons.events.ui.ShowTimetableRequestEvent;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.person.ReadOnlyPerson;
+import seedu.address.model.person.timetable.TimetableDisplayUtil;
 
 /**
  * Selects your partner from NUSCouples.
@@ -42,7 +43,8 @@ public class SelectCommand extends Command {
         }
 
         ReadOnlyPerson partner = lastShownList.get(targetIndex.getZeroBased());
-        EventsCenter.getInstance().post(new ShowTimetableRequestEvent(partner.getTimetable()));
+        TimetableDisplayUtil.setUpTimetableDisplayInfo(partner.getTimetable());
+        EventsCenter.getInstance().post(new ShowTimetableRequestEvent());
         EventsCenter.getInstance().post(new JumpToListRequestEvent(targetIndex));
 
         return new CommandResult(String.format(MESSAGE_SELECT_PERSON_SUCCESS, targetIndex.getOneBased()));

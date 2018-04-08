@@ -102,13 +102,43 @@ public class TimetableDisplayUtil {
     }
 
     /**
-     * Converts the {@code listOfDays} into a String object for parsing
+     * Writes a string to the file at {@code timetableInfoFilePath}
+     * @param toWrite the String to write
+     */
+    public static void setUpTimetableDisplayInfoFile(String toWrite) {
+        File timetableDisplayInfo = new File(timetableInfoFilePath);
+        try {
+            PrintWriter printWriter = new PrintWriter(timetableDisplayInfo);
+            printWriter.write(toWrite);
+            printWriter.close();
+        } catch (FileNotFoundException e) {
+            logger.warning("File not found, creating new file");
+            try {
+                timetableInfoFilePath = "data/timetableDisplayInfo";
+                timetableDisplayInfo = new File(timetableInfoFilePath);
+                timetableDisplayInfo.createNewFile();
+                setUpTimetableDisplayInfoFile(toWrite);
+            } catch (IOException ioe) {
+                logger.severe("Unable to create new file");
+            }
+        }
+    }
+
+    /**
+     * Converts the {@code listOfDays} belonging to {@code timetable} into a String object for parsing
      * @param timetable which contains schedule to convert into JSON object
      */
     public static String convertTimetableToString(Timetable timetable) {
+        return convertTimetableToString(timetable.getListOfDays());
+    }
+
+    /**
+     * Converts the {@code listOfDays} into a String object for parsing
+     * @param listOfDays ArrayLists of timetableModuleSlots sorted by time
+     */
+    public static String convertTimetableToString(HashMap<String, ArrayList<TimetableModuleSlot>> listOfDays) {
         StringBuilder sb = new StringBuilder();
 
-        HashMap<String, ArrayList<TimetableModuleSlot>> listOfDays = timetable.getListOfDays();
         ArrayList<TimetableModuleSlot> slotsForTheDay = null;
         for (int i = 0; i < TIMES.length; i++) {
             if (i < TIMES.length - 1) {
@@ -159,11 +189,7 @@ public class TimetableDisplayUtil {
                 return sb.toString();
             } else {
                 timetablePageJsPath = "data/TimetablePageScript.js";
-                file = new File(timetablePageJsPath);
-                file.createNewFile();
-                PrintWriter printWriter = new PrintWriter(file);
-                printWriter.write(DEFAULT_TIMETABLE_PAGE_SCRIPT);
-                printWriter.close();
+                writeToTimetablePageScriptFile(DEFAULT_TIMETABLE_PAGE_SCRIPT);
                 return DEFAULT_TIMETABLE_PAGE_SCRIPT;
             }
         } catch (IOException e) {
