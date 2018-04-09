@@ -41,13 +41,13 @@ public class Journal implements ReadOnlyJournal {
      */
     public Journal(ReadOnlyJournal toBeCopied) {
         this();
-        resetData(toBeCopied);
+        resetJournalData(toBeCopied);
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code Journal} with {@code newData}.
      */
-    public void resetData(ReadOnlyJournal newData) {
+    public void resetJournalData(ReadOnlyJournal newData) {
         requireNonNull(newData);
         List<JournalEntry> syncedJournalEntryList = newData.getJournalEntryList().stream()
                 .collect(Collectors.toList());
@@ -87,8 +87,13 @@ public class Journal implements ReadOnlyJournal {
     }
 
     @Override
-    public JournalEntry getLast() {
+    public int getLast() {
         return journalEntries.getLast();
+    }
+
+    @Override
+    public JournalEntry getJournalEntry(int index) {
+        return journalEntries.getJournalEntry(index);
     }
 
     @Override
@@ -104,7 +109,11 @@ public class Journal implements ReadOnlyJournal {
         return Objects.hash(journalEntries);
     }
 
-    public void updateJournalEntry(JournalEntry journalEntry, JournalEntry oldVersion) {
-        journalEntries.updateJournalEntry(journalEntry, oldVersion);
+    void updateJournalEntry(JournalEntry journalEntry, int last) {
+        journalEntries.updateJournalEntry(journalEntry, last);
+    }
+
+    public String getDate(int last) {
+        return journalEntries.getDate(last);
     }
 }

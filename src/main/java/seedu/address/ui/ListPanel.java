@@ -40,7 +40,7 @@ public class ListPanel extends UiPart<Region> {
     }
 
     private void setConnections(
-              ObservableList<ReadOnlyPerson> personList, ObservableList<JournalEntry> journalEntryList) {
+            ObservableList<ReadOnlyPerson> personList, ObservableList<JournalEntry> journalEntryList) {
         ObservableList<PersonCard> mappedList = EasyBind.map(
                 personList, person -> new PersonCard(person, personList.indexOf(person) + 1));
 

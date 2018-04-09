@@ -38,7 +38,8 @@ public class AddCommand extends UndoableCommand {
             + PREFIX_TAG + "owesMoney";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
+    public static final String MESSAGE_MULTIPLE_PERSON = "You can only have one person in NUSCouples.\n"
+            + "Use the edit command to change the existing person.\n";
 
     private final ReadOnlyPerson toAdd;
 
@@ -61,7 +62,7 @@ public class AddCommand extends UndoableCommand {
             model.addPerson(toAdd);
             return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
         } catch (DuplicatePersonException e) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_MULTIPLE_PERSON);
         }
     }
 

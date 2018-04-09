@@ -1,27 +1,29 @@
 package seedu.address.model;
 
-import java.util.function.Predicate;
-
 import javafx.collections.ObservableList;
 import seedu.address.model.journalentry.JournalEntry;
 import seedu.address.model.person.Appointment.Appointment;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.ReadOnlyPerson;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
-
 
 /**
  * The API of the Model component.
  */
 public interface Model {
-    /** {@code Predicate} that always evaluate to true */
-    Predicate<ReadOnlyPerson> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
-    /** Clears existing backing model and replaces with the provided new data. */
-    void resetData(ReadOnlyAddressBook newData);
+    /** Clears existing backing model for journal and replaces with the provided new data. */
+    void resetJournalData(ReadOnlyJournal newData);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Clears existing backing model for person and replaces with the provided new data. */
+    void resetPersonData(ReadOnlyPerson newData);
+
+    /** Returns the Person */
+    ReadOnlyPerson getPerson();
+
+    /** Returns the Person as Observable list */
+    ObservableList<ReadOnlyPerson> getPersonAsList();
 
     //@@author traceurgan
     /** Returns the Journal */
@@ -34,26 +36,23 @@ public interface Model {
     ObservableList<JournalEntry> getJournalEntryList();
 
     //@@author
-    /** Deletes the given person. */
-    void deletePerson(ReadOnlyPerson target) throws PersonNotFoundException;
+    void deletePerson() throws PersonNotFoundException;
 
     /** Adds the given person */
     void addPerson(ReadOnlyPerson person) throws DuplicatePersonException;
 
-    /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
+    /** Edits the given person
      *
-     * @throws DuplicatePersonException if updating the person's details causes the person to be equivalent to
-     *      another existing person in the list.
-     * @throws PersonNotFoundException if {@code target} could not be found in the list.
-     */
-    void updatePerson(ReadOnlyPerson target, ReadOnlyPerson editedPerson)
+     * @throws NullPointerException
+     *
+     * */
+    void editPerson(ReadOnlyPerson editedPerson)
+            throws NullPointerException;
+
+    String checkDate(int last);
+
+    Person updatePerson(ReadOnlyPerson editedPerson)
             throws DuplicatePersonException, PersonNotFoundException;
-
-
-
-    /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<ReadOnlyPerson> getFilteredPersonList();
 
     //@@author chenxing1992
     /**
@@ -66,10 +65,5 @@ public interface Model {
      */
     void removeAppointment(ReadOnlyPerson target, Appointment appointment) throws PersonNotFoundException;
 
-    /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
-     * @throws NullPointerException if {@code predicate} is null.
-     */
-    void updateFilteredPersonList(Predicate<ReadOnlyPerson> predicate);
-
+    int getLast();
 }

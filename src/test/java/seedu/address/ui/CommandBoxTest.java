@@ -15,14 +15,21 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
+<<<<<<< HEAD
+import seedu.address.logic.commands.SelectCommand;
+=======
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.Prefix;
+>>>>>>> baseBranchDevMaster
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 
 public class CommandBoxTest extends GuiUnitTest {
 
+<<<<<<< HEAD
+    private static final String COMMAND_THAT_SUCCEEDS = SelectCommand.COMMAND_WORD;
+=======
     /* Prefix definitions */
     public static final Prefix PREFIX_NAME = new Prefix("n/");
     public static final Prefix PREFIX_PHONE = new Prefix("p/");
@@ -40,6 +47,7 @@ public class CommandBoxTest extends GuiUnitTest {
     public static final String STRING_TIMETABLE = PREFIX_TIMETABLE.toString();
 
     private static final String COMMAND_THAT_SUCCEEDS = ListCommand.COMMAND_WORD;
+>>>>>>> baseBranchDevMaster
     private static final String COMMAND_THAT_FAILS = "invalid command";
 
     private ArrayList<String> defaultStyleOfCommandBox;

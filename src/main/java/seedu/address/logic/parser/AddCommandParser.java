@@ -11,7 +11,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMETABLE;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.commons.exceptions.IllegalValueException;
@@ -24,8 +23,6 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.timetable.Timetable;
-import seedu.address.model.tag.Tag;
-
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -53,7 +50,6 @@ public class AddCommandParser implements Parser<AddCommand> {
             Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL)).get();
             Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS)).get();
             Timetable timetable = ParserUtil.parseTimetable(argMultimap.getValue(PREFIX_TIMETABLE)).get();
-            Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
             List<Appointment> appointmentList = new ArrayList<>();
             Appointment appointment;
             if (arePrefixesPresent(argMultimap, PREFIX_DATE)) {
@@ -61,7 +57,7 @@ public class AddCommandParser implements Parser<AddCommand> {
                 appointmentList.add(appointment);
             }
 
-            Person person = new Person(name, phone, email, address, timetable, tagList, appointmentList);
+            Person person = new Person(name, phone, email, address, timetable, appointmentList);
 
             return new AddCommand(person);
         } catch (IllegalValueException ive) {

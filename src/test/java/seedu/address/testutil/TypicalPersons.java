@@ -13,14 +13,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TIMETABLE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TIMETABLE_BOB;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import seedu.address.model.AddressBook;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.ReadOnlyPerson;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
@@ -47,19 +40,9 @@ public class TypicalPersons {
     /**
      * Returns an {@code AddressBook} with all the typical persons.
      */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
-        for (ReadOnlyPerson person : getTypicalPersons()) {
-            try {
-                ab.addPerson(person);
-            } catch (DuplicatePersonException e) {
-                assert false : "not possible";
-            }
-        }
-        return ab;
-    }
+    public static Person getTypicalPerson() {
+        Person p = new Person(ALICE);
 
-    public static List<ReadOnlyPerson> getTypicalPersons() {
-        return new ArrayList<>(Arrays.asList(ALICE));
+        return p;
     }
 }

@@ -1,6 +1,5 @@
 package seedu.address.commons.events.ui;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.commons.events.BaseEvent;
 
 /**
@@ -10,8 +9,8 @@ public class JumpToListRequestEvent extends BaseEvent {
 
     public final int targetIndex;
 
-    public JumpToListRequestEvent(Index targetIndex) {
-        this.targetIndex = targetIndex.getZeroBased();
+    public JumpToListRequestEvent() {
+        this.targetIndex = 0;
     }
 
     @Override

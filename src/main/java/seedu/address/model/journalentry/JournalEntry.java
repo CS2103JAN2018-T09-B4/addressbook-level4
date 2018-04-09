@@ -55,7 +55,7 @@ public class JournalEntry {
         return Objects.hash(date);
     }
 
-    public static void updateJournalEntry(JournalEntry journalEntry, JournalEntry oldVersion) {
+    static void updateJournalEntry(JournalEntry journalEntry, JournalEntry oldVersion) {
         oldVersion.setText(journalEntry);
     }
 }

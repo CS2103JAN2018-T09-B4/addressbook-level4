@@ -18,9 +18,7 @@ import javafx.collections.ObservableList;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.UndoRedoStack;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyJournal;
 import seedu.address.model.journalentry.JournalEntry;
 import seedu.address.model.person.Appointment.Appointment;
@@ -44,7 +42,7 @@ public class AddCommandTest {
     @Test
     public void execute_personAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Person validPerson = new PersonBuilder().build();
+        seedu.address.model.person.Person validPerson = new PersonBuilder().build();
 
         CommandResult commandResult = getAddCommandForPerson(validPerson, modelStub).execute();
 
@@ -55,18 +53,18 @@ public class AddCommandTest {
     @Test
     public void execute_duplicatePerson_throwsCommandException() throws Exception {
         ModelStub modelStub = new ModelStubThrowingDuplicatePersonException();
-        Person validPerson = new PersonBuilder().build();
+        seedu.address.model.person.Person validPerson = new PersonBuilder().build();
 
         thrown.expect(CommandException.class);
-        thrown.expectMessage(AddCommand.MESSAGE_DUPLICATE_PERSON);
+        thrown.expectMessage(AddCommand.MESSAGE_MULTIPLE_PERSON);
 
         getAddCommandForPerson(validPerson, modelStub).execute();
     }
 
     @Test
     public void equals() {
-        Person alice = new PersonBuilder().withName("Alice").build();
-        Person bob = new PersonBuilder().withName("Bob").build();
+        seedu.address.model.person.Person alice = new PersonBuilder().withName("Alice").build();
+        seedu.address.model.person.Person bob = new PersonBuilder().withName("Bob").build();
         AddCommand addAliceCommand = new AddCommand(alice);
         AddCommand addBobCommand = new AddCommand(bob);
 
@@ -90,7 +88,7 @@ public class AddCommandTest {
     /**
      * Generates a new AddCommand with the details of the given person.
      */
-    private AddCommand getAddCommandForPerson(Person person, Model model) {
+    private AddCommand getAddCommandForPerson(seedu.address.model.person.Person person, Model model) {
         AddCommand command = new AddCommand(person);
         command.setData(model, new CommandHistory(), new UndoRedoStack());
         return command;
@@ -123,12 +121,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void resetData(ReadOnlyAddressBook newData) {
+        public void resetData(ReadOnlyPerson newData) {
             fail("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyPerson getAddressBook() {
             fail("This method should not be called.");
             return null;
         }
@@ -140,7 +138,7 @@ public class AddCommandTest {
         }
         //@@author chenxing1992
         @Override
-        public void deletePerson(ReadOnlyPerson target) throws PersonNotFoundException {
+        public void deletePerson(seedu.address.model.person.ReadOnlyPerson target) throws PersonNotFoundException {
             fail("This method should not be called.");
         }
 
@@ -175,13 +173,13 @@ public class AddCommandTest {
      */
     private class ModelStubThrowingDuplicatePersonException extends ModelStub {
         @Override
-        public void addPerson(ReadOnlyPerson person) throws DuplicatePersonException {
+        public void addPerson(seedu.address.model.person.ReadOnlyPerson person) throws DuplicatePersonException {
             throw new DuplicatePersonException();
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public ReadOnlyPerson getAddressBook() {
+            return new Person();
         }
     }
 
@@ -189,17 +187,17 @@ public class AddCommandTest {
      * A Model stub that always accept the person being added.
      */
     private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<ReadOnlyPerson> personsAdded = new ArrayList<>();
+        final ArrayList<seedu.address.model.person.ReadOnlyPerson> personsAdded = new ArrayList<>();
 
         @Override
-        public void addPerson(ReadOnlyPerson person) throws DuplicatePersonException {
+        public void addPerson(seedu.address.model.person.ReadOnlyPerson person) throws DuplicatePersonException {
             requireNonNull(person);
             personsAdded.add(person);
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public ReadOnlyPerson getAddressBook() {
+            return new Person();
         }
     }
 

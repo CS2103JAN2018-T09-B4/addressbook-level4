@@ -46,7 +46,7 @@ public class AddCommandIntegrationTest {
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
         ReadOnlyPerson personInList = model.getAddressBook().getPersonList().get(0);
-        assertCommandFailure(prepareCommand(personInList, model), model, AddCommand.MESSAGE_DUPLICATE_PERSON);
+        assertCommandFailure(prepareCommand(personInList, model), model, AddCommand.MESSAGE_MULTIPLE_PERSON);
     }
 
     /**

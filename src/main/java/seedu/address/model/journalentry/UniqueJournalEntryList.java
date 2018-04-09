@@ -31,8 +31,8 @@ public class UniqueJournalEntryList implements Iterable <JournalEntry> {
     /**
      * Returns last entry
      */
-    public JournalEntry getLast() {
-        return internalList.get(internalList.size() - 1);
+    public int getLast() {
+        return (internalList.size() - 1);
     }
 
     /**
@@ -86,7 +86,15 @@ public class UniqueJournalEntryList implements Iterable <JournalEntry> {
                 && this.internalList.equals(((UniqueJournalEntryList) other).internalList));
     }
 
-    public void updateJournalEntry(JournalEntry journalEntry, JournalEntry oldVersion) {
-        JournalEntry.updateJournalEntry(journalEntry, oldVersion);
+    public void updateJournalEntry(JournalEntry journalEntry, int last) {
+        internalList.set(last, journalEntry);
+    }
+
+    public String getDate(int last) {
+        return internalList.get(last).getDate();
+    }
+
+    public JournalEntry getJournalEntry(int index) {
+        return internalList.get(index);
     }
 }

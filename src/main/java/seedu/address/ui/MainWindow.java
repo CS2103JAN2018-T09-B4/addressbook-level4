@@ -20,10 +20,7 @@ import seedu.address.commons.core.Config;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.events.ui.ExitAppRequestEvent;
-import seedu.address.commons.events.ui.HideTimetableRequestEvent;
-import seedu.address.commons.events.ui.PersonPanelSelectionChangedEvent;
 import seedu.address.commons.events.ui.ShowHelpRequestEvent;
-import seedu.address.commons.events.ui.ShowTimetableRequestEvent;
 import seedu.address.logic.Logic;
 import seedu.address.model.UserPrefs;
 
@@ -127,17 +124,16 @@ public class MainWindow extends UiPart<Region> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        browserPlaceholder.getChildren().clear();
-        browserPanel = new BrowserPanel(logic.getFilteredPersonList());
-        browserPlaceholder.getChildren().add(browserPanel.getCalendarRoot());
+        browserPanel = new BrowserPanel(logic.getPersonAsList());
+        browserPlaceholder.getChildren().add(browserPanel.getRoot());
 
-        listPanel = new ListPanel(logic.getFilteredPersonList(), logic.getJournalEntryList());
+        listPanel = new ListPanel(logic.getPersonAsList(), logic.getJournalEntryList());
         listPanelPlaceholder.getChildren().add(listPanel.getRoot());
 
         ResultDisplay resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(prefs.getAddressBookFilePath());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(prefs.getPersonFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(logic);
@@ -186,27 +182,6 @@ public class MainWindow extends UiPart<Region> {
         helpWindow.show();
     }
 
-    //@@author marlenekoh
-    /**
-     * Replaces the Calendar with Timetable Page in Browser Panel
-     */
-    public void handleShowTimetable() {
-        browserPlaceholder.getChildren().clear();
-        browserPanel = new BrowserPanel(logic.getFilteredPersonList());
-        browserPanel.loadTimetablePage();
-        browserPlaceholder.getChildren().add(browserPanel.getRoot());
-    }
-
-    /**
-     * Replaces the Timetable Page with Calendar in Browser Panel
-     */
-    public void handleHideTimetable() {
-        browserPlaceholder.getChildren().clear();
-        browserPanel = new BrowserPanel(logic.getFilteredPersonList());
-        browserPlaceholder.getChildren().add(browserPanel.getCalendarRoot());
-    }
-
-    //@@author
     void show() {
         primaryStage.show();
     }
@@ -231,25 +206,5 @@ public class MainWindow extends UiPart<Region> {
     private void handleShowHelpEvent(ShowHelpRequestEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
         handleHelp();
-    }
-
-    //@@author marlenekoh
-    @Subscribe
-    private void handleShowTimetableRequestEvent(ShowTimetableRequestEvent event) {
-        logger.info(LogsCenter.getEventHandlingLogMessage(event));
-        handleShowTimetable();
-    }
-
-    @Subscribe
-    private void handleHideTimetableRequestEvent(HideTimetableRequestEvent event) {
-        logger.info(LogsCenter.getEventHandlingLogMessage(event));
-        handleHideTimetable();
-    }
-
-    // TODO: Remove this since NUSCouples will only have 1 person
-    @Subscribe
-    private void handlePersonPanelSelectionChangedEvent(PersonPanelSelectionChangedEvent event) {
-        logger.info(LogsCenter.getEventHandlingLogMessage(event));
-        handleShowTimetable();
     }
 }

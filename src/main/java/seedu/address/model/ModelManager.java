@@ -3,18 +3,18 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.function.Predicate;
+import java.util.List;
 import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.ComponentManager;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.events.model.AddressBookChangedEvent;
 import seedu.address.commons.events.model.JournalChangedEvent;
+import seedu.address.commons.events.model.PersonChangedEvent;
 import seedu.address.model.journalentry.JournalEntry;
 import seedu.address.model.person.Appointment.Appointment;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.ReadOnlyPerson;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
@@ -26,49 +26,68 @@ import seedu.address.model.person.exceptions.PersonNotFoundException;
 public class ModelManager extends ComponentManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private Person person;
     private final Journal journal;
-    private final FilteredList<ReadOnlyPerson> filteredPersons;
+    private final ObservableList<ReadOnlyPerson> persons;
+    private ObservableList<JournalEntry> journalEntries;
+
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyJournal journal, UserPrefs userPrefs) {
+    public ModelManager(ReadOnlyPerson person, ReadOnlyJournal journal, UserPrefs userPrefs) {
         super();
-        requireAllNonNull(addressBook, journal, userPrefs);
+        requireAllNonNull(journal, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine(
+                "Initializing with partner: " + person + " , journal" + journal + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        if (person == null) {
+            person = null;
+        } else {
+            this.person = new Person(person);
+        }
         this.journal = new Journal(journal);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        this.persons = FXCollections.observableArrayList();
+        this.journalEntries = getJournalEntryList();
+        if (person != null) {
+            persons.add(person);
+        }
+
     }
 
     public ModelManager() {
-        this(new AddressBook(), new Journal(), new UserPrefs());
+        this(null, new Journal(), new UserPrefs());
+    }
+
+    @Override
+    public void resetJournalData(ReadOnlyJournal newData) {
+        journal.resetJournalData(newData);
+        indicateJournalChanged();
     }
 
 
     @Override
-    public void resetData(ReadOnlyAddressBook newData) {
-        addressBook.resetData(newData);
-        indicateAddressBookChanged();
+    public void resetPersonData(ReadOnlyPerson newData) {
+
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public ReadOnlyPerson getPerson() {
+        return person;
     }
 
-    /**
-     * Raises an event to indicate the address book model has changed
-     */
-    private void indicateAddressBookChanged() {
-        raise(new AddressBookChangedEvent(addressBook));
+    @Override
+    public ObservableList <ReadOnlyPerson> getPersonAsList() {
+        return persons;
+    }
+
+    /** Raises an event to indicate the address book model has changed */
+    private void indicatePersonChanged(Person person) {
+        raise(new PersonChangedEvent(person));
     }
 
     //@@author traceurgan
-
     /**
      * Raises an event to indicate the journal model has changed
      */
@@ -76,11 +95,45 @@ public class ModelManager extends ComponentManager implements Model {
         raise(new JournalChangedEvent(journal));
     }
 
+    //@@author
     @Override
-    public synchronized void addPerson(ReadOnlyPerson person) throws DuplicatePersonException {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        indicateAddressBookChanged();
+    public synchronized void deletePerson() throws PersonNotFoundException {
+        requireAllNonNull(this.person);
+        person = updatePerson(null);
+        indicatePersonChanged(person);
+    }
+
+    @Override
+    public synchronized void addPerson(ReadOnlyPerson newPerson) throws DuplicatePersonException {
+        if (this.person != null) {
+            throw new DuplicatePersonException();
+        }
+        requireAllNonNull(newPerson);
+        this.person = (Person) newPerson;
+        updatePerson(person);
+        indicatePersonChanged(person);
+    }
+
+    /**
+     * Common method for making changes to person.
+     * */
+    public Person updatePerson(ReadOnlyPerson editedPerson) {
+        if (persons.isEmpty()) {
+            persons.add(editedPerson);
+        } else if (editedPerson == null) {
+            persons.remove(0);
+        } else {
+            persons.set(0, editedPerson);
+        }
+        return (Person) editedPerson;
+    }
+
+    @Override
+    public void editPerson(ReadOnlyPerson editedPerson)
+            throws NullPointerException {
+        requireAllNonNull(this.person, editedPerson);
+        person = updatePerson(editedPerson);
+        indicatePersonChanged(person);
     }
 
     //@@author traceurgan
@@ -91,69 +144,66 @@ public class ModelManager extends ComponentManager implements Model {
 
     @Override
     public synchronized void addJournalEntry(JournalEntry journalEntry) throws Exception {
-        if (journal.getLast().getDate().equals(journalEntry.getDate())) {
+        if (checkDate(journal.getLast()).equals(journalEntry.getDate())) {
             journal.updateJournalEntry(journalEntry, journal.getLast());
+            logger.info("Journal entry updated.");
         } else {
             journal.addJournalEntry(journalEntry);
-            logger.info("journal entry added");
+            logger.info("Journal entry added.");
         }
         indicateJournalChanged();
     }
 
-    @Override
-    public synchronized void deletePerson(ReadOnlyPerson target) throws PersonNotFoundException {
-        addressBook.removePerson(target);
-        indicateAddressBookChanged();
+    /**
+     * Adds Appointment to a person in the internal list.
+     *
+     * @throws PersonNotFoundException if no such person exist in the internal list
+     */
+    public void addAppointment(ReadOnlyPerson target, Appointment appointment) throws PersonNotFoundException {
+        requireNonNull(target);
+        requireNonNull(appointment);
+        Person person = new Person(target);
+        List<Appointment> list = target.getAppointments();
+        list.add(appointment);
+        person.setAppointment(list);
+        indicatePersonChanged(person);
     }
-
-    //@@author
-    @Override
-    public void updatePerson(ReadOnlyPerson target, ReadOnlyPerson editedPerson)
-            throws DuplicatePersonException, PersonNotFoundException {
-        requireAllNonNull(target, editedPerson);
-
-        addressBook.updatePerson(target, editedPerson);
-        indicateAddressBookChanged();
-    }
-
-
-    //=========== Filtered Person List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code addressBook}
+     * Removes an appointment from a person in the internal list
+     *
+     * @throws PersonNotFoundException if no such person exist in the internal list
      */
-    @Override
-    public ObservableList<ReadOnlyPerson> getFilteredPersonList() {
-        return FXCollections.unmodifiableObservableList(filteredPersons);
+    public void removeAppointment(ReadOnlyPerson target, Appointment appointment)
+            throws PersonNotFoundException {
+        requireNonNull(target);
+        requireNonNull(appointment);
+
+        Person person = new Person(target);
+        List<Appointment> newApptList = person.getAppointments();
+        newApptList.remove(appointment);
+        person.setAppointment(newApptList);
+        indicatePersonChanged(person);
+
     }
+
+    @Override
+    public String checkDate(int last) {
+        return journal.getDate(last);
+    }
+
+    //=========== Filtered Journal List Accessors =============================================================
+
 
     //@@author traceurgan
     @Override
     public ObservableList<JournalEntry> getJournalEntryList() {
-        return FXCollections.unmodifiableObservableList(journal.getJournalEntryList());
+        return journal.getJournalEntryList();
     }
 
-    public JournalEntry getLast() {
+    @Override
+    public int getLast() {
         return journal.getLast();
-    }
-
-    @Override
-    public void addAppointment(ReadOnlyPerson target, Appointment appointments) throws PersonNotFoundException {
-        addressBook.addAppointment(target, appointments);
-        indicateAddressBookChanged();
-    }
-
-    @Override
-    public void removeAppointment(ReadOnlyPerson target, Appointment appointment) throws PersonNotFoundException {
-        addressBook.removeAppointment(target, appointment);
-        indicateAddressBookChanged();
-    }
-    //@@author
-    @Override
-    public void updateFilteredPersonList(Predicate<ReadOnlyPerson> predicate) {
-        requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
     }
 
     @Override
@@ -170,8 +220,8 @@ public class ModelManager extends ComponentManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
-                && filteredPersons.equals(other.filteredPersons);
+        return person.equals(other.person)
+                && journal.equals(other.journal);
     }
 
 }

@@ -71,10 +71,8 @@ public class CancelAppointmentCommand extends UndoableCommand {
      */
     private ReadOnlyPerson getPersonFromName(String personName) throws PersonNotFoundException {
 
-        for (ReadOnlyPerson person : model.getAddressBook().getPersonList()) {
-            if (person.getName().toString().equalsIgnoreCase(personName.trim())) {
-                return person;
-            }
+        if (model.getPerson().getName().fullName.equalsIgnoreCase(personName.trim())) {
+            return model.getPerson();
         }
 
         throw new PersonNotFoundException();

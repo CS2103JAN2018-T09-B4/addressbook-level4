@@ -36,28 +36,16 @@ public class AddAppointmentCommand extends UndoableCommand {
     public static final String INVALID_DATE = "Invalid Date. Please enter a valid date.";
     public static final String SORT_APPOINTMENT_FEEDBACK = "Rearranged contacts to show upcoming appointments.";
 
-
-    private final Index index;
     private final Appointment appointment;
 
-    public AddAppointmentCommand(Index index, Appointment appointment) {
-        this.index = index;
+    public AddAppointmentCommand(Appointment appointment) {
         this.appointment = appointment;
     }
     //@@author chenxing1992
     @Override
     protected CommandResult executeUndoableCommand() throws CommandException {
 
-        List<ReadOnlyPerson> lastShownList = model.getFilteredPersonList();
-
-        requireNonNull(index);
-        requireNonNull(appointment);
-
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-        }
-
-        ReadOnlyPerson personToAddAppointment = lastShownList.get(index.getZeroBased());
+        ReadOnlyPerson personToAddAppointment = model.getPerson();
 
         if (appointment.getDate() != null && !isDateValid()) {
             return new CommandResult(INVALID_DATE);
@@ -81,17 +69,12 @@ public class AddAppointmentCommand extends UndoableCommand {
         Calendar calendar = Calendar.getInstance();
         return !appointment.getDate().before(calendar.getTime());
     }
-    //@@author chenxing1992
-    public Index getIndex() {
-        return this.index;
-    }
 
     //@@author chenxing1992
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddAppointmentCommand // instanceof handles nulls
-                && (this.index.getZeroBased() == ((AddAppointmentCommand) other).index.getZeroBased())
                 && (this.appointment.equals(((AddAppointmentCommand) other).appointment)));
     }
 

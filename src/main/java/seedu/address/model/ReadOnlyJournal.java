@@ -15,5 +15,7 @@ public interface ReadOnlyJournal {
      */
     ObservableList<JournalEntry> getJournalEntryList();
 
-    JournalEntry getLast();
+    int getLast();
+
+    JournalEntry getJournalEntry(int index);
 }

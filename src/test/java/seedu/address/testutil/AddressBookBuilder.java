@@ -1,8 +1,7 @@
 package seedu.address.testutil;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.AddressBook;
-import seedu.address.model.person.Person;
+import seedu.address.model.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.tag.Tag;
 
@@ -13,20 +12,20 @@ import seedu.address.model.tag.Tag;
  */
 public class AddressBookBuilder {
 
-    private AddressBook addressBook;
+    private Person addressBook;
 
     public AddressBookBuilder() {
-        addressBook = new AddressBook();
+        addressBook = new Person();
     }
 
-    public AddressBookBuilder(AddressBook addressBook) {
+    public AddressBookBuilder(Person addressBook) {
         this.addressBook = addressBook;
     }
 
     /**
      * Adds a new {@code Person} to the {@code AddressBook} that we are building.
      */
-    public AddressBookBuilder withPerson(Person person) {
+    public AddressBookBuilder withPerson(seedu.address.model.person.Person person) {
         try {
             addressBook.addPerson(person);
         } catch (DuplicatePersonException dpe) {
@@ -47,7 +46,7 @@ public class AddressBookBuilder {
         return this;
     }
 
-    public AddressBook build() {
+    public Person build() {
         return addressBook;
     }
 }

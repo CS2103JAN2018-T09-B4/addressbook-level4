@@ -23,7 +23,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.web.WebView;
 import seedu.address.MainApp;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.events.model.AddressBookChangedEvent;
+import seedu.address.commons.events.model.PersonChangedEvent;
 import seedu.address.commons.events.ui.CalendarViewEvent;
 import seedu.address.commons.events.ui.PersonPanelSelectionChangedEvent;
 import seedu.address.model.person.Appointment.Appointment;
@@ -199,8 +199,7 @@ public class BrowserPanel extends UiPart<Region> {
     }
 
     @Subscribe
-    private void handleNewAppointmentEvent(AddressBookChangedEvent event) {
-        personList = event.data.getPersonList();
+    private void handleNewAppointmentEvent(PersonChangedEvent event) {
         Platform.runLater(
                 this::updateCalendar
         );
