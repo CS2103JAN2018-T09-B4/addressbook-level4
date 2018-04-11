@@ -120,7 +120,7 @@ adds a partner named <code>John Doe</code> to <em>NUSCouples</em>.</p>
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="small">Return to <a href="#toc">Table of Contents</a></span><br></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="small">Return to <a href="#toc">Table of Contents</a></span><br></p></td>
 </tr>
 </tbody>
 </table>
@@ -145,11 +145,7 @@ adds a partner named <code>John Doe</code> to <em>NUSCouples</em>.</p>
 parameter which can be used as <code>add n/John Doe</code>.</p>
 </li>
 <li>
-<p>Items in square brackets are optional e.g <code>n/NAME [t/TAG]</code> can be used as <code>n/John Doe t/friend</code> or as <code>n/John Doe</code>.</p>
-</li>
-<li>
-<p>Items with <code>…</code>​ after them can be used multiple times including zero times e.g. <code>[t/TAG]&#8230;&#8203;</code> can
-be used as <code>&#160;</code> (i.e. 0 times), <code>t/friend</code>, <code>t/friend t/family</code> etc.</p>
+<p>Items in square brackets are optional e.g <code>n/NAME [p/PHONE_NUMBER]</code> can be used as <code>n/John Doe t/friend</code> or as <code>n/John Doe</code>.</p>
 </li>
 <li>
 <p>Parameters can be in any order e.g. if the command specifies <code>n/NAME p/PHONE_NUMBER</code>,
@@ -172,16 +168,13 @@ Alias: <code>hlp</code></p>
 <h4 id="adding-your-partner-code-add-code"><a class="link" href="#adding-your-partner-code-add-code">2.1.2. Adding your partner : <code>add</code></a></h4>
 <div class="paragraph">
 <p>Adds your partner to <em>NUSCouples</em>.<br>
-Format: <code>add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS tt/TIMETABLE_URL [t/TAG]&#8230;&#8203;</code><br>
-Alias: <code>a n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS tt/TIMETABLE_URL [t/TAG]&#8230;&#8203;</code></p>
+Format: <code>add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS tt/TIMETABLE_URL</code><br>
+Alias: <code>a n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS tt/TIMETABLE_URL</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
-<li>
-<p>Your partner can have any number of tags (including 0).</p>
-</li>
 <li>
 <p>The timetable url provided has to be a valid <a href="https://nusmods.com">NUSMods</a> short URL.</p>
 </li>
@@ -201,27 +194,17 @@ Alias: <code>a n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS tt/TIMETABLE_URL [t/TAG]&
 <p><code>add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 tt/http://modsn.us/IO4n5</code></p>
 </li>
 <li>
-<p><code>add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 tt/http://modsn.us/wNuIW t/criminal</code></p>
+<p><code>add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 tt/http://modsn.us/wNuIW</code></p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect3">
 <h4 id="editing-your-partner-code-edit-code"><a class="link" href="#editing-your-partner-code-edit-code">2.1.3. Editing your partner : <code>edit</code></a></h4>
-<div class="sect4">
-<h5 id="current-implementation"><a class="link" href="#current-implementation">CURRENT IMPLEMENTATION</a></h5>
 <div class="paragraph">
 <p>Edits your existing partner in <em>NUSCouples</em>.<br>
-Format: <code>edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [tt/TIMETABLE_URL] [t/TAG]&#8230;&#8203;</code><br>
-Alias: <code>ed INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [tt/TIMETABLE_URL] [t/TAG]&#8230;&#8203;</code></p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="future-implementation-coming-in-v1-5"><a class="link" href="#future-implementation-coming-in-v1-5">FUTURE IMPLEMENTATION [Coming in v1.5]</a></h5>
-<div class="paragraph">
-<p>Edits your existing partner in <em>NUSCouples</em>.<br>
-Format: <code>edit [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [tt/TIMETABLE_URL] [t/TAG]&#8230;&#8203;</code><br>
-Alias: <code>ed [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [tt/TIMETABLE_URL] [t/TAG]&#8230;&#8203;</code></p>
+Format: <code>edit [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [tt/TIMETABLE_URL]</code><br>
+Alias: <code>ed [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [tt/TIMETABLE_URL]</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -232,12 +215,6 @@ Alias: <code>ed [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [tt/TIMETABLE_URL] [t/T
 </li>
 <li>
 <p>Existing values will be updated to the input values.</p>
-</li>
-<li>
-<p>When editing tags, the existing tags of your partner will be removed i.e adding of tags is not cumulative.</p>
-</li>
-<li>
-<p>You can remove all tags of your partner by typing <code>t/</code> without specifying any tags after it.</p>
 </li>
 <li>
 <p>Your partner must exist in <em>NUSCouples</em> before this command can be executed.</p>
@@ -256,25 +233,14 @@ Alias: <code>ed [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [tt/TIMETABLE_URL] [t/T
 Edits the phone number and email address of your partner to be <code>91234567</code> and <code>johndoe@example.com</code> respectively.</p>
 </li>
 <li>
-<p><code>edit n/Betsy Crower t/</code><br>
-Edits the name of your partner to be <code>Betsy Crower</code> and clears all existing tags.</p>
+<p><code>edit n/Betsy Crower</code><br>
+Edits the name of your partner to be <code>Betsy Crower</code>.</p>
 </li>
 </ul>
 </div>
 </div>
-</div>
 <div class="sect3">
 <h4 id="deleting-your-partner-code-delete-code"><a class="link" href="#deleting-your-partner-code-delete-code">2.1.4. Deleting your partner : <code>delete</code></a></h4>
-<div class="sect4">
-<h5 id="current-implementation-2"><a class="link" href="#current-implementation-2">CURRENT IMPLEMENTATION</a></h5>
-<div class="paragraph">
-<p>Deletes your partner from <em>NUSCouples</em>.<br>
-Format: <code>delete INDEX</code><br>
-Alias: <code>d INDEX</code></p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="future-implementation-coming-in-v1-5-2"><a class="link" href="#future-implementation-coming-in-v1-5-2">FUTURE IMPLEMENTATION [Coming in v1.5]</a></h5>
 <div class="paragraph">
 <p>Deletes your partner from <em>NUSCouples</em>.<br>
 Format: <code>delete</code><br>
@@ -291,7 +257,6 @@ Alias: <code>d</code></p>
 <p>Your partner must exist in <em>NUSCouples</em> before this command can be executed.</p>
 </li>
 </ul>
-</div>
 </div>
 </div>
 </div>
@@ -444,7 +409,7 @@ Alias: <code>ex</code><br></p>
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="small">Return to <a href="#toc">Table of Contents</a></span><br></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="small">Return to <a href="#toc">Table of Contents</a></span><br></p></td>
 </tr>
 </tbody>
 </table>
@@ -471,19 +436,8 @@ Alias: <code>ex</code><br></p>
 Format: <code>select</code><br>
 Alias: <code>s</code></p>
 </div>
-<div class="sect4">
-<h5 id="current-implementation-3"><a class="link" href="#current-implementation-3">CURRENT IMPLEMENTATION</a></h5>
 <div class="paragraph">
-<p>Only the timetable of the first person clicked will be loaded. This timetable will be shared among all persons.
-Timetable display will not be updated when editing timetable field. However, timetable link will be updated in the
-person card at the left.</p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="future-implementation-coming-in-v1-5-3"><a class="link" href="#future-implementation-coming-in-v1-5-3">FUTURE IMPLEMENTATION [Coming in v1.5]</a></h5>
-<div class="paragraph">
-<p>NUSCouples will be modified to only hold one person. Timetable display will be updated after editing timetable field.</p>
-</div>
+<p>Timetable display will be shown.</p>
 </div>
 </div>
 <div class="sect3">
@@ -526,7 +480,7 @@ Alias: <code>tc tt/TIMETABLE_URL</code></p>
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="small">Return to <a href="#toc">Table of Contents</a></span><br></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="small">Return to <a href="#toc">Table of Contents</a></span><br></p></td>
 </tr>
 </tbody>
 </table>
@@ -571,7 +525,7 @@ Alias: <code>ce</code><br></p>
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="small">Return to <a href="#toc">Table of Contents</a></span><br></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="small">Return to <a href="#toc">Table of Contents</a></span><br></p></td>
 </tr>
 </tbody>
 </table>
@@ -637,7 +591,7 @@ Alias: <code>jv</code></p>
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="small">Return to <a href="#toc">Table of Contents</a></span><br></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="small">Return to <a href="#toc">Table of Contents</a></span><br></p></td>
 </tr>
 </tbody>
 </table>
@@ -652,9 +606,16 @@ Alias: <code>jv</code></p>
 Format: <code>motivate</code><br>
 <em>There is no alias for this feature currently.</em></p>
 </div>
-<div class="paragraph">
-<p>Return to <a href="#toc">Table of Contents</a> <br></p>
-</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="small">Return to <a href="#toc">Table of Contents</a></span><br></p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <div class="sect2">
@@ -704,7 +665,7 @@ Alias: <code>loc</code><br></p>
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="small">Return to <a href="#toc">Table of Contents</a></span><br></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="small">Return to <a href="#toc">Table of Contents</a></span><br></p></td>
 </tr>
 </tbody>
 </table>
@@ -753,7 +714,7 @@ and attach the log file that should be stored in the same location as the <em>NU
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="small">Return to <a href="#toc">Table of Contents</a></span><br></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="small">Return to <a href="#toc">Table of Contents</a></span><br></p></td>
 </tr>
 </tbody>
 </table>
@@ -782,13 +743,13 @@ and attach the log file that should be stored in the same location as the <em>NU
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">add, a</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Add your partner</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS tt/TIMETABLE_URL [t/TAG]&#8230;&#8203;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS tt/TIMETABLE_URL</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 tt/http://modsn.us/IO4n5</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">edit, ed</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Edit your partner</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>edit [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [tt/TIMETABLE_URL] [t/TAG]…</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>edit [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [tt/TIMETABLE_URL]</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>edit n/John Doe e/johnd@example.com</code></p></td>
 </tr>
 <tr>
@@ -871,7 +832,7 @@ and attach the log file that should be stored in the same location as the <em>NU
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="small">Return to <a href="#toc">Table of Contents</a></span><br></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="small">Return to <a href="#toc">Table of Contents</a></span><br></p></td>
 </tr>
 </tbody>
 </table>
@@ -880,7 +841,7 @@ and attach the log file that should be stored in the same location as the <em>NU
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-11 20:35:53 UTC
+Last updated 2018-04-11 21:07:41 UTC
 </div>
 </div>
 </body>
