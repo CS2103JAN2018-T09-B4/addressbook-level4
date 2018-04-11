@@ -114,4 +114,29 @@ public class SampleDataUtil {
         return list;
     }
 
+    public static String getDefaultTimetablePageScript() {
+        return "//@@author marlenekoh\n"
+                + "timetable = [\n"
+                + "];\n"
+                + "var myTimetable = \"\";\n"
+                + "var nRows = \"\";\n"
+                + "var nCells = \"\";\n"
+                + "function displaySchedule(){\n"
+                + "    for (i=0; i<nRows; i++) {\n"
+                + "        for (n=0; n<nCells; n++) {\n"
+                + "            myTimetable.rows[i+1].cells[n+1].innerHTML = timetable[n+(i*nCells)];\n"
+                + "        }\n"
+                + "    }\n"
+                + "}\n"
+                + "function mapTable(){\n"
+                + "    myTimetable = document.getElementById('myTimetable');\n"
+                + "    nRows = myTimetable.rows.length-1;\n"
+                + "    nCells = myTimetable.rows[0].cells.length-1;\n"
+                + "    displaySchedule();\n"
+                + "}\n"
+                + "document.addEventListener(\"DOMContentLoaded\", function(event) {\n"
+                + "    mapTable();\n"
+                + "});\n";
+    }
+
 }

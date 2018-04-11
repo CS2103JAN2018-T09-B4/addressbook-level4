@@ -39,7 +39,6 @@ This app will not work with earlier versions of Java 8.
 IntelliJ by default has Gradle and JavaFx plugins installed. +
 Do not disable them. If you have disabled them, go to `File` > `Settings` > `Plugins` to re-enable them.
 
-
 === Setting up the project in your computer
 
 . Fork this repo, and clone the fork to your computer
@@ -99,7 +98,9 @@ When you are ready to start coding,
 1. Get some sense of the overall design by reading <<Design-Architecture>>.
 2. Take a look at <<GetStartedProgramming>>.
 
-Return to <<toc,Table of Contents>>
+|===
+| [.small]#Return to <<toc,Table of Contents>># +
+|===
 
 == Design
 
@@ -164,7 +165,9 @@ The sections below give more details of each component.
 
 [[Design-Ui]]
 
-Return to <<toc,Table of Contents>>
+|===
+| [.small]#Return to <<toc,Table of Contents>># +
+|===
 
 === UI component
 
@@ -185,7 +188,9 @@ The `UI` component,
 
 [[Design-Logic]]
 
-Return to <<toc,Table of Contents>>
+|===
+| [.small]#Return to <<toc,Table of Contents>># +
+|===
 
 === Logic component
 
@@ -211,7 +216,9 @@ image::DeletePersonSdForLogic.png[width="800"]
 
 [[Design-Model]]
 
-Return to <<toc,Table of Contents>>
+|===
+| [.small]#Return to <<toc,Table of Contents>># +
+|===
 
 === Model component
 
@@ -229,7 +236,9 @@ The `Model`,
 
 [[Design-Storage]]
 
-Return to <<toc,Table of Contents>>
+|===
+| [.small]#Return to <<toc,Table of Contents>># +
+|===
 
 === Storage component
 
@@ -245,7 +254,9 @@ The `Storage` component,
 
 [[Design-Commons]]
 
-Return to <<toc,Table of Contents>>
+|===
+| [.small]#Return to <<toc,Table of Contents>># +
+|===
 
 === Common classes
 
@@ -385,7 +396,9 @@ image::UndoRedoActivityDiagram.png[width="650"]
 
 // tag::dataencryption[]
 
-Return to <<toc,Table of Contents>>
+|===
+| [.small]#Return to <<toc,Table of Contents>># +
+|===
 
 === [Proposed] Data Encryption
 
@@ -393,7 +406,9 @@ _{Explain here how the data encryption feature will be implemented}_
 
 // end::dataencryption[]
 
-Return to <<toc,Table of Contents>>
+|===
+| [.small]#Return to <<toc,Table of Contents>># +
+|===
 
 === Logging
 
@@ -412,13 +427,17 @@ We are using `java.util.logging` package for logging. The `LogsCenter` class is 
 
 [[Implementation-Configuration]]
 
-Return to <<toc,Table of Contents>>
+|===
+| [.small]#Return to <<toc,Table of Contents>># +
+|===
 
 === Configuration
 
 Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: `config.json`).
 
-Return to <<toc,Table of Contents>>
+|===
+| [.small]#Return to <<toc,Table of Contents>># +
+|===
 
 === [Proposed] Calendar Viewer Feature
 ==== Current Implementation
@@ -469,7 +488,9 @@ image::viewCalendarSeqDiagram.png[width="850"]
 ** Pros: Easier to implement due to everything is assisted.
 ** Cons: Restrictive, need more money for more features to add on.
 
-Return to <<toc,Table of Contents>>
+|===
+| [.small]#Return to <<toc,Table of Contents>># +
+|===
 
 === [Proposed] Timetable Viewer feature
 ==== Proposed Implementation
@@ -514,7 +535,9 @@ image::AddTimetableSequenceDiagram.png[width="650"]
 ** Pros: Easier to implement due to how NUSMods API is structured.
 ** Cons: Difficult to extract out information for a particular time slot on a particular day.
 
-Return to <<toc,Table of Contents>>
+|===
+| [.small]#Return to <<toc,Table of Contents>># +
+|===
 
 === [Proposed] Journal feature
 ==== Current Implementation
@@ -564,7 +587,9 @@ image::NewJournalSequenceDiagram.png[width="800"]
 ** Pros: User can distinguish between files easily.
 ** Cons: If duplicate names are allowed, we need to distinguish them with another method. If duplicate names are not allowed, user may struggle to find unique names for every entry.
 
-Return to <<toc,Table of Contents>>
+|===
+| [.small]#Return to <<toc,Table of Contents>># +
+|===
 
 == Documentation
 
@@ -596,7 +621,9 @@ Here are the steps to convert the project documentation files to PDF format.
 .Saving documentation as PDF files in Chrome
 image::chrome_save_as_pdf.png[width="300"]
 
-Return to <<toc,Table of Contents>>
+|===
+| [.small]#Return to <<toc,Table of Contents>># +
+|===
 
 [[Testing]]
 == Testing
@@ -648,7 +675,9 @@ e.g. `seedu.address.logic.LogicManagerTest`
 * Reason: One of its dependencies, `UserGuide.html` in `src/main/resources/docs` is missing.
 * Solution: Execute Gradle task `processResources`.
 
-Return to <<toc,Table of Contents>>
+|===
+| [.small]#Return to <<toc,Table of Contents>># +
+|===
 
 == Dev Ops
 
@@ -682,7 +711,9 @@ A project often depends on third-party libraries. For example, Address Book depe
 a. Include those libraries in the repo (this bloats the repo size) +
 b. Require developers to download those libraries manually (this creates extra work for developers)
 
-Return to <<toc,Table of Contents>>
+|===
+| [.small]#Return to <<toc,Table of Contents>># +
+|===
 
 [appendix]
 == Product Scope

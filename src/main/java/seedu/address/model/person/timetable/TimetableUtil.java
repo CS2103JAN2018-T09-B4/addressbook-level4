@@ -2,7 +2,6 @@ package seedu.address.model.person.timetable;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
-import static seedu.address.model.person.timetable.TimetableDisplayUtil.TIMES;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -32,12 +31,20 @@ import seedu.address.logic.parser.exceptions.ParseException;
 /**
  * A class containing utility methods for parsing an NUSMods short URL and setting up a Timetable
  */
-public class TimetableParserUtil {
+public class TimetableUtil {
     public static final int MONDAY_INDEX = 0;
     public static final int TUESDAY_INDEX = 1;
     public static final int WEDNESDAY_INDEX = 2;
     public static final int THURSDAY_INDEX = 3;
     public static final int FRIDAY_INDEX = 4;
+    public static final String[] DAYS = {"MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY"};
+    public static final String[] TIMES = {
+        "0800", "0830", "0900", "0930", "1000", "1030", "1100", "1130",
+        "1200", "1230", "1300", "1330", "1400", "1430", "1500", "1530",
+        "1600", "1630", "1700", "1730", "1800", "1830", "1900", "1930",
+        "2000", "2030", "2100", "2130", "2200", "2230", "2300", "2330"
+    };
+    public static final String[] WEEKS = {"Odd Week", "Even Week", "Every Week"};
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
     private static final String SPLIT_QUESTION_MARK = "\\?";
     private static final String SPLIT_AMPERSAND = "&";
@@ -68,6 +75,7 @@ public class TimetableParserUtil {
             setSemNumFromExpandedUrl(timetable);
             setListOfModules(timetable);
             setListOfDays(timetable);
+            setTimetableDisplayInfo(timetable);
         } catch (ParseException e) {
             logger.warning(MESSAGE_INVALID_SHORT_URL);
         }
@@ -113,7 +121,7 @@ public class TimetableParserUtil {
      * Sets the {@code currentSemester} for {@code timetable}.
      * @param timetable Timetable whose {@code currentSemester} is to be set
      */
-    public static void setSemNumFromExpandedUrl(Timetable timetable) {
+    private static void setSemNumFromExpandedUrl(Timetable timetable) {
         timetable.setCurrentSemester(getSemNumFromExpandedUrl(timetable));
     }
 
@@ -178,7 +186,7 @@ public class TimetableParserUtil {
     }
 
     /**
-     * Sets {@code listOfDays} in {@code timetable} given
+     * Sets {@code listOfDays} in {@code timetable} given using the NUSMods short url
      * @param timetable timetable to set List of days
      */
     public static void setListOfDays(Timetable timetable) {
@@ -188,6 +196,44 @@ public class TimetableParserUtil {
         HashMap<String, ArrayList<TimetableModuleSlot>> sortedTimetableModuleSlots =
                 sortModuleSlotsByDay(allTimetableModuleSlots);
         timetable.setListOfDays(sortedTimetableModuleSlots);
+    }
+
+    public static void setTimetableDisplayInfo(Timetable timetable) {
+        timetable.setTimetableDisplayInfo(convertListOfDaysToString(timetable.getListOfDays()));
+    }
+
+    /**
+     * Converts the {@code listOfDays} into a String object for parsing.
+     */
+    private static String convertListOfDaysToString(HashMap<String, ArrayList<TimetableModuleSlot>> listOfDays) {
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < TIMES.length; i++) {
+            if (i < TIMES.length - 1) {
+                sb.append(listOfDays.get(DAYS[MONDAY_INDEX]).get(i).toString());
+                sb.append(", ");
+                sb.append(listOfDays.get(DAYS[TUESDAY_INDEX]).get(i).toString());
+                sb.append(", ");
+                sb.append(listOfDays.get(DAYS[WEDNESDAY_INDEX]).get(i).toString());
+                sb.append(", ");
+                sb.append(listOfDays.get(DAYS[THURSDAY_INDEX]).get(i).toString());
+                sb.append(", ");
+                sb.append(listOfDays.get(DAYS[FRIDAY_INDEX]).get(i).toString());
+                sb.append(", ");
+            } else {
+                sb.append(listOfDays.get(DAYS[MONDAY_INDEX]).get(i).toString());
+                sb.append(", ");
+                sb.append(listOfDays.get(DAYS[TUESDAY_INDEX]).get(i).toString());
+                sb.append(", ");
+                sb.append(listOfDays.get(DAYS[WEDNESDAY_INDEX]).get(i).toString());
+                sb.append(", ");
+                sb.append(listOfDays.get(DAYS[THURSDAY_INDEX]).get(i).toString());
+                sb.append(", ");
+                sb.append(listOfDays.get(DAYS[FRIDAY_INDEX]).get(i).toString());
+            }
+        }
+        sb.append("\n");
+        return sb.toString();
     }
 
     /**
@@ -316,7 +362,42 @@ public class TimetableParserUtil {
     }
 
     /**
+     * Processes the given timetable for viewing.
+     *
+     * @param timetable to view
+     * @return an ArrayList containing the {@code TimetableModuleSlots} from the Timetable.
+     */
+    public static ArrayList<TimetableModuleSlot> setUpUnsortedModuleSlotsForViewing(Timetable timetable) {
+        ArrayList<TimetableModuleSlot> allUnsortedModulesSlots = timetable.getAllModulesSlots();
+
+        for (TimetableModuleSlot t : allUnsortedModulesSlots) {
+            t.setComparing(false);
+        }
+        return allUnsortedModulesSlots;
+    }
+
+    /**
+     * Combines the two lists of {@code TimetableModuleSlots} from each timetable and process them for comparing.
+     *
+     * @param first  Timetable to compare
+     * @param second Timetable to compare
+     * @return an ArrayList containing the combined {@code TimetableModuleSlots} from both Timetables.
+     */
+    public static ArrayList<TimetableModuleSlot> setUpUnsortedModuleSlotsForComparing(Timetable first,
+                                                                                      Timetable second) {
+        ArrayList<TimetableModuleSlot> allUnsortedModulesSlots = new ArrayList<TimetableModuleSlot>();
+        allUnsortedModulesSlots.addAll(first.getAllModulesSlots());
+        allUnsortedModulesSlots.addAll(second.getAllModulesSlots());
+
+        for (TimetableModuleSlot t : allUnsortedModulesSlots) {
+            t.setComparing(true);
+        }
+        return allUnsortedModulesSlots;
+    }
+
+    /**
      * Sorts TimetableModuleSlots
+     *
      * @return HashMap of {@code Day}, {@code list of TimetableModuleSlots sorted by time}
      */
     public static HashMap<String, ArrayList<TimetableModuleSlot>> sortModuleSlotsByDay(
@@ -346,18 +427,18 @@ public class TimetableParserUtil {
 
         HashMap<String, ArrayList<TimetableModuleSlot>> sortedTimetableModuleSlots =
                 new HashMap<String, ArrayList<TimetableModuleSlot>>();
-        sortedTimetableModuleSlots.put("MONDAY", listOfDays.get(MONDAY_INDEX));
-        sortedTimetableModuleSlots.put("TUESDAY", listOfDays.get(TUESDAY_INDEX));
-        sortedTimetableModuleSlots.put("WEDNESDAY", listOfDays.get(WEDNESDAY_INDEX));
-        sortedTimetableModuleSlots.put("THURSDAY", listOfDays.get(THURSDAY_INDEX));
-        sortedTimetableModuleSlots.put("FRIDAY", listOfDays.get(FRIDAY_INDEX));
+        sortedTimetableModuleSlots.put(DAYS[MONDAY_INDEX], listOfDays.get(MONDAY_INDEX));
+        sortedTimetableModuleSlots.put(DAYS[TUESDAY_INDEX], listOfDays.get(TUESDAY_INDEX));
+        sortedTimetableModuleSlots.put(DAYS[WEDNESDAY_INDEX], listOfDays.get(WEDNESDAY_INDEX));
+        sortedTimetableModuleSlots.put(DAYS[THURSDAY_INDEX], listOfDays.get(THURSDAY_INDEX));
+        sortedTimetableModuleSlots.put(DAYS[FRIDAY_INDEX], listOfDays.get(FRIDAY_INDEX));
         return sortedTimetableModuleSlots;
     }
 
     /**
-     * Sorts Module Slots by Time
+     * Sorts Module Slots by time
      * @param timetableModuleSlots
-     * @return
+     * @return a list of sorted TimetableModuleSlots
      */
     private static ArrayList<TimetableModuleSlot> sortModuleSlotsByTime(
             ArrayList<TimetableModuleSlot> timetableModuleSlots) {
@@ -367,6 +448,7 @@ public class TimetableParserUtil {
 
     /**
      * Splits each TimetableModuleSlots into half hour slots and adds empty slots to represent breaks
+     *
      * @param timetableModuleSlots the ArrayList to split into half hour slots
      * @return an ArrayList of TimetableModuleSlot with each slot representing one half-hour slot in the timetable
      */
@@ -398,6 +480,8 @@ public class TimetableParserUtil {
         }
         return filled;
     }
+
+    // ================ Helper methods ==============================
 
     /**
      * Converts shortened lesson type from URL to long lesson type in API
@@ -440,21 +524,21 @@ public class TimetableParserUtil {
      * @param day in String
      * @return int representing day
      */
-    private static int convertDayToInteger(String day) throws IllegalValueException {
-        switch (day.toLowerCase()) {
-        case "monday":
+    public static int convertDayToInteger(String day) throws IllegalValueException {
+        switch (day.toUpperCase()) {
+        case "MONDAY":
             return MONDAY_INDEX;
 
-        case "tuesday":
+        case "TUESDAY":
             return TUESDAY_INDEX;
 
-        case "wednesday":
+        case "WEDNESDAY":
             return WEDNESDAY_INDEX;
 
-        case "thursday":
+        case "THURSDAY":
             return THURSDAY_INDEX;
 
-        case "friday":
+        case "FRIDAY":
             return FRIDAY_INDEX;
 
         default:

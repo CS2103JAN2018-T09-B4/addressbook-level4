@@ -50,7 +50,7 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 .  Refer to <<Features>> for details of each command. +
 
 |===
->| [.small]#Return to <<toc,Table of Contents>># +
+| [.small]#Return to <<toc,Table of Contents>># +
 |===
 
 [[Features]]
@@ -223,7 +223,7 @@ Format: `exit` +
 Alias: `ex` +
 
 |===
->| [.small]#Return to <<toc,Table of Contents>># +
+| [.small]#Return to <<toc,Table of Contents>># +
 |===
 
 === Timetable
@@ -267,7 +267,7 @@ Examples:
 * `tc tt/http://modsn.us/wNuIW` +
 
 |===
->| [.small]#Return to <<toc,Table of Contents>># +
+| [.small]#Return to <<toc,Table of Contents>># +
 |===
 
 === Calendar
@@ -296,7 +296,7 @@ Format: `cedit` +
 Alias: `ce` +
 
 |===
->| [.small]#Return to <<toc,Table of Contents>># +
+| [.small]#Return to <<toc,Table of Contents>># +
 |===
 
 === Journal
@@ -331,7 +331,7 @@ Format: `jview` +
 Alias: `jv`
 
 |===
->| [.small]#Return to <<toc,Table of Contents>># +
+| [.small]#Return to <<toc,Table of Contents>># +
 |===
 
 === Motivational Picture
@@ -341,7 +341,9 @@ Shows the location (by building) of the entered classroom name. +
 Format: `motivate` +
 _There is no alias for this feature currently._
 
-Return to <<toc,Table of Contents>>  +
+|===
+| [.small]#Return to <<toc,Table of Contents>># +
+|===
 
 === Future Features
 // tag::dataencryption[]
@@ -371,7 +373,7 @@ Format: `location` +
 Alias: `loc` +
 
 |===
->| [.small]#Return to <<toc,Table of Contents>># +
+| [.small]#Return to <<toc,Table of Contents>># +
 |===
 
 == FAQ
@@ -401,7 +403,7 @@ and attach the log file that should be stored in the same location as the _NUSCo
 *latest* one or attach all of them to be safe. +
 
 |===
->| [.small]#Return to <<toc,Table of Contents>># +
+| [.small]#Return to <<toc,Table of Contents>># +
 |===
 
 == Command Summary
@@ -442,5 +444,5 @@ and attach the log file that should be stored in the same location as the _NUSCo
 |=======================================================================
 
 |===
->| [.small]#Return to <<toc,Table of Contents>># +
+| [.small]#Return to <<toc,Table of Contents>># +
 |===

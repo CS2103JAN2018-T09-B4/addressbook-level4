@@ -1,5 +1,6 @@
 package seedu.address.storage;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Optional;
 import java.util.logging.Logger;
@@ -7,10 +8,13 @@ import java.util.logging.Logger;
 import com.google.common.eventbus.Subscribe;
 
 import seedu.address.commons.core.ComponentManager;
+import seedu.address.commons.core.EventsCenter;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.events.model.AddressBookChangedEvent;
 import seedu.address.commons.events.model.JournalChangedEvent;
+import seedu.address.commons.events.model.TimetableChangedEvent;
 import seedu.address.commons.events.storage.DataSavingExceptionEvent;
+import seedu.address.commons.events.ui.ShowTimetableRequestEvent;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyJournal;
@@ -24,15 +28,17 @@ public class StorageManager extends ComponentManager implements Storage {
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
     private AddressBookStorage addressBookStorage;
     private JournalStorage journalStorage;
+    private TimetableStorage timetableStorage;
     private UserPrefsStorage userPrefsStorage;
 
 
-    public StorageManager(AddressBookStorage addressBookStorage,
-                          JournalStorage journalStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(AddressBookStorage addressBookStorage, JournalStorage journalStorage,
+                          UserPrefsStorage userPrefsStorage, TimetableStorage timetableStorage) {
         super();
         this.addressBookStorage = addressBookStorage;
         this.journalStorage = journalStorage;
         this.userPrefsStorage = userPrefsStorage;
+        this.timetableStorage = timetableStorage;
     }
 
     // ================ UserPrefs methods ==============================
@@ -124,7 +130,11 @@ public class StorageManager extends ComponentManager implements Storage {
         journalStorage.saveJournal(journal, filePath);
     }
 
-    @Override
+    /**
+     * Saves the current version of the Journal Book to the hard disk.
+     *   Creates the data file if it is missing.
+     * Raises {@link DataSavingExceptionEvent} if there was an error during saving.
+     */
     @Subscribe
     public void handleJournalChangedEvent(JournalChangedEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event, "Local data changed, saving to file"));
@@ -133,5 +143,40 @@ public class StorageManager extends ComponentManager implements Storage {
         } catch (IOException e) {
             raise(new DataSavingExceptionEvent(e));
         }
+    }
+
+    // ================ Timetable methods ==============================
+
+    //@@author marlenekoh
+    @Override
+    public void setUpTimetablePageScriptFile() {
+        timetableStorage.setUpTimetablePageScriptFile();
+    }
+
+    @Override
+    public void setUpTimetableDisplayFiles(String toWrite) {
+        timetableStorage.setUpTimetableDisplayFiles(toWrite);
+    }
+
+    @Override
+    public void writeToFile(String toWrite, String path) {
+        timetableStorage.writeToFile(toWrite, path);
+    }
+
+    @Override
+    public String getFileContents(String path) throws FileNotFoundException {
+        return timetableStorage.getFileContents(path);
+    }
+
+    @Override
+    public String replaceFirstLine(String contents, String replace) {
+        return timetableStorage.replaceFirstLine(contents, replace);
+    }
+
+    @Subscribe
+    public void handleTimetableChangedEvent(TimetableChangedEvent event) {
+        setUpTimetableDisplayFiles(event.timetable.getTimetableDisplayInfo());
+        setUpTimetablePageScriptFile();
+        EventsCenter.getInstance().post(new ShowTimetableRequestEvent());
     }
 }

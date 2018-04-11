@@ -2,17 +2,21 @@ package seedu.address.logic.commands;
 
 import static seedu.address.model.person.Person.PARTNER_INDEX;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import seedu.address.commons.core.EventsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.events.model.TimetableChangedEvent;
 import seedu.address.commons.events.ui.JumpToListRequestEvent;
-import seedu.address.commons.events.ui.ShowTimetableRequestEvent;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.ReadOnlyPerson;
-import seedu.address.model.person.timetable.TimetableDisplayUtil;
+import seedu.address.model.person.timetable.Timetable;
+import seedu.address.model.person.timetable.TimetableModuleSlot;
+import seedu.address.model.person.timetable.TimetableUtil;
 
 /**
  * Selects your partner from NUSCouples.
@@ -45,9 +49,20 @@ public class SelectCommand extends Command {
 
         ReadOnlyPerson readOnlyPartner = lastShownList.get(targetIndex.getZeroBased());
         Person partner = new Person(readOnlyPartner);
-        TimetableDisplayUtil.setUpUnsortedModuleSlotsForViewing(partner.getTimetable());
-        TimetableDisplayUtil.setUpTimetableDisplayInfo(partner.getTimetable());
-        EventsCenter.getInstance().post(new ShowTimetableRequestEvent());
+
+        Timetable timetable = partner.getTimetable();
+        ArrayList<TimetableModuleSlot> unsortedModuleSlots =
+                TimetableUtil.setUpUnsortedModuleSlotsForViewing(partner.getTimetable());
+        timetable.setAllModulesSlots(unsortedModuleSlots);
+
+        HashMap<String, ArrayList<TimetableModuleSlot>> sortedModuleSlots =
+                TimetableUtil.sortModuleSlotsByDay(unsortedModuleSlots);
+        timetable.setListOfDays(sortedModuleSlots);
+
+        TimetableUtil.setTimetableDisplayInfo(timetable);
+        TimetableUtil.setUpTimetableInfo(timetable);
+
+        EventsCenter.getInstance().post(new TimetableChangedEvent(partner.getTimetable()));
         EventsCenter.getInstance().post(new JumpToListRequestEvent(targetIndex));
 
         return new CommandResult(String.format(MESSAGE_SELECT_PERSON_SUCCESS, targetIndex.getOneBased()));

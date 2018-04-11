@@ -3,16 +3,19 @@ package seedu.address.logic.commands;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMETABLE;
 import static seedu.address.model.person.Person.PARTNER_INDEX;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import seedu.address.commons.core.EventsCenter;
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.events.model.TimetableChangedEvent;
 import seedu.address.commons.events.ui.JumpToListRequestEvent;
-import seedu.address.commons.events.ui.ShowTimetableRequestEvent;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.ReadOnlyPerson;
 import seedu.address.model.person.timetable.Timetable;
-import seedu.address.model.person.timetable.TimetableComparatorUtil;
+import seedu.address.model.person.timetable.TimetableModuleSlot;
+import seedu.address.model.person.timetable.TimetableUtil;
 
 /**
  * Compares the partner's timetable with a given timetable
@@ -40,10 +43,17 @@ public class CompareTimetableCommand extends Command {
         List<ReadOnlyPerson> lastShownList = model.getFilteredPersonList();
         ReadOnlyPerson readOnlyPartner = lastShownList.get(PARTNER_INDEX);
         Person partner = new Person(readOnlyPartner);
-        TimetableComparatorUtil.compareTimetable(partner.getTimetable(), otherTimetable);
 
-        EventsCenter.getInstance().post(new ShowTimetableRequestEvent());
+        ArrayList<TimetableModuleSlot> unsortedModuleSlots =
+                TimetableUtil.setUpUnsortedModuleSlotsForComparing(partner.getTimetable(), otherTimetable);
+        HashMap<String, ArrayList<TimetableModuleSlot>> sortedModuleSlots =
+                TimetableUtil.sortModuleSlotsByDay(unsortedModuleSlots);
+        otherTimetable.setListOfDays(sortedModuleSlots);
+        TimetableUtil.setTimetableDisplayInfo(otherTimetable);
+
+        EventsCenter.getInstance().post(new TimetableChangedEvent(otherTimetable));
         EventsCenter.getInstance().post(new JumpToListRequestEvent(Index.fromZeroBased(PARTNER_INDEX)));
+
         return new CommandResult(MESSAGE_TIMETABLE_COMPARE_SUCCESS);
     }
 

@@ -61,6 +61,9 @@ public class ListPanel extends UiPart<Region> {
                     if (newValue != null) {
                         logger.fine("Selection in person list panel changed to : '" + newValue + "'");
                         raise(new PersonPanelSelectionChangedEvent(newValue));
+                    } else {
+                        logger.fine("Deselecting partner");
+                        raise(new HideTimetableRequestEvent());
                     }
                 });
     }

@@ -193,7 +193,9 @@ public class MainWindow extends UiPart<Region> {
      */
     public void handleShowTimetable() {
         browserPanel.loadTimetablePage();
-        browserPlaceholder.getChildren().add(browserPanel.getRoot());
+        if (!browserPlaceholder.getChildren().contains(browserPanel.getRoot())) {
+            browserPlaceholder.getChildren().add(browserPanel.getRoot());
+        }
     }
 
     /**

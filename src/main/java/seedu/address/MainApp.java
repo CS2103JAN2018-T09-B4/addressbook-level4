@@ -29,6 +29,7 @@ import seedu.address.model.ReadOnlyJournal;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
+import seedu.address.storage.FileTimetableStorage;
 import seedu.address.storage.JournalStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
@@ -67,7 +68,9 @@ public class MainApp extends Application {
         userPrefs = initPrefs(userPrefsStorage);
         AddressBookStorage addressBookStorage = new XmlAddressBookStorage(userPrefs.getAddressBookFilePath());
         JournalStorage journalStorage = new XmlJournalStorage(userPrefs.getJournalFilePath());
-        storage = new StorageManager(addressBookStorage, journalStorage, userPrefsStorage);
+        FileTimetableStorage timetableStorage = new FileTimetableStorage(userPrefs.getTimetablePageJsPath(),
+                userPrefs.getTimetableInfoFilePath());
+        storage = new StorageManager(addressBookStorage, journalStorage, userPrefsStorage, timetableStorage);
 
         initLogging(config);
 

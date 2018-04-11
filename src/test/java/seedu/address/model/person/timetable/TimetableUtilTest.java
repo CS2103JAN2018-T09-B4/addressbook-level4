@@ -12,7 +12,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.testutil.Assert;
 
 //@@author marlenekoh
-public class TimetableParserUtilTest {
+public class TimetableUtilTest {
 
     public static final String VALID_LONG_URL = "https://nusmods.com/timetable/sem-2/"
             + "share?CS2101=SEC:C01&CS2103T=TUT:C01&CS3230=LEC:1,TUT:4&"
@@ -65,29 +65,29 @@ public class TimetableParserUtilTest {
     @Test
     public void expandShortTimetableUrl_invalidShortUrl_throwsIllegalArgumentException() {
         Assert.assertThrows(IllegalArgumentException.class, () ->
-                TimetableParserUtil.setExpandedTimetableUrl(
+                TimetableUtil.setExpandedTimetableUrl(
                         new Timetable(("")))); // empty string
         Assert.assertThrows(IllegalArgumentException.class, () ->
-                TimetableParserUtil.setExpandedTimetableUrl(
+                TimetableUtil.setExpandedTimetableUrl(
                         new Timetable(("www.google.com")))); // invalid host
         Assert.assertThrows(IllegalArgumentException.class, () ->
-                TimetableParserUtil.setExpandedTimetableUrl(
+                TimetableUtil.setExpandedTimetableUrl(
                         new Timetable(("http://www.facebook.com")))); // invalid host
         Assert.assertThrows(IllegalArgumentException.class, () ->
-                TimetableParserUtil.setExpandedTimetableUrl(
+                TimetableUtil.setExpandedTimetableUrl(
                         new Timetable(("http://www.modsn.us/")))); // invalid host
         Assert.assertThrows(IllegalArgumentException.class, () ->
-                TimetableParserUtil.setExpandedTimetableUrl(
+                TimetableUtil.setExpandedTimetableUrl(
                         new Timetable(("http://www.modsn.us/q7cLP")))); // invalid host
         Assert.assertThrows(IllegalArgumentException.class, () ->
-                TimetableParserUtil.setExpandedTimetableUrl(
+                TimetableUtil.setExpandedTimetableUrl(
                         new Timetable(("http://www.modsn.us/")))); // code-part needs at least 1 character
     }
 
     @Test
     public void expandShortTimetableUrl_validUrl() throws ParseException {
         Timetable timetable = new Timetable(VALID_SHORT_URL);
-        TimetableParserUtil.setExpandedTimetableUrl(timetable);
+        TimetableUtil.setExpandedTimetableUrl(timetable);
         assertEquals(timetable.getExpandedUrl(), VALID_LONG_URL);
     }
 
@@ -96,14 +96,14 @@ public class TimetableParserUtilTest {
     public void expandShortTimetableUrl_invalidUrl_throwsParseException() {
         //TODO: Fix this bug
         Assert.assertThrows(ParseException.class, () ->
-                TimetableParserUtil.setExpandedTimetableUrl(new Timetable(INVALID_SHORT_URL)));
+                TimetableUtil.setExpandedTimetableUrl(new Timetable(INVALID_SHORT_URL)));
     }
 
     @Test
     public void setUpTimetableInfo() {
         Timetable actualTimetable = new Timetable(VALID_SHORT_URL);
 
-        Assert.assertDoesNotThrow(() -> TimetableParserUtil.setExpandedTimetableUrl(actualTimetable));
+        Assert.assertDoesNotThrow(() -> TimetableUtil.setExpandedTimetableUrl(actualTimetable));
         assertEquals(VALID_LONG_URL, actualTimetable.getExpandedUrl());
         assertEquals(expectedListOfModules, actualTimetable.getListOfModules());
         assertEquals(CURRENT_SEMESTER, actualTimetable.getCurrentSemester());

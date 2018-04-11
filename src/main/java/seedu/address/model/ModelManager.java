@@ -13,6 +13,7 @@ import seedu.address.commons.core.ComponentManager;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.events.model.AddressBookChangedEvent;
 import seedu.address.commons.events.model.JournalChangedEvent;
+import seedu.address.commons.events.model.TimetableChangedEvent;
 import seedu.address.model.journalentry.JournalEntry;
 import seedu.address.model.person.Appointment.Appointment;
 import seedu.address.model.person.ReadOnlyPerson;
@@ -67,6 +68,14 @@ public class ModelManager extends ComponentManager implements Model {
         raise(new AddressBookChangedEvent(addressBook));
     }
 
+    //@@author marlenekoh
+    /**
+     * Raises an event to indicate the timetable storage has changed
+     */
+    private void indicateTimetableChanged() {
+        raise(new TimetableChangedEvent(getFilteredPersonList().get(0).getTimetable()));
+    }
+
     //@@author traceurgan
 
     /**
@@ -81,6 +90,7 @@ public class ModelManager extends ComponentManager implements Model {
         addressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         indicateAddressBookChanged();
+        indicateTimetableChanged();
     }
 
     //@@author traceurgan
