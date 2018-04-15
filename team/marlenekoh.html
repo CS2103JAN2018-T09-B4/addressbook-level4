@@ -249,7 +249,7 @@ Alias: <code>tc tt/TIMETABLE_URL</code></p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/TimetableClass.png" alt="TimetableClass" width=""700">
+<img src="../images/TimetableClass.png" alt="TimetableClass" width="500">
 </div>
 </div>
 <div class="paragraph">
@@ -446,6 +446,81 @@ API call.</p>
 <code>ShowTimetableRequestEvent</code> and <code>TimetableChangedEvent</code>. This updates the relevant files and refreshes the
 Timetable Page displayed.</p>
 </div>
+<div class="paragraph">
+<p>We use a boolean isComparing in each TimetableModuleSlot to differentiate between the text to display for the normal
+Timetable and compared Timetable.<br></p>
+</div>
+<div class="paragraph">
+<p>In <em>setUpTimetableInfoCompare()</em> in <code>TimetableUtil</code>:<br>
+We call a method <em>setUpUnsortedModuleSlotsForComparing()</em> that contains the following loop:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">    <span class="keyword">for</span> (TimetableModuleSlot t : allUnsortedModulesSlots) {
+        t.setComparing(<span class="predefined-constant">true</span>);
+    }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In <code>TimetableModuleSlot</code>:<br>
+We override the toString() method:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">    <span class="annotation">@Override</span>
+    <span class="directive">public</span> <span class="predefined-type">String</span> toString() {
+        <span class="keyword">if</span> (isComparing) {
+            <span class="keyword">return</span> isEmpty
+                    ? <span class="string"><span class="delimiter">&quot;</span><span class="char">\&quot;</span><span class="char">\&quot;</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="char">\&quot;</span><span class="content">X</span><span class="char">\&quot;</span><span class="delimiter">&quot;</span></span>;
+        } <span class="keyword">else</span> {
+            <span class="keyword">return</span> isEmpty
+                    ? <span class="string"><span class="delimiter">&quot;</span><span class="char">\&quot;</span><span class="char">\&quot;</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="char">\&quot;</span><span class="delimiter">&quot;</span></span> + moduleCode + <span class="string"><span class="delimiter">&quot;</span><span class="char">\&quot;</span><span class="delimiter">&quot;</span></span>;
+        }
+    }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The list of TimetableModuleSlots are formatted to look like an array, and is subsequently stored in a String which is stored in a file called <code>timetableDisplayInfo</code>.</p>
+</div>
+<div class="paragraph">
+<p><code>FileTimetableStorage</code> replaces the timetable array declared in <code>TimetablePage.html</code>, which replaces the contents in the table cells of the HTML file.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-implementation-of-displaying-common-breaks"><a class="link" href="#aspect-implementation-of-displaying-common-breaks">Aspect: Implementation of displaying common breaks</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Replace all busy slots with 'X'</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easy to implement.</p>
+</li>
+<li>
+<p>Cons: Not visually pleasing.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Shade the cells a different colour.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: More intuitive for the user.</p>
+</li>
+<li>
+<p>Cons: More tedious to implement.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -453,7 +528,7 @@ Timetable Page displayed.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-15 16:23:16 UTC
+Last updated 2018-04-15 16:54:10 UTC
 </div>
 </div>
 </body>
