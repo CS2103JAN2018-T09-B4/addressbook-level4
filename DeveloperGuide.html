@@ -59,9 +59,12 @@ the software architecture and feature implementation of <em>NUSCouples</em>.</p>
 <li><a href="#proposed-data-encryption">3.2. [Proposed] Data Encryption</a></li>
 <li><a href="#logging">3.3. Logging</a></li>
 <li><a href="#configuration">3.4. Configuration</a></li>
-<li><a href="#proposed-calendar-viewer-feature">3.5. [Proposed] Calendar Viewer Feature</a></li>
-<li><a href="#timetable-viewer-feature">3.6. Timetable Viewer feature</a></li>
-<li><a href="#proposed-journal-feature">3.7. [Proposed] Journal feature</a></li>
+<li><a href="#proposed-calendar-google-api-feature">3.5. [Proposed] Calendar Google API Feature</a></li>
+<li><a href="#calendar-viewer-feature">3.6. Calendar Viewer feature</a></li>
+<li><a href="#calendar-add-appointment-feature">3.7. Calendar Add Appointment feature</a></li>
+<li><a href="#calendar-cancel-appointment-feature">3.8. Calendar Cancel Appointment feature</a></li>
+<li><a href="#timetable-viewer-feature">3.9. Timetable Viewer feature</a></li>
+<li><a href="#proposed-journal-feature">3.10. [Proposed] Journal feature</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -1027,9 +1030,9 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </table>
 </div>
 <div class="sect2">
-<h3 id="proposed-calendar-viewer-feature"><a class="link" href="#proposed-calendar-viewer-feature">3.5. [Proposed] Calendar Viewer Feature</a></h3>
+<h3 id="proposed-calendar-google-api-feature"><a class="link" href="#proposed-calendar-google-api-feature">3.5. [Proposed] Calendar Google API Feature</a></h3>
 <div class="sect3">
-<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">3.5.1. Current Implementation</a></h4>
+<h4 id="proposed-implementation-appearing-in-v2-0"><a class="link" href="#proposed-implementation-appearing-in-v2-0">3.5.1. Proposed Implementation (Appearing in V2.0)</a></h4>
 <div class="paragraph">
 <p>The Calendar Viewer mechanism is facilitated by <code>Google Calendar API</code> and reside in the <code>ModelManager</code>.
 It supports viewing/add/editing/deleting capability that modifies the state of <em>NUSCouples</em>.
@@ -1042,31 +1045,44 @@ This implementation requires the user to connect to the internet because <em>NUS
 <div class="paragraph">
 <p>All applications follow a basic pattern when accessing a Google API using OAuth 2.0. At a high level, this are the four steps:</p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Obtain OAuth 2.0 credentials from the Google API Console.
-Visit the Google API Console to obtain OAuth 2.0 credentials such as a client ID and client secret that are known to both Google and your application. The set of values varies based on what type of application you are building. For example, a JavaScript application does not require a secret, but a web server application does.</p>
-</li>
-<li>
-<p>Obtain an access token from the Google Authorization Server.
-Before your application can access private data using a Google API, it must obtain an access token that grants access to that API. A single access token can grant varying degrees of access to multiple APIs. A variable parameter called scope controls the set of resources and operations that an access token permits. During the access-token request, your application sends one or more values in the scope parameter.
-There are several ways to make this request, and they vary based on the type of application you are building. For example, a JavaScript application might request an access token using a browser redirect to Google, while an application installed on a device that has no browser uses web service requests.
-Some requests require an authentication step where the user logs in with their Google account. After logging in, the user is asked whether they are willing to grant the permissions that your application is requesting. This process is called user consent.
-If the user grants the permission, the Google Authorization Server sends your application an access token (or an authorization code that your application can use to obtain an access token). If the user does not grant the permission, the server returns an error.
-It is generally a best practice to request scopes incrementally, at the time access is required, rather than up front. For example, an app that wants to support purchases should not request Google Wallet access until the user presses the “buy” button; see Incremental authorization.</p>
-</li>
-<li>
-<p>Send the access token to an API.
-After an application obtains an access token, it sends the token to a Google API in an HTTP authorization header. It is possible to send tokens as URI query-string parameters, but we don&#8217;t recommend it, because URI parameters can end up in log files that are not completely secure. Also, it is good REST practice to avoid creating unnecessary URI parameter names.
-Access tokens are valid only for the set of operations and resources described in the scope of the token request. For example, if an access token is issued for the Google+ API, it does not grant access to the Google Contacts API. You can, however, send that access token to the Google+ API multiple times for similar operations.</p>
-</li>
-<li>
-<p>Refresh the access token, if necessary.
-Access tokens have limited lifetimes. If your application needs access to a Google API beyond the lifetime of a single access token, it can obtain a refresh token. A refresh token allows your application to obtain new access tokens</p>
-</li>
-</ol>
-</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">No.</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Step 1:</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Obtain OAuth 2.0 credentials from the Google API Console.
+ Visit the Google API Console to obtain OAuth 2.0 credentials such as a client ID and client secret that are known to both Google and your application. The set of values varies based on what type of application you are building. For example, a JavaScript application does not require a secret, but a web server application does.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Step 2:</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Obtain an access token from the Google Authorization Server.
+ Before your application can access private data using a Google API, it must obtain an access token that grants access to that API. A single access token can grant varying degrees of access to multiple APIs. A variable parameter called scope controls the set of resources and operations that an access token permits. During the access-token request, your application sends one or more values in the scope parameter.
+ There are several ways to make this request, and they vary based on the type of application you are building. For example, a JavaScript application might request an access token using a browser redirect to Google, while an application installed on a device that has no browser uses web service requests.
+ Some requests require an authentication step where the user logs in with their Google account. After logging in, the user is asked whether they are willing to grant the permissions that your application is requesting. This process is called user consent.
+ If the user grants the permission, the Google Authorization Server sends your application an access token (or an authorization code that your application can use to obtain an access token). If the user does not grant the permission, the server returns an error.
+ It is generally a best practice to request scopes incrementally, at the time access is required, rather than up front. For example, an app that wants to support purchases should not request Google Wallet access until the user presses the “buy” button; see Incremental authorization.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Step 3:</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">After an application obtains an access token, it sends the token to a Google API in an HTTP authorization header. It is possible to send tokens as URI query-string parameters, but we don&#8217;t recommend it, because URI parameters can end up in log files that are not completely secure. Also, it is good REST practice to avoid creating unnecessary URI parameter names.
+ Access tokens are valid only for the set of operations and resources described in the scope of the token request. For example, if an access token is issued for the Google+ API, it does not grant access to the Google Contacts API. You can, however, send that access token to the Google+ API multiple times for similar operations.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Step 4:</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Refresh the access token, if necessary.
+ Access tokens have limited lifetimes. If your application needs access to a Google API beyond the lifetime of a single access token, it can obtain a refresh token. A refresh token allows your application to obtain new access tokens</p></td>
+</tr>
+</tbody>
+</table>
 <div class="paragraph">
 <p>The sequence diagram below shows interactions within the <code>Logic</code> Component for Outh 2.0 endpoints:</p>
 </div>
@@ -1079,31 +1095,31 @@ Access tokens have limited lifetimes. If your application needs access to a Goog
 <div class="sect3">
 <h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.5.2. Design Considerations</a></h4>
 <div class="sect4">
-<h5 id="aspect-implementation-of-view-calendar-feature"><a class="link" href="#aspect-implementation-of-view-calendar-feature">Aspect: Implementation of view Calendar feature</a></h5>
+<h5 id="aspect-implementation-of-google-calendar-feature"><a class="link" href="#aspect-implementation-of-google-calendar-feature">Aspect: Implementation of Google Calendar feature</a></h5>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> Display only current month event.</p>
+<p><strong>Alternative 1 (current choice):</strong> Data are not save locally.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Easier to implement and Neater rather than displaying more than 1 mth.</p>
+<p>Pros: User does not worry about getting data lost</p>
 </li>
 <li>
-<p>Cons: Need to input cmd to filter through other month.</p>
+<p>Cons: User unable to retrieve the Calendar if internet is not connected</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Alternative 2:</strong> Don&#8217;t display any month until user defines.</p>
+<p><strong>Alternative 2:</strong> Save Data locally</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: More interaction.</p>
+<p>Pros: User does not worry their Calendar is unable to connected to Google.</p>
 </li>
 <li>
-<p>Cons: The UI will be blank at initial stage which is ugly.</p>
+<p>Cons: The latest Calendar events might not have been synchronized.</p>
 </li>
 </ul>
 </div>
@@ -1157,9 +1173,275 @@ Access tokens have limited lifetimes. If your application needs access to a Goog
 </div>
 </div>
 <div class="sect2">
-<h3 id="timetable-viewer-feature"><a class="link" href="#timetable-viewer-feature">3.6. Timetable Viewer feature</a></h3>
+<h3 id="calendar-viewer-feature"><a class="link" href="#calendar-viewer-feature">3.6. Calendar Viewer feature</a></h3>
 <div class="sect3">
 <h4 id="proposed-implementation"><a class="link" href="#proposed-implementation">3.6.1. Proposed Implementation</a></h4>
+<div class="paragraph">
+<p>The Calendar Viewer feature is implemented by 'BrowserPanel', which will reside in 'UI'.</p>
+</div>
+<div class="paragraph">
+<p>The idea of implementing this Calendar Viewer feature that sits ontop of Browser panel UI is to give the user a first look at the upcoming events first before going on to other features on the App.</p>
+</div>
+<div class="paragraph">
+<p>Users are able to select different views such as in Days, Weeks, Months or Years by adding a prefix 'c', 'w', 'm', 'y' after adding 'Cal' or 'Calendar' behind.</p>
+</div>
+<div class="paragraph">
+<p>This Calendar Interface is created and designed by CalendarFX. Through their GUI interface, i manipulate and massage the codes to allow user to enter commands to change the views since this is a CLI interface APP.</p>
+</div>
+<div class="paragraph">
+<p>The sequence diagram below shows interactions within the <code>Logic</code> Component for the `execute' API call.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/CalViewSeq.png" alt="CalViewSeq" width="650">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.6.2. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-implementation-of-calendar-view"><a class="link" href="#aspect-implementation-of-calendar-view">Aspect: Implementation of Calendar View</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Display only current month event.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easier to implement and Neater rather than displaying more than 1 mth.</p>
+</li>
+<li>
+<p>Cons: Need to input cmd to filter through other month.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Don&#8217;t display any month until user defines.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: More interaction.</p>
+</li>
+<li>
+<p>Cons: The UI will be blank at initial stage which is ugly.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-calendar-view-performance"><a class="link" href="#aspect-calendar-view-performance">Aspect: Calendar View performance</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Requires RAM of at least 6GB and above.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Faster retrieval and display the Calendar out</p>
+</li>
+<li>
+<p>Cons: Need to buy more memory</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Don&#8217;t display Year.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Reduce latency</p>
+</li>
+<li>
+<p>Cons: User can&#8217;t add event to next year</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="calendar-add-appointment-feature"><a class="link" href="#calendar-add-appointment-feature">3.7. Calendar Add Appointment feature</a></h3>
+<div class="sect3">
+<h4 id="proposed-implementation-2"><a class="link" href="#proposed-implementation-2">3.7.1. Proposed Implementation</a></h4>
+<div class="paragraph">
+<p>The Calendar Add Appointment feature is implemented by 'Appointment', which will reside in 'Model'.</p>
+</div>
+<div class="paragraph">
+<p>The idea of implementing Add Appointment feature is to allow the user to add his/her event on the Calendar.</p>
+</div>
+<div class="paragraph">
+<p>The AppointmentList class holds an internal list that holds the Appointment class.
+Appointments are made up of 3 internal variables.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/AddAppointmentClass.png" alt="AddAppointmentClass" width="300">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Description: It Holds a string about the appointment. This String will be used to identify which Appointment.</p>
+</li>
+<li>
+<p>Start Date: It Holds the starting time of the appointment. Used for sorting appointments and UI.</p>
+</li>
+<li>
+<p>End Date: Holds the end time of the appointment. Used for UI.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The sequence diagram below shows interactions within the <code>Model</code> Component for the `AddAppointment' API call.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/AddAppointmentSeq.png" alt="AddAppointmentSeq" width="650">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.7.2. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-implementation-of-add-event-view"><a class="link" href="#aspect-implementation-of-add-event-view">Aspect: Implementation of Add Event View</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Display in Calendar UI.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easier to implement and Neater.</p>
+</li>
+<li>
+<p>Cons: Doesn&#8217;t display all events listed on the partner.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Create a List to display all events.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: User can have an overview of all the events listed</p>
+</li>
+<li>
+<p>Cons: The UI will be blank at initial stage which is ugly.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-allow-duplicate-events"><a class="link" href="#aspect-allow-duplicate-events">Aspect: Allow duplicate events</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> On same time of the same day.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: User can plan which one is more important to attend</p>
+</li>
+<li>
+<p>Cons: Ambiguous as there are multiple similar events on the same time frame</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Restrict user to add same event on the same time frame.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: More neat looking</p>
+</li>
+<li>
+<p>Cons: User cant compare or manage well</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="calendar-cancel-appointment-feature"><a class="link" href="#calendar-cancel-appointment-feature">3.8. Calendar Cancel Appointment feature</a></h3>
+<div class="sect3">
+<h4 id="proposed-implementation-3"><a class="link" href="#proposed-implementation-3">3.8.1. Proposed Implementation</a></h4>
+<div class="paragraph">
+<p>The Calendar Cancel Appointment feature is implemented by 'Appointment', which will reside in 'Model'.</p>
+</div>
+<div class="paragraph">
+<p>The idea of implementing a Cancel Appointment feature is to allow the user to remove his/her event on the Calendar when needed.</p>
+</div>
+<div class="paragraph">
+<p>When the user calls to cancel an appointment in the Calendar, the model will ask AppointmentList to return a list of Appointments.
+However, the AppointmentList will only return a mutable copy of the AppointmentList back to the caller, as a practice of Defensive Programming.</p>
+</div>
+<div class="paragraph">
+<p>The sequence diagram below shows interactions within the <code>Model</code> Component for the `CancelAppointment' API call.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/CancelApptSeq.png" alt="CancelApptSeq" width="650">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">3.8.2. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-implementation-of-add-event-view-2"><a class="link" href="#aspect-implementation-of-add-event-view-2">Aspect: Implementation of Add Event View</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Display in Calendar UI.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easier to implement and Neater.</p>
+</li>
+<li>
+<p>Cons: Have to cancel one by one and thus calendar will refresh over and over again.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Create a List to display all events.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: User can have an overview of all the events listed to cancel</p>
+</li>
+<li>
+<p>Cons: The UI will be blank at initial stage which is ugly.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="timetable-viewer-feature"><a class="link" href="#timetable-viewer-feature">3.9. Timetable Viewer feature</a></h3>
+<div class="sect3">
+<h4 id="proposed-implementation-4"><a class="link" href="#proposed-implementation-4">3.9.1. Proposed Implementation</a></h4>
 <div class="paragraph">
 <p>The Timetable Viewer feature is implemented by <code>Timetable</code>, which will reside in <code>ModelManager</code>.</p>
 </div>
@@ -1202,7 +1484,7 @@ API call.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.6.2. Design Considerations</a></h4>
+<h4 id="design-considerations-6"><a class="link" href="#design-considerations-6">3.9.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-implementation-of-add-nusmods-timetable-url"><a class="link" href="#aspect-implementation-of-add-nusmods-timetable-url">Aspect: Implementation of add NUSMods timetable URL</a></h5>
 <div class="ulist">
@@ -1282,9 +1564,9 @@ API call.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-journal-feature"><a class="link" href="#proposed-journal-feature">3.7. [Proposed] Journal feature</a></h3>
+<h3 id="proposed-journal-feature"><a class="link" href="#proposed-journal-feature">3.10. [Proposed] Journal feature</a></h3>
 <div class="sect3">
-<h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">3.7.1. Current Implementation</a></h4>
+<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">3.10.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The journal feature is facilitated by an <code>ObservableList of &lt;JournalEntry&gt;</code> in Journal, which resides inside
 <code>ModelManager</code>. It allows the user to create and save journal entries in xml format. A <code>JournalEntry</code> contains only two
@@ -1328,7 +1610,7 @@ the user to edit the journal corresponding to the current date.
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.7.2. Design Considerations</a></h4>
+<h4 id="design-considerations-7"><a class="link" href="#design-considerations-7">3.10.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-implementation-of-code-journalwindow-code"><a class="link" href="#aspect-implementation-of-code-journalwindow-code">Aspect: Implementation of <code>JournalWindow</code></a></h5>
 <div class="ulist">
@@ -1740,23 +2022,23 @@ b. Require developers to download those libraries manually (this creates extra w
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Chen Xing</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Scheduler: This app allows user to schedule/edit/delete/view planned meetings</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Notifications: Allows user to receive notification about important dates from scheduled meetings</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Scheduler: This app allows user to schedule//delete/view planned meetings</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Accessibility: Reduce the effort when user enters command on the command box through custom keystrokes.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Tracker: The system will update the time on the footer to show when the changes have been made.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Marlene</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Timetable viewer: To help couples identify common breaks during school term so they can plan meetings during their free time</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Data encryption: To protect data and prevent people from accessing and reading plaintext files</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Data encryption: To protect data and prevent people from accessing and reading plaintext files</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Samuel</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Journal: Allow couples to record their thoughts and feelings to remember the time spent with their partner</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Tag (emotions) : Add/delete tags to journal entries (happy, sad, angry, funny)</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Tag (emotions) : Add/delete tags to journal entries (happy, sad, angry, funny)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Daniel</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Send motivational picture: Motivate partner by sending a motivational picture via the browser panel</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Command aliases: Enable shortcut keywords for commands</p></td>
 </tr>
 </tbody>
 </table>
@@ -1799,7 +2081,7 @@ b. Require developers to download those libraries manually (this creates extra w
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">person in a relationship</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">add,edit,delete and view special events/ meetings (e.g. Valentine&#8217;s day) in the same month</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">View,Add and Delete special events/ meetings (e.g. Valentine&#8217;s day) in the same month</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">better plan for these dates</p></td>
 </tr>
 <tr>
@@ -1834,8 +2116,8 @@ b. Require developers to download those libraries manually (this creates extra w
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">partner</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">send a motivational picture via the app</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">able to execute keystrokes to lighten their typing</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">keep their spirits up</p></td>
 </tr>
 <tr>
@@ -1859,8 +2141,8 @@ b. Require developers to download those libraries manually (this creates extra w
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">receive notification of upcoming scheduled events</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">so i can get notified and prepare earlier</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">gets updated upon the changed of event</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">so he can be verified that changes has been made</p></td>
 </tr>
 </tbody>
 </table>
@@ -1930,8 +2212,8 @@ b. Require developers to download those libraries manually (this creates extra w
 <p><strong>MSS</strong></p>
 </div>
 <div class="paragraph">
-<p>1.User inside browser panel enters the command to view calendar.
-2.NUSCouple redirects to google Calendar to retrieve data and display the UI accordingly.</p>
+<p>1.User inside browser panel enters the command to view calendar at different view(s).
+2.NUSCouples displays the Calendar</p>
 </div>
 <div class="paragraph">
 <p>+
@@ -1943,38 +2225,155 @@ Use case ends.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>1a. The partner already has an existing google calendar hosted in google.</p>
+<p>1a. There is an existing user in NUSCouples.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>1a1. <em>NUSCouples</em> redirects to google calendar account to authenticate using the user credential.</p>
+<p>1a1. <em>NUSCouples</em> request to display Calendar of day/week/month/year from CalendarFX.</p>
 </li>
 <li>
-<p>1a2. User confirms change.</p>
+<p>1a2. <em>NUSCouples</em> populate the calendar on the browser panel</p>
 </li>
-<li>
-<p>1a3. <em>NUSCouples</em> list the calendar in browser panel.</p>
+</ul>
+</div>
 <div class="paragraph">
 <p>Use case resumes at step 2.</p>
 </div>
 </li>
 </ul>
 </div>
-</li>
-<li>
-<p>1b. The given credential is invalid.</p>
-<div class="ulist none">
-<ul class="none">
-<li>
-<p>1b1. <em>NUSCouples</em> shows an error message and close.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
+<h3 id="use-case-add-event-on-calendar" class="discrete">Use case: Add Event on Calendar</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="paragraph">
+<p>1.User inside browser panel enters the command to add appointment.
+2.NUSCouples update the appointment list.
+3.NUSCouples displays the Calendar of all the events in the appointment list and update the change of event on the footer.</p>
+</div>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1a. User didn&#8217;t specify date of event</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1a1. <em>NUSCouples</em> shows an error</p>
 </li>
 </ul>
 </div>
 </li>
 </ul>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a. NUSCouples add the new appointment into the list</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+<h3 id="use-case-delete-event-on-calendar" class="discrete">Use case: Delete Event on Calendar</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="paragraph">
+<p>1.User inside browser panel enters the command to delete appointment.
+2.NUSCouples update the appointment list.
+3.NUSCouples displays the Calendar of all the events in the appointment list.</p>
+</div>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1a. User didn&#8217;t specify date of event</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1a1. <em>NUSCouples</em> shows an error</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a. NUSCouples cannot find the appointment into the list</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a1. NUSCouples displays error message</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+<h3 id="use-case-keyboard-accessibility" class="discrete">Use case: Keyboard Accessibility</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="paragraph">
+<p>1.User enters a long command but want&#8217;s to add something at the front or back
+2.User press Shift Ctrl (move cursor to the front) Shift Alt (move cursor to the back)</p>
+</div>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1a. User is using MAC</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1a1. enter <code>option</code> key instead of <code>Alt</code> key</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a. User doesn&#8217;t have keystroke Shift/Alt/Ctrl.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a1. This feature can&#8217;t be used</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Use case ends.</p>
 </div>
 <h3 id="use-case-view-timetable-of-partner" class="discrete">Use case: View Timetable of Partner</h3>
 <div class="paragraph">
@@ -2000,15 +2399,15 @@ Use case ends.</p>
 <ul class="none">
 <li>
 <p>1a. The specified person does not have a timetable.</p>
-<div class="ulist none">
-<ul class="none">
+<div class="ulist">
+<ul>
 <li>
 <p>1a1. <em>NUSCouples</em> shows an error message.</p>
-<div class="paragraph">
-<p>Use case ends.</p>
-</div>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>Use case ends.</p>
 </div>
 </li>
 </ul>
@@ -2102,6 +2501,9 @@ Use case ends.</p>
 <li>
 <p>The application should be connected to the internet.</p>
 </li>
+<li>
+<p>Should able to store &lt;100 appointments</p>
+</li>
 </ol>
 </div>
 </div>
@@ -2113,7 +2515,11 @@ Use case ends.</p>
 <dl>
 <dt class="hdlist1"><a id="mainstream-os"></a> Mainstream OS</dt>
 <dd>
-<p>Windows, Linux, Unix, OS-X, NUSMods, Google Calendar</p>
+<p>Windows, Linux, Unix, OS-X</p>
+</dd>
+<dt class="hdlist1"><a id="Third-Party-API"></a> Third-Party API</dt>
+<dd>
+<p>NUSMods, CalendarFX</p>
 </dd>
 <dt class="hdlist1"><a id="private-contact-detail"></a> Private contact detail</dt>
 <dd>
@@ -2273,7 +2679,7 @@ Expected: Similar to previous.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-15 09:19:41 UTC
+Last updated 2018-04-15 11:38:07 UTC
 </div>
 </div>
 </body>
