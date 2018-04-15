@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.6.1">
+<title>Samuel Gan - Project Portfolio</title>
+<link rel="stylesheet" href="../stylesheets/gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+<link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>Samuel Gan - Project Portfolio</h1>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="project-nuscouples"><a class="link" href="#project-nuscouples">PROJECT: NUSCouples</a></h2>
+<div class="sectionbody">
+<hr>
+</div>
+</div>
+<div class="sect1">
+<h2 id="overview"><a class="link" href="#overview">Overview</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>NUSCouples is a desktop application targeted at couples studying in the National University of Singapore (NUS).
+The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="summary-of-contributions"><a class="link" href="#summary-of-contributions">Summary of contributions</a></h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Major enhancement</strong>: implemented a <strong>journal in <em>NUSCouples</em>.</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>What it does: allows the user to write, edit and save journal entries.</p>
+</li>
+<li>
+<p>Justification: this feature allows the user to record their thoughts and feelings as and when they want to. This is especially
+useful when one is in a relationship.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Minor enhancement</strong>: added a command to compare and display the common breaks in the NUSMods timetable of the person
+stored in NUSCouples along with one other given timetable. Removed dependency on addressbook as a middle man. Since our project is
+targeted towards couples, we only need to hold one person. Thus, I reimplemented addressbook methods to apply to only one person.</p>
+</li>
+<li>
+<p><strong>Code contributed</strong>: [<a href="https://github.com/CS2103JAN2018-T09-B4/main/blob/master/collated/functional/traceurgan.md">Functional code</a>]
+[<a href="https://github.com/CS2103JAN2018-T09-B4/main/blob/master/collated/test/traceurgan.md">Test code</a>]</p>
+</li>
+<li>
+<p><strong>Other contributions</strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Project management:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Managed releases <code>v1.3</code> - <code>v1.5rc</code> (3 releases) on GitHub</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Enhancements to existing features:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Implemented journal (Pull request <a href="https://github.com/CS2103JAN2018-T09-B4/main/pull/89">#89</a>)</p>
+</li>
+<li>
+<p>Removed addressbook and resolved exising merge conflicts (Pull request <a href="https://github.com/CS2103JAN2018-T09-B4/main/pull/162">#162</a>)</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-user-guide"><a class="link" href="#contributions-to-the-user-guide">Contributions to the User Guide</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users.</em></p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="journal"><a class="link" href="#journal">Journal</a></h3>
+<div class="paragraph">
+<p><em>NUSCouples</em> provides you with a space to write, save and view journal entries. The list of saved journal entries will
+be shown in the main window. Read on for more details about how to use this feature.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Saved journal entries can only be edited on the same day. Once saved, a journal entry cannot be deleted.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="creating-a-new-journal-entry-code-jnew-code-since-v1-2"><a class="link" href="#creating-a-new-journal-entry-code-jnew-code-since-v1-2">Creating a new journal entry : <code>jnew</code> [Since v1.2]</a></h4>
+<div class="paragraph">
+<p>Creates a new window that allows the user to input text. The window title will reflect the date
+it was created on in the format <code>yyyymmdd - journal</code>. For example, a journal window opened on the 5th of March
+ 2018 will have a title of <code>20180305 - journal</code>. If an entry with that date already exists, it will open
+that entry in the window. Saving is not required as the journal entry will be automatically saved when the
+journal window is closed.<br></p>
+</div>
+<div class="paragraph">
+<p>To protect you from accidentally entering commands while in the journal window, the journal window will always be in
+front of the main window.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If saving fails, a new window will appear containing your last session data with a warning above your text. You should
+copy your text to your computer clipboard using <kbd>ctr</kbd> + <kbd>c</kbd> so you will not lose your data if you need to
+restart the app.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Format: <code>jnew</code><br>
+Alias: <code>jn</code><br></p>
+</div>
+<div class="paragraph">
+<p>Screenshot: Before<br>
+<span class="image"><img src="../images/screenshots/20Jnew.png" alt="20Jnew" width="790"></span><br></p>
+</div>
+<div class="paragraph">
+<p>Screenshot: After<br>
+<span class="image"><img src="../images/screenshots/21JnewAfter1.png" alt="21JnewAfter1" width="395"></span>
+<span class="image"><img src="../images/screenshots/22JnewAfter2.png" alt="22JnewAfter2" width="395"></span><br></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="viewing-journal-entries-code-jview-code"><a class="link" href="#viewing-journal-entries-code-jview-code">Viewing journal entries : <code>jview</code></a></h4>
+<div class="paragraph">
+<p>Selects a journal entry from the list seen in the GUI. The contents of the journal entry will be shown in the main
+window. Opening a journal window while a journal entry is displayed will display the edited entry once the journal
+window is closed.+</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>jview</code><br></p>
+</div>
+<div class="paragraph">
+<p>Alias: <code>jv</code></p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="small">Return to <a href="#toc">Table of Contents</a></span><br></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="motivational-picture"><a class="link" href="#motivational-picture">Motivational Picture</a></h3>
+<div class="sect3">
+<h4 id="send-motivational-picture-via-app-code-motivate-code"><a class="link" href="#send-motivational-picture-via-app-code-motivate-code">Send motivational picture via app : <code>motivate</code></a></h4>
+<div class="paragraph">
+<p>Shows the location (by building) of the entered classroom name.<br>
+Format: <code>motivate</code><br>
+<em>There is no alias for this feature currently.</em></p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>Alias: <code>jv</code><br></p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="small">Return to <a href="#toc">Table of Contents</a></span><br></p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>=== Future Features
+==== Encrypting data files <code>[coming in v2.0]</code></p>
+</div>
+<div class="paragraph">
+<p><em>{explain how the user can enable/disable data encryption}</em></p>
+</div>
+<div class="paragraph">
+<p>==== Sync the calendar with Google API <code>[coming in v2.0]</code></p>
+</div>
+<div class="paragraph">
+<p><em>{explain how the user can authentic with google API and view and retrieve events from Google}</em></p>
+</div>
+<div class="paragraph">
+<p>==== Archiving journal entries <code>[coming in v2.0]</code></p>
+</div>
+<div class="paragraph">
+<p><em>{explain how the user can export old journal entries to another storage location in their computer}</em></p>
+</div>
+<div class="paragraph">
+<p>==== Send Google Maps location to phone <code>[coming in v2.0]</code></p>
+</div>
+<div class="paragraph">
+<p><em>{explain how the user can use their phones to navigate to a location in NUS by sending the location to the user&#8217;s phone from the Google Maps API}</em></p>
+</div>
+<div class="paragraph">
+<p>==== Filtering journal entries by date <code>[coming in v2.0]</code></p>
+</div>
+<div class="paragraph">
+<p>Filters journal entries by the specified interval.<br>
+Format: <code>jfilter</code><br>
+Alias: <code>jf</code><br></p>
+</div>
+<div class="paragraph">
+<p>==== Finding building location <code>[coming in v2.0]</code></p>
+</div>
+<div class="paragraph">
+<p>Shows the location (by building) of the entered classroom name.<br>
+Format: <code>location</code><br>
+Alias: <code>loc</code><br></p>
+</div>
+<div class="paragraph">
+<p>==== Send motivational picture via app <code>[coming in v2.90]</code></p>
+</div>
+<div class="paragraph">
+<p>Shows the location (by building) of the entered classroom name.<br>
+Format: <code>motivate</code><br>
+<em>There is no alias for this feature currently.</em></p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="small">Return to <a href="#toc">Table of Contents</a></span><br></p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>== FAQ</p>
+</div>
+<div class="paragraph">
+<p>=== Data
+This section is for questions related to <em>NUSCouples</em> data. For more information, refer to <a href="#Saving the data">[Saving the data]</a><br></p>
+</div>
+<div class="paragraph">
+<p><strong>Q: How do I transfer my data to another Computer?</strong><br></p>
+</div>
+<div class="paragraph">
+<p><strong>A:</strong> Install the app in the other computer and overwrite the empty data folder it creates with the folder that contains
+the data of your previous NUSCouples folder.<br></p>
+</div>
+<div class="paragraph">
+<p><strong>Q: Why is the app not showing my previous session data?</strong><br></p>
+</div>
+<div class="paragraph">
+<p><strong>A:</strong> Verify that the .jar file was not moved to a new directory recently. If you have done so, ensure that the data
+folder in the original directory was moved to the new directory. For example, if you have moved <em>NUSCouples</em>.jar from
+<code>C:\Program Files (x86)\NUSCouples</code> to <code>C:\Users\[Username]\Desktop\NUSCouples</code>, you should move the data folder
+<code>C:\Program Files (x86)\NUSCouples\data</code> to <code>C:\Users\[Username]\Desktop\NUSCouples\data</code><br></p>
+</div>
+<div class="paragraph">
+<p><strong>Q: Can this app run on mobile devices or tablets?</strong><br></p>
+</div>
+<div class="paragraph">
+<p><strong>A:</strong> No, this is a desktop app. To be more specific, you are not required to use cursor mouse to handle the App because it is CLI based
+If the files in the data folder have been manually edited, <em>NUSCouples</em> may not be able to read the data properly.
+<em>NUSCouples</em> takes no responsibility for data loss/ data corruption due to unintended user behavior affecting the data
+folder, such as deletion or editing of files manually.<br></p>
+</div>
+<div class="paragraph">
+<p>If the solutions above are not related to your issue, it may be due to a bug. Please contact us at //CONTACT US
+and attach the log file that should be stored in the same location as the <em>NUSCouples</em>.jar file. The log file is named
+<code><em>NUSCouples</em>.log.0</code>. The number at the end may be different. If there are multiple log files, you should attach the
+<strong>latest</strong> one or attach all of them to be safe.<br></p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="small">Return to <a href="#toc">Table of Contents</a></span><br></p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>== Command Summary</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 10%;">
+<col style="width: 20%;">
+<col style="width: 35%;">
+<col style="width: 35%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Command</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Format</th>
+<th class="tableblock halign-left valign-top">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">add, a</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Add your partner</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS tt/TIMETABLE_URL</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 tt/http://modsn.us/IO4n5</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">edit, ed</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Edit your partner</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>edit [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [tt/TIMETABLE_URL]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>edit n/John Doe e/johnd@example.com</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">delete, d</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Delete your partner</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>delete</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">select, s</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">View your partner&#8217;s timetable</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>select</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">history, hist</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">View command history</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>history</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">undo, u</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Undo the previous undoable command</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>undo</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">redo, r</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Reverses the most recent undo command</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>redo</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">jview, jv</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">View a journal entry</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>jview</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">jnew, jn</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Create/edit a journal entry</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>jnew</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">calendar, cal</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Viewing your current calendar</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>calendar</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">cal w</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">appointment, appt</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Adding a new event to your current calendar</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>appointment</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">appt 1 d/Checkup, tomorrow 10am to 12pm</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">cancel</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Deleting an event from your current calendar</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cancel</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">exit, ex</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Exits <em>NUSCouples</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>exit</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="small">Return to <a href="#toc">Table of Contents</a></span><br></p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>== Contributions to the Developer Guide</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project.</em></p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>=== Journal feature
+==== Current Implementation</p>
+</div>
+<div class="paragraph">
+<p>A JournalEntry contains only two variables, a String corresponding to the <code>date</code> the entry was created and a
+String containing its <code>text</code> contents. It is stored in the Journal, which consists of an <code>ObservableList &lt;JournalEntry&gt;</code>
+and a <code>HashMap &lt;Date, JournalEntry&gt;</code>, and resides inside <code>ModelManager</code>. The journal supports adding, editing of
+the current journal entry and saving journal entries.<br></p>
+</div>
+<div class="paragraph">
+<p>The List data structure makes it easy to show an ordered list of items, and is ideal for adding and displaying my journal
+entries. However, searching for a particular entry will be tedious as there is a need to iterate through the entire list.
+A HashMap is used alongside the list in order to search and get journal entries easily. All search and get operations
+can be done in O(1), which makes it ideal for these specific operations. However, it does not allow for an ordered list
+easily. Due to the use of both a List and a HashMap, all operations on the journal must be synchronised
+ for both data structures.<br></p>
+</div>
+<div class="paragraph">
+<p>Suppose that the user has just launched the application for the first time. The <code>Journal</code> hold a list of sample journal
+entries. On the <code>jnew</code> command, the app will check if the journal contains a <code>JournalEntry</code> corresponding to the
+current local date in the form (yyyymmdd). If it exists, its data (date and text) is read from the <code>JournalEntry</code> and a
+copy of it is opened in a new <code>JournalWindow</code>. This is done using a HashMap&lt;Date, JournalEntry&gt;.
+If it does not exist, a new <code>JournalWindow</code> is created. When the window
+is closed, a <code>handleJournalClose</code> method is called. If the <code>TextArea</code> is not empty, a <code>SaveEntryEvent</code> is raised. This
+event will pass the data from the <code>JournalWindow</code> in the form of a <code>JournalEntry</code> to the event handler.</p>
+</div>
+<div class="paragraph">
+<p>The <code>ModelManager</code> will raise the SaveEntryEvent` by adding the <code>JournalEntry</code> to the <code>Journal</code>. If a
+<code>JournalEntry</code> with the same date exits, it will update the previous entry. When the <code>ModelManager</code> makes a change to the
+journal, an <code>indicateJournalEvent</code> is raised.<br></p>
+</div>
+<div class="paragraph">
+<p>The <code>StorageManager</code> handles the reading and writing of journal entries.  This event gets the current Journal and passes
+it to the event handler. The <code>StorageManager</code> handles the event by converting the journal into an xml file and saving it
+in the root/data folder. If there is no journal.xml file present, it will create a new one.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The user cannot choose to save the <code>JournalEntry</code> under a different date. The user also cannot edit past
+journal entries.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>==== Design Considerations</p>
+</div>
+<div class="paragraph">
+<p>===== Aspect: Implementation of <code>JournalWindow</code></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1:</strong> Use javafx to directly make a new window.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easy to implement. Only requires a few lines of code in one or two files.</p>
+</li>
+<li>
+<p>Cons: Not consistent with the rest of the app. Needs more effort to maintain when changes are made.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Make use of the UI framework.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Consistent with rest of app.</p>
+</li>
+<li>
+<p>Cons: Harder to implement. Requires understanding of the UI component. Required minor edits in many files.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>===== Aspect: Data Structure of Journal</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1:</strong> Use HashMap to store journal entries.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easy to search and get.</p>
+</li>
+<li>
+<p>Cons: Difficult to show ordered list.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Use List to store journal entries.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Can show ordered list easily.</p>
+</li>
+<li>
+<p>Cons: When there are many items in the list, searching may take very long as it has to iterate through the entire list.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 3 (current choice):</strong> Use both.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: All operations can be done easily.</p>
+</li>
+<li>
+<p>Cons: Need to set data structures on initialisation and sync all operations between the two data structures.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>===== Aspect: Naming of journal entries</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Automatically uses current date "YYYYMMDD" as file name.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: No need to worry about duplicate names. Easy to implement filtering (can filter by value easily).</p>
+</li>
+<li>
+<p>Cons: Lack of personalisation. Hard to distinguish between files.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Allow user to name journal entries.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: User can distinguish between files easily.</p>
+</li>
+<li>
+<p>Cons: If duplicate names are allowed, we need to distinguish them with another method. If duplicate names are not allowed, user may struggle to find unique names for every entry.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2018-04-15 16:23:16 UTC
+</div>
+</div>
+</body>
+</html>

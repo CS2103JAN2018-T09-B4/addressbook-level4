@@ -24,8 +24,8 @@
 <p>Welcome to the User Guide for <em>NUSCouples</em>!</p>
 </div>
 <div class="paragraph">
-<p><em>NUSCouples</em> is a desktop app <strong>specially made for you</strong>, couples from National University of Singapore (NUS),
-to create and remember memories with ease amid our <strong>hectic school term</strong>. Imagine what it would be like to be able
+<p><em>NUSCouples</em> is a desktop app <strong>specially made for you</strong>, couples from the National University of Singapore (NUS),
+to create memories easily amid our <strong>hectic school term</strong>. Imagine what it would be like to be able
 identify common breaks, schedule meetings and view important dates with your partner, and record your thoughts or
 feelings, <strong>all in the same application</strong> mere keystrokes away. Best of all, <strong>everything</strong> can be controlled from the
 handy Command Line Interface (CLI). Experience the <strong>clarity</strong> that comes with a Graphical User Interface (GUI), with
@@ -74,7 +74,7 @@ get started. Enjoy!</p>
 <li><a href="#journal">2.4. Journal</a>
 <ul class="sectlevel3">
 <li><a href="#creating-a-new-journal-entry-code-jnew-code-since-v1-2">2.4.1. Creating a new journal entry : <code>jnew</code> [Since v1.2]</a></li>
-<li><a href="#viewing-journal-entries-code-jview-code-coming-in-v1-5">2.4.2. Viewing journal entries : <code>jview</code> [Coming in v1.5]</a></li>
+<li><a href="#viewing-journal-entries-code-jview-code">2.4.2. Viewing journal entries : <code>jview</code></a></li>
 </ul>
 </li>
 <li><a href="#motivational-picture">2.5. Motivational Picture</a>
@@ -90,6 +90,10 @@ get started. Enjoy!</p>
 <div class="sect1">
 <h2 id="quick-start"><a class="link" href="#quick-start">1. Quick Start</a></h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>This section will guide you through setting up and using <em>NUSCouples</em> for the first time. Follow this simple step-by-step
+guide to start using <em>NUSCouples</em> today!</p>
+</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -112,10 +116,12 @@ This app will not work with earlier versions of Java 8.
 <p>Download the latest <code>NUSCouples.jar</code> <a href="https://github.com/CS2103JAN2018-T09-B4/main/releases">here</a>.</p>
 </li>
 <li>
-<p>Copy the file to the folder you want to use as the home folder for <em>NUSCouples</em>.</p>
+<p>Copy the file to the folder you want to use as the home folder for <em>NUSCouples</em>.
+  For example, if you want the app to be installed in your desktop, the folder should look like this:
+<code>C:\Users\[Username]\Desktop\NUSCouples</code>.</p>
 </li>
 <li>
-<p>Double-click the file to start the app. The app window should appear in a few seconds.</p>
+<p>Double-click the file to start the app. The app window as seen below, should appear in a few seconds.</p>
 <div class="paragraph">
 <p><span class="image"><img src="images/screenshots/0Labels.png" alt="0Labels" width="790"></span></p>
 </div>
@@ -150,18 +156,18 @@ This app will not work with earlier versions of Java 8.
 </tr>
 </tbody>
 </table>
-<div class="olist arabic">
-<ol class="arabic">
+<div class="paragraph">
+<p><strong>Congratulations, you have successfully installed <em>NUSCouples</em>. Read on for some examples on commands you can try if
+you are using the app for the first time!</strong></p>
+</div>
+<div class="ulist">
+<ul>
 <li>
 <p>Type the command in the command box and press <kbd>Enter</kbd> to execute it.<br>
 e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> will open the help window.</p>
 </li>
 <li>
-<p>Some example commands you can try:</p>
-<div class="ulist">
-<ul>
-<li>
-<p><strong><code>add</code></strong><code>n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01</code> :
+<p><strong><code>add</code></strong><code>n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 tt/http://modsn.us/wNuIW</code> :
 adds a partner named <code>John Doe</code> to <em>NUSCouples</em>.</p>
 </li>
 <li>
@@ -169,11 +175,8 @@ adds a partner named <code>John Doe</code> to <em>NUSCouples</em>.</p>
 </li>
 </ul>
 </div>
-</li>
-<li>
-<p>Refer to <a href="#Features">Section 2, &#8220;Features&#8221;</a> for details of each command.<br></p>
-</li>
-</ol>
+<div class="paragraph">
+<p>Refer to <a href="#Features">Section 2, &#8220;Features&#8221;</a> for more details about each command.<br></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -190,6 +193,12 @@ adds a partner named <code>John Doe</code> to <em>NUSCouples</em>.</p>
 <div class="sect1">
 <h2 id="Features"><a class="link" href="#Features">2. Features</a></h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>Commands follow a command format. At any point in time, if you need a refresher on the commands, enter "help"
+into the command box for more information. If you only need help for a specific command, enter the command without any
+parameters for usage help. Typing "add" and pressing enter will display the correct format for using the
+command, and also show an example.</p>
+</div>
 <div class="exampleblock">
 <div class="content">
 <div class="paragraph">
@@ -198,15 +207,15 @@ adds a partner named <code>John Doe</code> to <em>NUSCouples</em>.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Some commands have an alias, which you can also use to execute the command e.g. to add your partner to
-<em>NUSCouples</em>, you can type either <code>add n/John Doe</code> or <code>a n/John Doe</code>.</p>
+<p>Commands have an alias, which you can also use to execute the command e.g. to create a new journal entry,
+you can type either <code>jnew</code> or <code>jn</code>. Read the respective sections learn about our easy to remember aliases.</p>
 </li>
 <li>
 <p>Words in <code>UPPER_CASE</code> are the parameters to be supplied by the user e.g. in <code>add n/NAME</code>, <code>NAME</code> is a
 parameter which can be used as <code>add n/John Doe</code>.</p>
 </li>
 <li>
-<p>Items in square brackets are optional e.g <code>n/NAME [p/PHONE_NUMBER]</code> can be used as <code>n/John Doe t/friend</code> or as <code>n/John Doe</code>.</p>
+<p>Items in square brackets are optional.</p>
 </li>
 <li>
 <p>Parameters can be in any order e.g. if the command specifies <code>n/NAME p/PHONE_NUMBER</code>,
@@ -218,8 +227,14 @@ parameter which can be used as <code>add n/John Doe</code>.</p>
 </div>
 <div class="sect2">
 <h3 id="general-features"><a class="link" href="#general-features">2.1. General Features</a></h3>
+<div class="paragraph">
+<p>This section is for all commands that are not specific to our timetable feature, calendar feature or journal feature.</p>
+</div>
 <div class="sect3">
 <h4 id="viewing-help-code-help-code"><a class="link" href="#viewing-help-code-help-code">2.1.1. Viewing help : <code>help</code></a></h4>
+<div class="paragraph">
+<p>If you are ever unsure of what to do, use this command to display this UserGuide whenever you need it.</p>
+</div>
 <div class="paragraph">
 <p>Format: <code>help</code><br>
 Alias: <code>hlp</code><br>
@@ -228,6 +243,10 @@ Alias: <code>hlp</code><br>
 </div>
 <div class="sect3">
 <h4 id="adding-your-partner-code-add-code"><a class="link" href="#adding-your-partner-code-add-code">2.1.2. Adding your partner : <code>add</code></a></h4>
+<div class="paragraph">
+<p>Looking to add your significant other to NUSCouples? Look no further. Use this command to add your partner&#8217;s details
+to our amazing app. <strong>All fields are necessary, but they can be in any order.</strong></p>
+</div>
 <div class="paragraph">
 <p>Adds your partner to <em>NUSCouples</em>.<br>
 Format: <code>add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS tt/TIMETABLE_URL</code><br>
@@ -271,6 +290,10 @@ Alias: <code>a n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS tt/TIMETABLE_URL</code><b
 </div>
 <div class="sect3">
 <h4 id="editing-your-partner-code-edit-code"><a class="link" href="#editing-your-partner-code-edit-code">2.1.3. Editing your partner : <code>edit</code></a></h4>
+<div class="paragraph">
+<p>If you ever need to update your partner&#8217;s details, use this command. All fields are optional, <strong>but</strong> at least one valid
+field must be provided.</p>
+</div>
 <div class="paragraph">
 <p>Edits your existing partner in <em>NUSCouples</em>.<br>
 Format: <code>edit [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [tt/TIMETABLE_URL]</code><br>
@@ -320,6 +343,10 @@ Edits the name of your partner to be <code>Betsy Crower</code>.</p>
 <div class="sect3">
 <h4 id="deleting-your-partner-code-delete-code"><a class="link" href="#deleting-your-partner-code-delete-code">2.1.4. Deleting your partner : <code>delete</code></a></h4>
 <div class="paragraph">
+<p>If it would take too much effort to edit your partner, we got you covered. You can just delete their details and
+add them again.</p>
+</div>
+<div class="paragraph">
 <p>Deletes your partner from <em>NUSCouples</em>.<br>
 Format: <code>delete</code><br>
 Alias: <code>d</code><br></p>
@@ -349,6 +376,10 @@ Alias: <code>d</code><br></p>
 </div>
 <div class="sect3">
 <h4 id="listing-entered-commands-code-history-code"><a class="link" href="#listing-entered-commands-code-history-code">2.1.5. Listing entered commands : <code>history</code></a></h4>
+<div class="paragraph">
+<p>Want to see the most recent commands used this session? Use this command. It can help you identify if you suspect you
+have entered the wrong command.</p>
+</div>
 <div class="paragraph">
 <p>Lists all the commands that you have entered in reverse chronological order.<br>
 Format: <code>history</code><br>
@@ -380,6 +411,10 @@ Alias: <code>hist</code><br></p>
 <div class="sect3">
 <h4 id="undoing-previous-command-code-undo-code"><a class="link" href="#undoing-previous-command-code-undo-code">2.1.6. Undoing previous command : <code>undo</code></a></h4>
 <div class="paragraph">
+<p>Oh no! Did you accidentally delete your partner&#8217;s details? Quick use this command. Only some commands can be undone
+right now. Read on for more details.</p>
+</div>
+<div class="paragraph">
 <p>Restores <em>NUSCouples</em> to the state before the previous "undoable command" was executed.<br>
 Format: <code>undo</code><br>
 Alias: <code>u</code><br></p>
@@ -400,7 +435,7 @@ Alias: <code>u</code><br></p>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Undoable commands: those commands that modify <em>NUSCouples</em> content (<code>add</code>, <code>delete</code>, <code>edit</code> and <code>clear</code>).</p>
+<p>Undoable commands: those commands that modify <em>NUSCouples</em> content (<code>add</code>, <code>delete</code> and <code>edit</code>).</p>
 </div>
 </td>
 </tr>
@@ -432,6 +467,10 @@ The <code>undo</code> command fails as there are no undoable commands executed p
 </div>
 <div class="sect3">
 <h4 id="redoing-the-previously-undone-command-code-redo-code"><a class="link" href="#redoing-the-previously-undone-command-code-redo-code">2.1.7. Redoing the previously undone command : <code>redo</code></a></h4>
+<div class="paragraph">
+<p>Did you undo a command, only to change your mind? We have a command just for you. Note that similar restrictions that
+ apply for undo command are also applied to redo command.</p>
+</div>
 <div class="paragraph">
 <p>Reverses the most recent <code>undo</code> command.<br>
 Format: <code>redo</code><br>
@@ -740,6 +779,10 @@ it was created on in the format <code>yyyymmdd - journal</code>. For example, a 
 that entry in the window. Saving is not required as the journal entry will be automatically saved when the
 journal window is closed.<br></p>
 </div>
+<div class="paragraph">
+<p>To protect you from accidentally entering commands while in the journal window, the journal window will always be in
+front of the main window.</p>
+</div>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -769,11 +812,14 @@ Alias: <code>jn</code><br></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="viewing-journal-entries-code-jview-code-coming-in-v1-5"><a class="link" href="#viewing-journal-entries-code-jview-code-coming-in-v1-5">2.4.2. Viewing journal entries : <code>jview</code> [Coming in v1.5]</a></h4>
+<h4 id="viewing-journal-entries-code-jview-code"><a class="link" href="#viewing-journal-entries-code-jview-code">2.4.2. Viewing journal entries : <code>jview</code></a></h4>
 <div class="paragraph">
 <p>Selects a journal entry from the list seen in the GUI. The contents of the journal entry will be shown in the main
-window.<br>
-Format: <code>jview</code><br></p>
+window. Opening a journal window while a journal entry is displayed will display the edited entry once the journal
+window is closed.+</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>jview</code><br></p>
 </div>
 <div class="paragraph">
 <p>Alias: <code>jv</code></p>
@@ -1039,7 +1085,7 @@ and attach the log file that should be stored in the same location as the <em>NU
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-15 15:58:51 UTC
+Last updated 2018-04-15 16:23:16 UTC
 </div>
 </div>
 </body>

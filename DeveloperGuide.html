@@ -24,12 +24,13 @@
 <p>Welcome to the developer guide for <em>NUSCouples</em>!</p>
 </div>
 <div class="paragraph">
-<p><em>NUSCouples</em> is a command-line desktop application targeted at couples studying at the National University of Singapore (NUS).
-It aims to help these couples create and remember new memories during their time in NUS.</p>
+<p><em>NUSCouples</em> is a command-lineCommand Line Interface (CLI) desktop application specially targeted at couples studying
+in the National University of Singapore (NUS). It aims to help them create new memories during their busy school term
+time in NUS.</p>
 </div>
 <div class="paragraph">
-<p>This developer guide contains information that can help you to get started as a contributor to <em>NUSCouples</em>, as well as more about
-the software architecture and feature implementation of <em>NUSCouples</em>.</p>
+<p>This developer guide contains information that can help you to get started as a contributor to <em>NUSCouples</em>,
+as well as more about the software architecture and feature implementation of <em>NUSCouples</em>.</p>
 </div>
 </div>
 <div id="toc" class="toc">
@@ -64,7 +65,7 @@ the software architecture and feature implementation of <em>NUSCouples</em>.</p>
 <li><a href="#calendar-add-appointment-feature">3.7. Calendar Add Appointment feature</a></li>
 <li><a href="#calendar-cancel-appointment-feature">3.8. Calendar Cancel Appointment feature</a></li>
 <li><a href="#timetable-view-and-compare-feature">3.9. Timetable View and Compare feature</a></li>
-<li><a href="#proposed-journal-feature">3.10. [Proposed] Journal feature</a></li>
+<li><a href="#journal-feature">3.10. Journal feature</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -289,9 +290,6 @@ Having both Travis and AppVeyor ensures your App works on both Unix-based platfo
 <ol class="arabic">
 <li>
 <p>Get some sense of the overall design by reading <a href="#Design-Architecture">Section 2.1, &#8220;Architecture&#8221;</a>.</p>
-</li>
-<li>
-<p>Take a look at <a href="#GetStartedProgramming">[GetStartedProgramming]</a>.</p>
 </li>
 </ol>
 </div>
@@ -1688,25 +1686,41 @@ Timetable Page displayed.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-journal-feature"><a class="link" href="#proposed-journal-feature">3.10. [Proposed] Journal feature</a></h3>
+<h3 id="journal-feature"><a class="link" href="#journal-feature">3.10. Journal feature</a></h3>
 <div class="sect3">
 <h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">3.10.1. Current Implementation</a></h4>
 <div class="paragraph">
-<p>The journal feature is facilitated by an <code>ObservableList of &lt;JournalEntry&gt;</code> in Journal, which resides inside
-<code>ModelManager</code>. It allows the user to create and save journal entries in xml format. A <code>JournalEntry</code> contains only two
-variables, a String corresponding to the <code>date</code> the entry was created and a String containing its <code>text</code> contents.<br></p>
+<p>A JournalEntry contains only two variables, a String corresponding to the <code>date</code> the entry was created and a
+String containing its <code>text</code> contents. It is stored in the Journal, which consists of an <code>ObservableList &lt;JournalEntry&gt;</code>
+and a <code>HashMap &lt;Date, JournalEntry&gt;</code>, and resides inside <code>ModelManager</code>. The journal supports adding, editing of
+the current journal entry and saving journal entries.<br></p>
 </div>
 <div class="paragraph">
-<p>Suppose that the user has just launched the application for the first time. The <code>Journal</code> will be empty at the
-beginning. On the <code>jnew</code> command, the app will check if the journal contains a <code>JournalEntry</code> corresponding to the
+<p>The List data structure makes it easy to show an ordered list of items, and is ideal for adding and displaying my journal
+entries. However, searching for a particular entry will be tedious as there is a need to iterate through the entire list.
+A HashMap is used alongside the list in order to search and get journal entries easily. All search and get operations
+can be done in O(1), which makes it ideal for these specific operations. However, it does not allow for an ordered list
+easily. Due to the use of both a List and a HashMap, all operations on the journal must be synchronised
+ for both data structures.<br></p>
+</div>
+<div class="paragraph">
+<p>Suppose that the user has just launched the application for the first time. The <code>Journal</code> hold a list of sample journal
+entries. On the <code>jnew</code> command, the app will check if the journal contains a <code>JournalEntry</code> corresponding to the
 current local date in the form (yyyymmdd). If it exists, its data (date and text) is read from the <code>JournalEntry</code> and a
-copy of it is opened in a new <code>JournalWindow</code>. If it does not exist, a new <code>JournalWindow</code> is created. When the window
+copy of it is opened in a new <code>JournalWindow</code>. This is done using a HashMap&lt;Date, JournalEntry&gt;.
+If it does not exist, a new <code>JournalWindow</code> is created. When the window
 is closed, a <code>handleJournalClose</code> method is called. If the <code>TextArea</code> is not empty, a <code>SaveEntryEvent</code> is raised. This
 event will pass the data from the <code>JournalWindow</code> in the form of a <code>JournalEntry</code> to the event handler.</p>
 </div>
 <div class="paragraph">
-<p>Currently, the <code>LogicManager</code> will handle the SaveEntryEvent` by adding the <code>JournalEntry</code> to the <code>Journal</code>. If a
-<code>JournalEntry</code> with the same date exits, it will overwrite the text.</p>
+<p>The <code>ModelManager</code> will raise the SaveEntryEvent` by adding the <code>JournalEntry</code> to the <code>Journal</code>. If a
+<code>JournalEntry</code> with the same date exits, it will update the previous entry. When the <code>ModelManager</code> makes a change to the
+journal, an <code>indicateJournalEvent</code> is raised.<br></p>
+</div>
+<div class="paragraph">
+<p>The <code>StorageManager</code> handles the reading and writing of journal entries.  This event gets the current Journal and passes
+it to the event handler. The <code>StorageManager</code> handles the event by converting the journal into an xml file and saving it
+in the root/data folder. If there is no journal.xml file present, it will create a new one.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1715,22 +1729,11 @@ event will pass the data from the <code>JournalWindow</code> in the form of a <c
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The user cannot choose to save the <code>JournalEntry</code> under a different date. The same applies to editing past
-journal entries. The reason why this is implemented in this was is because a journal is a record of your thoughts and
-feelings in this moment. If you change your mind, that is your thoughts and feelings in a different moment. Thus, in
-order for the journal to be an accurate record of your thoughts and feelings each day, we have chosen to only allow
-the user to edit the journal corresponding to the current date.
+The user cannot choose to save the <code>JournalEntry</code> under a different date. The user also cannot edit past
+journal entries.
 </td>
 </tr>
 </table>
-</div>
-<div class="paragraph">
-<p>The following sequence diagram shows how the newJournal operation works:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/NewJournalSequenceDiagram.png" alt="NewJournalSequenceDiagram" width="800">
-</div>
 </div>
 </div>
 <div class="sect3">
@@ -1761,6 +1764,52 @@ the user to edit the journal corresponding to the current date.
 </li>
 <li>
 <p>Cons: Harder to implement. Requires understanding of the UI component. Required minor edits in many files.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-data-structure-of-journal"><a class="link" href="#aspect-data-structure-of-journal">Aspect: Data Structure of Journal</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1:</strong> Use HashMap to store journal entries.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easy to search and get.</p>
+</li>
+<li>
+<p>Cons: Difficult to show ordered list.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Use List to store journal entries.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Can show ordered list easily.</p>
+</li>
+<li>
+<p>Cons: When there are many items in the list, searching may take very long as it has to iterate through the entire list.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 3 (current choice):</strong> Use both.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: All operations can be done easily.</p>
+</li>
+<li>
+<p>Cons: Need to set data structures on initialisation and sync all operations between the two data structures.</p>
 </li>
 </ul>
 </div>
@@ -2804,7 +2853,7 @@ Expected: Similar to previous.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-15 15:58:51 UTC
+Last updated 2018-04-15 16:23:16 UTC
 </div>
 </div>
 </body>
