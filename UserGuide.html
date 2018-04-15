@@ -489,35 +489,97 @@ Alias: <code>tc tt/TIMETABLE_URL</code></p>
 <div class="sect2">
 <h3 id="calendar"><a class="link" href="#calendar">2.3. Calendar</a></h3>
 <div class="sect3">
-<h4 id="viewing-current-calendar-code-cview-code-coming-in-v1-5"><a class="link" href="#viewing-current-calendar-code-cview-code-coming-in-v1-5">2.3.1. Viewing current calendar : <code>cview</code> [Coming in v1.5]</a></h4>
+<h4 id="when-you-want-to-check-which-are-the-available-dates-you-are-free-code-calendar-code"><a class="link" href="#when-you-want-to-check-which-are-the-available-dates-you-are-free-code-calendar-code">2.3.1. When you want to check which are the available dates you are free: <code>Calendar</code></a></h4>
 <div class="paragraph">
-<p>View Google calendar.<br>
-Format: <code>cview</code><br>
-Alias: <code>cv</code></p>
+<p>View calendar.<br>
+Format: <code>calander</code><br>
+Alias: <code>cal</code><br></p>
+</div>
+<div class="paragraph">
+<p>Selecting Different Views<br>
+Day: <code>cal d</code><br>
+Week: <code>cal w</code><br>
+Month: <code>cal m</code><br>
+Year: <code>cal y</code><br></p>
+</div>
+<div class="paragraph">
+<p>The image below shows a calendar view in day after you have entered <code>cal d</code>
+in the command box. From the calendar, you can see if there is any events on that day.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/CalendarView.png" alt="CalendarView" width="650">
+</div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="adding-new-event-to-google-calendar-code-cadd-code-coming-in-v1-5"><a class="link" href="#adding-new-event-to-google-calendar-code-cadd-code-coming-in-v1-5">2.3.2. Adding new event to Google calendar : <code>cadd</code> [Coming in v1.5]</a></h4>
+<h4 id="when-you-have-a-date-with-your-partner-then-you-decides-to-add-the-event-to-the-calendar-after-making-sure-that-there-are-no-clashes-with-your-timetable-nor-schedules-code-appointment-code"><a class="link" href="#when-you-have-a-date-with-your-partner-then-you-decides-to-add-the-event-to-the-calendar-after-making-sure-that-there-are-no-clashes-with-your-timetable-nor-schedules-code-appointment-code">2.3.2. When you have a date with your partner then you decides to add the event to the Calendar after making sure that there are no clashes with your timetable nor schedules: <code>Appointment</code></a></h4>
 <div class="paragraph">
-<p>Adds new event to Google calendar.<br>
-Format: <code>cadd</code><br>
-Alias: <code>ca</code></p>
+<p>Adds new event to calendar.<br>
+Format: <code>appointment</code><br>
+Alias: <code>appt</code></p>
+</div>
+<div class="paragraph">
+<p>Following the Format:<br>
+To add an event, Description and Time parameters are COMPULSORY fields that are required to enter.<br>
+To add Description and time - <code>d/ + Description, Time</code><br></p>
+</div>
+<div class="paragraph">
+<p>Example: <code>appointment d/Lunch, Next Monday 3pm</code><br></p>
+</div>
+<div class="paragraph">
+<p>The image below shows a calendar view in day after you have entered <code>appt 1 d/Checkup, tomorrow 10am to 12pm</code> event.
+As you can see, the event is nicely populated on the calendar after you have successfully created a new event!
+Moreover, this Calendar feature allows you to enter multiple events too!! And the footer will show the time when you make changes
+to the Calendar!!<br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/CalendarAdd.png" alt="CalendarAdd" width="650">
+</div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="deleting-event-from-google-calendar-code-cdelete-code-coming-in-v1-5"><a class="link" href="#deleting-event-from-google-calendar-code-cdelete-code-coming-in-v1-5">2.3.3. Deleting event from Google calendar: <code>cdelete</code> [Coming in v1.5]</a></h4>
+<h4 id="when-your-partner-suddenly-cannot-make-it-on-the-scheduled-event-code-cancel-code"><a class="link" href="#when-your-partner-suddenly-cannot-make-it-on-the-scheduled-event-code-cancel-code">2.3.3. When your partner suddenly cannot make it on the scheduled event: <code>cancel</code></a></h4>
 <div class="paragraph">
-<p>Delete specified event from Google calendar.<br>
-Format: <code>cdelete</code><br>
-Alias: <code>cd</code></p>
+<p>Delete specified event from calendar.<br>
+Format: <code>cancel</code><br>
+Alias: Nil</p>
+</div>
+<div class="paragraph">
+<p>Following the Format:<br>
+To Cancel specified event: <code>Description with Person name</code><br>
+Example: <code>cancel Lunch with John Doe</code><br></p>
+</div>
+<div class="paragraph">
+<p>The images below shows the before and after calendar view after you have executed the cancel appointment commands.<br>
+As you can see, after the commands are executed the footer will display the updated time as well and result panel will
+display <code>appointment canceled</code>. When there is no events on that day, the calendar will also display <code>no entries</code> too.</p>
+</div>
+<div class="paragraph">
+<p>Screenshot: Before<br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/beforeCancelCal.png" alt="beforeCancelCal" width="650">
+</div>
+</div>
+<div class="paragraph">
+<p>Screenshot: After<br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/afterCancelCal.png" alt="afterCancelCal" width="650">
+</div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="editing-event-on-google-calendar-code-cedit-code-coming-in-v1-5"><a class="link" href="#editing-event-on-google-calendar-code-cedit-code-coming-in-v1-5">2.3.4. Editing event on Google calendar : <code>cedit</code> [Coming in v1.5]</a></h4>
+<h4 id="accessibility"><a class="link" href="#accessibility">2.3.4. Accessibility</a></h4>
 <div class="paragraph">
-<p>Edit event on Google calendar.<br>
-Format: <code>cedit</code><br>
-Alias: <code>ce</code><br></p>
+<p>Unique KeyStrokes in NUSCouples.<br>
+Move Cursor to front: <code>Shift Ctrl</code><br>
+Move Cursor to behind: <code>Shift Alt</code><br>
+Move Cursor to behind (MAC USERS): <code>Shift Option</code><br></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -795,27 +857,21 @@ and attach the log file that should be stored in the same location as the <em>NU
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">cview, cv</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">calendar, cal</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Viewing your current calendar</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cview</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>calendar</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">cal w</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">cadd, ca</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">appointment, appt</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Adding a new event to your current calendar</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cadd</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>appointment</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">appt 1 d/Checkup, tomorrow 10am to 12pm</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">cdelete, cd</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">cancel</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Deleting an event from your current calendar</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cdelete</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">cedit, ce</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Editing an event from your current calendar</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cedit</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cancel</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
@@ -841,7 +897,7 @@ and attach the log file that should be stored in the same location as the <em>NU
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-15 11:59:34 UTC
+Last updated 2018-04-15 12:14:22 UTC
 </div>
 </div>
 </body>
