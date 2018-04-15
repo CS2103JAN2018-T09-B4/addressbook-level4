@@ -23,6 +23,7 @@ import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.ShowCalendarCommand;
 import seedu.address.logic.commands.ShowTimetableCommand;
 import seedu.address.logic.commands.UndoCommand;
+import seedu.address.logic.commands.ViewJournalCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -75,6 +76,10 @@ public class AddressBookParser {
         case CompareTimetableCommand.COMMAND_WORD:
         case CompareTimetableCommand.COMMAND_ALIAS:
             return new CompareTimetableCommandParser().parse(arguments);
+
+        case ViewJournalCommand.COMMAND_WORD:
+        case ViewJournalCommand.COMMAND_ALIAS:
+            return new ViewJournalCommandParser().parse(arguments);
 
         case DeleteCommand.COMMAND_WORD:
         case DeleteCommand.COMMAND_ALIAS: //@@author HEARTOFAL1ON

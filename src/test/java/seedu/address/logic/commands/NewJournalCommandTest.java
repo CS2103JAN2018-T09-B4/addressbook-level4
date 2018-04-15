@@ -5,6 +5,7 @@ import static seedu.address.logic.commands.NewJournalCommand.NEW_JOURNAL_ENTRY_C
 
 import org.junit.Test;
 
+//@@author traceurgan
 public class NewJournalCommandTest {
 
     @Test

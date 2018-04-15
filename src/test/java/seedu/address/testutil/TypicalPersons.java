@@ -26,7 +26,7 @@ public class TypicalPersons {
     //TODO: ZAC NEEED TO ADD HIS APPTS HERE
     // GO TO MODELMANAGERTEST AND UNIGNORE AND SHOULD BE OK
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
-            .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com").withPhone("85355255")
+            .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@gmail.com").withPhone("85355255")
             .withTimetable("http://modsn.us/wNuIW").withAppointment("Lunch, tomorrow 5pm to 7pm").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}

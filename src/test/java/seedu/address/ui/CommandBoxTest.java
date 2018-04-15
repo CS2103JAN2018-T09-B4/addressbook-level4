@@ -29,14 +29,12 @@ public class CommandBoxTest extends GuiUnitTest {
     public static final Prefix PREFIX_PHONE = new Prefix("p/");
     public static final Prefix PREFIX_EMAIL = new Prefix("e/");
     public static final Prefix PREFIX_ADDRESS = new Prefix("a/");
-    public static final Prefix PREFIX_TAG = new Prefix("t/");
     public static final Prefix PREFIX_TIMETABLE = new Prefix("tt/");
 
     public static final String STRING_NAME = PREFIX_NAME.toString();
     public static final String STRING_PHONE = PREFIX_PHONE.toString();
     public static final String STRING_EMAIL = PREFIX_EMAIL.toString();
     public static final String STRING_ADDRESS = PREFIX_ADDRESS.toString();
-    public static final String STRING_TAG = PREFIX_TAG.toString();
     public static final String STRING_DATE = PREFIX_DATE.toString();
     public static final String STRING_TIMETABLE = PREFIX_TIMETABLE.toString();
 
@@ -746,12 +744,6 @@ public class CommandBoxTest extends GuiUnitTest {
         guiRobot.push(KeyCode.RIGHT);
         testString += " " + STRING_TIMETABLE;
         assertTrue(testString.equals(mySandBox.getText()));
-        guiRobot.push(KeyCode.RIGHT);
-        testString += " " + STRING_TAG;
-        assertTrue(testString.equals(mySandBox.getText()));
-        guiRobot.push(KeyCode.RIGHT);
-        testString += " " + STRING_TAG;
-        assertTrue(testString.equals(mySandBox.getText()));
         //Final assurance that caret is at far right
         assertTrue(mySandBox.getCaretPosition() == mySandBox.getText().length());
         assertNotNull(mySandBox.getCaretPosition());
@@ -789,14 +781,6 @@ public class CommandBoxTest extends GuiUnitTest {
         assertTrue(mySandBox.getCaretPosition() == mySandBox.getText().length());
         assertNotNull(mySandBox.getCaretPosition());
         assertFalse(mySandBox.getCaretPosition() == 0);
-
-        //Assume user jumps straight to tags, missing out address and bloodtype prefixes
-        guiRobot.write(" ");
-        guiRobot.write(STRING_TAG);
-        guiRobot.write(" ");
-        guiRobot.write(STRING_TAG);
-        testString += " " + STRING_TAG + " " + STRING_TAG;
-        assertTrue((testString).equals(mySandBox.getText()));
 
         //Final assurance that caret is at far right
         assertTrue(mySandBox.getCaretPosition() == mySandBox.getText().length());
@@ -976,12 +960,6 @@ public class CommandBoxTest extends GuiUnitTest {
         testString += " " + STRING_TIMETABLE;
         assertTrue(testString.equals(mySandBox.getText()));
         //Ensure that even though there is a tag input, more tag are added if user requires
-        guiRobot.push(KeyCode.RIGHT);
-        testString += " " + STRING_TAG;
-        assertTrue(testString.equals(mySandBox.getText()));
-        guiRobot.push(KeyCode.RIGHT);
-        testString += " " + STRING_TAG;
-        assertTrue(testString.equals(mySandBox.getText()));
         //Final assurance that caret is at far right
         assertTrue(mySandBox.getCaretPosition() == mySandBox.getText().length());
         assertNotNull(mySandBox.getCaretPosition());
@@ -1019,14 +997,6 @@ public class CommandBoxTest extends GuiUnitTest {
         assertTrue(mySandBox.getCaretPosition() == mySandBox.getText().length());
         assertNotNull(mySandBox.getCaretPosition());
         assertFalse(mySandBox.getCaretPosition() == 0);
-
-
-        guiRobot.write(" ");
-        guiRobot.write(STRING_TAG);
-        guiRobot.write(" ");
-        guiRobot.write(STRING_TAG);
-        testString += " " + STRING_TAG + " " + STRING_TAG;
-        assertTrue((testString).equals(mySandBox.getText()));
 
         assertTrue(mySandBox.getCaretPosition() == mySandBox.getText().length());
         assertNotNull(mySandBox.getCaretPosition());

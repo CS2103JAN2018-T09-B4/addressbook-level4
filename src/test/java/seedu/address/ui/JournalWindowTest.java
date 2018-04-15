@@ -1,6 +1,5 @@
 package seedu.address.ui;
 
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
@@ -9,7 +8,9 @@ import org.testfx.api.FxToolkit;
 
 import guitests.guihandles.JournalWindowHandle;
 import javafx.stage.Stage;
+import seedu.address.model.journalentry.Date;
 
+//@@author traceurgan
 public class JournalWindowTest extends GuiUnitTest {
 
     private JournalWindow journalWindow;
@@ -17,7 +18,7 @@ public class JournalWindowTest extends GuiUnitTest {
 
     @Before
     public void setUp() throws Exception {
-        guiRobot.interact(() -> journalWindow = new JournalWindow("20180405"));
+        guiRobot.interact(() -> journalWindow = new JournalWindow(new Date("20180405")));
         Stage journalWindowStage = FxToolkit.setupStage((stage) -> stage.setScene(journalWindow.getRoot().getScene()));
         FxToolkit.showStage();
         journalWindowHandle = new JournalWindowHandle(journalWindowStage);
@@ -27,11 +28,5 @@ public class JournalWindowTest extends GuiUnitTest {
     public void isShowing_journalWindowIsShowing_true() {
         guiRobot.interact(() -> journalWindow.show());
         assertTrue(journalWindow.isShowing());
-    }
-
-    @Test
-    public void isShowing_journalWindowIsHiding_false() {
-        guiRobot.interact(() -> journalWindow.getRoot().hide());
-        assertFalse(journalWindow.isShowing());
     }
 }

@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.journalentry.Date;
 import seedu.address.model.journalentry.JournalEntry;
 
 //@@author traceurgan
@@ -17,5 +18,7 @@ public interface ReadOnlyJournal {
 
     int getLast();
 
-    JournalEntry getJournalEntry(int index);
+    JournalEntry getJournalEntry(Date date);
+
+    boolean containsJournalEntry(Date date) throws Exception;
 }

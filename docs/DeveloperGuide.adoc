@@ -16,11 +16,12 @@ By: `Team T09-B4`      Since: `Feb 2018`      Licence: `MIT`
 
 Welcome to the developer guide for _NUSCouples_!
 
-_NUSCouples_ is a command-line desktop application targeted at couples studying at the National University of Singapore (NUS).
-It aims to help these couples create and remember new memories during their time in NUS.
+_NUSCouples_ is a command-lineCommand Line Interface (CLI) desktop application specially targeted at couples studying
+in the National University of Singapore (NUS). It aims to help them create new memories during their busy school term
+time in NUS.
 
-This developer guide contains information that can help you to get started as a contributor to _NUSCouples_, as well as more about
-the software architecture and feature implementation of _NUSCouples_.
+This developer guide contains information that can help you to get started as a contributor to _NUSCouples_,
+as well as more about the software architecture and feature implementation of _NUSCouples_.
 
 == Setting up
 
@@ -96,7 +97,6 @@ Having both Travis and AppVeyor ensures your App works on both Unix-based platfo
 When you are ready to start coding,
 
 1. Get some sense of the overall design by reading <<Design-Architecture>>.
-2. Take a look at <<GetStartedProgramming>>.
 
 |===
 | [.small]#Return to <<toc,Table of Contents>># +
@@ -665,33 +665,40 @@ image::AddTimetableSequenceDiagram.png[width="650"]
 | [.small]#Return to <<toc,Table of Contents>># +
 |===
 
-=== [Proposed] Journal feature
+=== Journal feature
 ==== Current Implementation
 
-The journal feature is facilitated by an `ObservableList of <JournalEntry>` in Journal, which resides inside
-`ModelManager`. It allows the user to create and save journal entries in xml format. A `JournalEntry` contains only two
-variables, a String corresponding to the `date` the entry was created and a String containing its `text` contents. +
+A JournalEntry contains only two variables, a String corresponding to the `date` the entry was created and a
+String containing its `text` contents. It is stored in the Journal, which consists of an `ObservableList <JournalEntry>`
+and a `HashMap <Date, JournalEntry>`, and resides inside `ModelManager`. The journal supports adding, editing of
+the current journal entry and saving journal entries. +
 
-Suppose that the user has just launched the application for the first time. The `Journal` will be empty at the
-beginning. On the `jnew` command, the app will check if the journal contains a `JournalEntry` corresponding to the
+The List data structure makes it easy to show an ordered list of items, and is ideal for adding and displaying my journal
+entries. However, searching for a particular entry will be tedious as there is a need to iterate through the entire list.
+A HashMap is used alongside the list in order to search and get journal entries easily. All search and get operations
+can be done in O(1), which makes it ideal for these specific operations. However, it does not allow for an ordered list
+easily. Due to the use of both a List and a HashMap, all operations on the journal must be synchronised
+ for both data structures. +
+
+Suppose that the user has just launched the application for the first time. The `Journal` hold a list of sample journal
+entries. On the `jnew` command, the app will check if the journal contains a `JournalEntry` corresponding to the
 current local date in the form (yyyymmdd). If it exists, its data (date and text) is read from the `JournalEntry` and a
-copy of it is opened in a new `JournalWindow`. If it does not exist, a new `JournalWindow` is created. When the window
+copy of it is opened in a new `JournalWindow`. This is done using a HashMap<Date, JournalEntry>.
+If it does not exist, a new `JournalWindow` is created. When the window
 is closed, a `handleJournalClose` method is called. If the `TextArea` is not empty, a `SaveEntryEvent` is raised. This
 event will pass the data from the `JournalWindow` in the form of a `JournalEntry` to the event handler.
 
-Currently, the `LogicManager` will handle the SaveEntryEvent` by adding the `JournalEntry` to the `Journal`. If a
-`JournalEntry` with the same date exits, it will overwrite the text.
+The `ModelManager` will raise the SaveEntryEvent` by adding the `JournalEntry` to the `Journal`. If a
+`JournalEntry` with the same date exits, it will update the previous entry. When the `ModelManager` makes a change to the
+journal, an `indicateJournalEvent` is raised. +
+
+The `StorageManager` handles the reading and writing of journal entries.  This event gets the current Journal and passes
+it to the event handler. The `StorageManager` handles the event by converting the journal into an xml file and saving it
+in the root/data folder. If there is no journal.xml file present, it will create a new one.
 
 [NOTE]
-The user cannot choose to save the `JournalEntry` under a different date. The same applies to editing past
-journal entries. The reason why this is implemented in this was is because a journal is a record of your thoughts and
-feelings in this moment. If you change your mind, that is your thoughts and feelings in a different moment. Thus, in
-order for the journal to be an accurate record of your thoughts and feelings each day, we have chosen to only allow
-the user to edit the journal corresponding to the current date.
-
-The following sequence diagram shows how the newJournal operation works:
-
-image::NewJournalSequenceDiagram.png[width="800"]
+The user cannot choose to save the `JournalEntry` under a different date. The user also cannot edit past
+journal entries.
 
 ==== Design Considerations
 
@@ -703,6 +710,18 @@ image::NewJournalSequenceDiagram.png[width="800"]
 * **Alternative 2:** Make use of the UI framework.
 ** Pros: Consistent with rest of app.
 ** Cons: Harder to implement. Requires understanding of the UI component. Required minor edits in many files.
+
+===== Aspect: Data Structure of Journal
+
+* **Alternative 1:** Use HashMap to store journal entries.
+** Pros: Easy to search and get.
+** Cons: Difficult to show ordered list.
+* **Alternative 2:** Use List to store journal entries.
+** Pros: Can show ordered list easily.
+** Cons: When there are many items in the list, searching may take very long as it has to iterate through the entire list.
+* **Alternative 3 (current choice):** Use both.
+** Pros: All operations can be done easily.
+** Cons: Need to set data structures on initialisation and sync all operations between the two data structures.
 
 ===== Aspect: Naming of journal entries
 

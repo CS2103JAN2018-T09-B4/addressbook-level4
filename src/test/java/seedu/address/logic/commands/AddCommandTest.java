@@ -20,6 +20,7 @@ import seedu.address.logic.UndoRedoStack;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyJournal;
+import seedu.address.model.journalentry.Date;
 import seedu.address.model.journalentry.JournalEntry;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.ReadOnlyPerson;
@@ -106,22 +107,24 @@ public class AddCommandTest {
 
         @Override
         public void editPerson(ReadOnlyPerson editedPerson) throws NullPointerException {
-
-        }
-
-        @Override
-        public String checkDate(int last) {
-            return null;
+            fail("This method should not be called.");
         }
 
         @Override
         public Person updatePerson(ReadOnlyPerson editedPerson) {
+            fail("This method should not be called.");
             return null;
         }
 
         @Override
         public void addJournalEntry(JournalEntry journalEntry) throws Exception {
             fail("This method should not be called.");
+        }
+
+        @Override
+        public boolean contains(Date date) {
+            fail("This method should not be called.");
+            return false;
         }
 
         //@@author chenxing1992
@@ -138,23 +141,34 @@ public class AddCommandTest {
 
         @Override
         public void indicateTimetableChanged(Timetable timetable) {
-
+            fail("This method should not be called.");
         }
 
         @Override
         public void requestHideTimetable() {
-            fail("This method should not be called");
+            fail("This method should not be called.");
         }
 
         @Override
         public void requestShowTimetable() {
-
+            fail("This method should not be called.");
         }
 
         @Override
         public int getLast() {
             fail("This method should not be called.");
             return 0;
+        }
+
+        @Override
+        public JournalEntry getJournalEntry(Date date) {
+            fail("This method should not be called.");
+            return null;
+        }
+
+        @Override
+        public void viewJournalEntry(Date date) throws Exception {
+            fail("This method should not be called.");
         }
 
         @Override

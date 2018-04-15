@@ -1,6 +1,7 @@
 package seedu.address.commons.events.ui;
 
 import seedu.address.commons.events.BaseEvent;
+import seedu.address.model.journalentry.Date;
 
 //@@author traceurgan
 /**
@@ -8,9 +9,9 @@ import seedu.address.commons.events.BaseEvent;
  */
 public class ShowJournalWindowRequestEvent extends BaseEvent {
 
-    public final String date;
+    public final Date date;
 
-    public ShowJournalWindowRequestEvent (String date) {
+    public ShowJournalWindowRequestEvent (Date date) {
         this.date = date;
     }
 

@@ -24,9 +24,11 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.events.ui.ExitAppRequestEvent;
 import seedu.address.commons.events.ui.HideTimetableRequestEvent;
 import seedu.address.commons.events.ui.ShowHelpRequestEvent;
+import seedu.address.commons.events.ui.ShowJournalEntryRequestEvent;
 import seedu.address.commons.events.ui.ShowTimetableRequestEvent;
 import seedu.address.logic.Logic;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.journalentry.JournalEntry;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -196,7 +198,8 @@ public class MainWindow extends UiPart<Region> {
     /**
      * Replaces the Calendar with Timetable Page in Browser Panel
      */
-    public void handleShowTimetable() {
+    private void handleShowTimetable() {
+        browserPlaceholder.getChildren().clear();
         browserPanel.loadTimetablePage();
         if (!browserPlaceholder.getChildren().contains(browserPanel.getRoot())) {
             browserPlaceholder.getChildren().add(browserPanel.getRoot());
@@ -206,9 +209,18 @@ public class MainWindow extends UiPart<Region> {
     /**
      * Replaces the Timetable Page with Calendar in Browser Panel
      */
-    public void handleHideTimetable() {
+    private void handleHideTimetable() {
         browserPlaceholder.getChildren().clear();
         browserPlaceholder.getChildren().add(browserPanel.getCalendarRoot());
+    }
+
+    /**
+     * Shows journal entry.
+     */
+    private void handleShowJournalEntry(JournalEntry journalEntry) {
+        browserPlaceholder.getChildren().clear();
+        JournalEntryView journalEntryView = new JournalEntryView(journalEntry);
+        browserPlaceholder.getChildren().add(journalEntryView.getRoot());
     }
 
     //@@author
@@ -236,7 +248,7 @@ public class MainWindow extends UiPart<Region> {
 
     }
 
-    void commandBoxRequestFocus() {
+    private void commandBoxRequestFocus() {
         this.commandBox.getCommandTextField().requestFocus();
     }
 
@@ -252,6 +264,13 @@ public class MainWindow extends UiPart<Region> {
     private void handleShowHelpEvent(ShowHelpRequestEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
         handleHelp();
+    }
+
+    //@@author traceurgan
+    @Subscribe
+    private void handleShowJournalEntryRequestEvent(ShowJournalEntryRequestEvent event) {
+        logger.info(LogsCenter.getEventHandlingLogMessage(event));
+        handleShowJournalEntry(event.journalEntry);
     }
 
     //@@author marlenekoh

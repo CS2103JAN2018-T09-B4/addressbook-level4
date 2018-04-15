@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.journalentry.Date;
 import seedu.address.model.journalentry.JournalEntry;
 import seedu.address.model.journalentry.UniqueJournalEntryList;
 
@@ -92,8 +93,13 @@ public class Journal implements ReadOnlyJournal {
     }
 
     @Override
-    public JournalEntry getJournalEntry(int index) {
-        return journalEntries.getJournalEntry(index);
+    public JournalEntry getJournalEntry(Date date) {
+        return journalEntries.getJournalEntry(date);
+    }
+
+    @Override
+    public boolean containsJournalEntry(Date date) {
+        return journalEntries.getJournalMap().containsKey(date);
     }
 
     @Override
@@ -111,9 +117,5 @@ public class Journal implements ReadOnlyJournal {
 
     void updateJournalEntry(JournalEntry journalEntry, int last) {
         journalEntries.updateJournalEntry(journalEntry, last);
-    }
-
-    public String getDate(int last) {
-        return journalEntries.getDate(last);
     }
 }

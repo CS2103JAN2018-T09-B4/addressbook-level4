@@ -13,6 +13,7 @@ import seedu.address.logic.parser.AddAppointmentParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Journal;
 import seedu.address.model.ReadOnlyJournal;
+import seedu.address.model.journalentry.Date;
 import seedu.address.model.journalentry.JournalEntry;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -35,11 +36,11 @@ public class SampleDataUtil {
 
     public static JournalEntry[] getSampleJournalEntries() {
         return new JournalEntry[]{
-            new JournalEntry("20180205", "Sample Text One"),
+            new JournalEntry(new Date("20180205"), "Sample Text One"),
 
-            new JournalEntry("20180301", "Sample Text Two"),
+            new JournalEntry(new Date("20180301"), "Sample Text Two"),
 
-            new JournalEntry("20180305", "Sample Text Three")
+            new JournalEntry(new Date("20180305"), "Sample Text Three")
         };
     }
 

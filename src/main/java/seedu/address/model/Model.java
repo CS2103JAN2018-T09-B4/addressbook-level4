@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.journalentry.Date;
 import seedu.address.model.journalentry.JournalEntry;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.ReadOnlyPerson;
@@ -30,6 +31,8 @@ public interface Model {
     /** Adds the given person */
     void addJournalEntry(JournalEntry journalEntry) throws Exception;
 
+    boolean contains(Date date);
+
     /** Returns an unmodifiable view of the journal entry list */
     ObservableList<JournalEntry> getJournalEntryList();
 
@@ -43,8 +46,6 @@ public interface Model {
 
     /** Edits the given person */
     void editPerson(ReadOnlyPerson editedPerson) throws NullPointerException;
-
-    String checkDate(int last);
 
     /** Updates the given person */
     Person updatePerson(ReadOnlyPerson editedPerson);
@@ -77,4 +78,12 @@ public interface Model {
 
     //@@author
     int getLast();
+
+    JournalEntry getJournalEntry(Date date);
+
+    /**
+     * Opens an existing journal entry
+     * @param date
+     */
+    void viewJournalEntry(Date date) throws Exception;
 }

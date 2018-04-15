@@ -17,6 +17,7 @@ import seedu.address.commons.util.FileUtil;
 import seedu.address.model.Journal;
 import seedu.address.model.ReadOnlyJournal;
 
+//@@author traceurgan
 public class XmlJournalStorageTest {
     private static final String TEST_DATA_FOLDER = FileUtil.getPath("./src/test/data/XmlJournalStorageTest/");
 

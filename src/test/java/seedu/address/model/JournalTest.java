@@ -9,6 +9,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+//@@author traceurgan
 public class JournalTest {
 
     @Rule

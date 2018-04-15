@@ -5,6 +5,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import seedu.address.commons.events.model.SaveEntryEvent;
+import seedu.address.model.journalentry.Date;
 import seedu.address.model.journalentry.JournalEntry;
 
 //@@author traceurgan
@@ -16,12 +17,12 @@ public class JournalWindow extends UiPart<Stage> {
     private static final String FXML = "JournalWindow.fxml";
 
     private JournalEntryText journalEntryText;
-    private String date;
+    private Date date;
 
     @FXML
     private StackPane journalTextPlaceholder;
 
-    private JournalWindow (Stage root, String date) {
+    private JournalWindow (Stage root, Date date) {
         super (FXML, root);
 
         this.date = date;
@@ -31,7 +32,7 @@ public class JournalWindow extends UiPart<Stage> {
         root.initModality(Modality.APPLICATION_MODAL);
     }
 
-    private JournalWindow (Stage root, String date, String text) {
+    private JournalWindow (Stage root, Date date, String text) {
         super (FXML, root);
 
         this.date = date;
@@ -41,11 +42,11 @@ public class JournalWindow extends UiPart<Stage> {
         root.initModality(Modality.APPLICATION_MODAL);
     }
 
-    public JournalWindow(String date, String text) {
+    public JournalWindow(Date date, String text) {
         this(new Stage(), date, text);
     }
 
-    public JournalWindow (String date) {
+    public JournalWindow (Date date) {
         this(new Stage(), date);
     }
 

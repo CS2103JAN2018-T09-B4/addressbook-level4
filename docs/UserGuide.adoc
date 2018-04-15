@@ -18,8 +18,8 @@ By: `Team T09-B4`      Since: `Feb 2018`      Licence: `MIT`
 
 Welcome to the User Guide for _NUSCouples_!
 
-_NUSCouples_ is a desktop app *specially made for you*, couples from National University of Singapore (NUS),
-to create and remember memories with ease amid our *hectic school term*. Imagine what it would be like to be able
+_NUSCouples_ is a desktop app *specially made for you*, couples from the National University of Singapore (NUS),
+to create memories easily amid our *hectic school term*. Imagine what it would be like to be able
 identify common breaks, schedule meetings and view important dates with your partner, and record your thoughts or
 feelings, *all in the same application* mere keystrokes away. Best of all, *everything* can be controlled from the
 handy Command Line Interface (CLI). Experience the *clarity* that comes with a Graphical User Interface (GUI), with
@@ -30,6 +30,9 @@ get started. Enjoy!
 
 == Quick Start
 
+This section will guide you through setting up and using _NUSCouples_ for the first time. Follow this simple step-by-step
+guide to start using _NUSCouples_ today!
+
 .  Ensure you have Java version `1.8.0_60` or later installed in your Computer.
 +
 [NOTE]
@@ -38,7 +41,9 @@ This app will not work with earlier versions of Java 8.
 +
 .  Download the latest `NUSCouples.jar` link:{repoURL}/releases[here].
 .  Copy the file to the folder you want to use as the home folder for _NUSCouples_.
-.  Double-click the file to start the app. The app window should appear in a few seconds.
+  For example, if you want the app to be installed in your desktop, the folder should look like this:
+`C:\Users\[Username]\Desktop\NUSCouples`.
+.  Double-click the file to start the app. The app window as seen below, should appear in a few seconds.
 +
 image:screenshots/0Labels.png[width="790"]
 [width="100%",cols="<20%, <80%",options="header",]
@@ -51,15 +56,17 @@ image:screenshots/0Labels.png[width="790"]
 |===
 
 +
-.  Type the command in the command box and press kbd:[Enter] to execute it. +
-e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
-.  Some example commands you can try:
+*Congratulations, you have successfully installed _NUSCouples_. Read on for some examples on commands you can try if
+you are using the app for the first time!*
 
-* **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` :
+*  Type the command in the command box and press kbd:[Enter] to execute it. +
+e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
+
+* **`add`**`n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 tt/http://modsn.us/wNuIW` :
  adds a partner named `John Doe` to _NUSCouples_.
 * *`exit`* : exits the app
 
-.  Refer to <<Features>> for details of each command. +
+Refer to <<Features>> for more details about each command. +
 
 |===
 | [.small]#Return to <<toc,Table of Contents>># +
@@ -68,26 +75,39 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 [[Features]]
 == Features
 
+Commands follow a command format. At any point in time, if you need a refresher on the commands, enter "help"
+into the command box for more information. If you only need help for a specific command, enter the command without any
+parameters for usage help. Typing "add" and pressing enter will display the correct format for using the
+command, and also show an example.
+
 ====
 *Command Format*
 
-* Some commands have an alias, which you can also use to execute the command e.g. to add your partner to
-_NUSCouples_, you can type either `add n/John Doe` or `a n/John Doe`.
+* Commands have an alias, which you can also use to execute the command e.g. to create a new journal entry,
+you can type either `jnew` or `jn`. Read the respective sections learn about our easy to remember aliases.
 * Words in `UPPER_CASE` are the parameters to be supplied by the user e.g. in `add n/NAME`, `NAME` is a
  parameter which can be used as `add n/John Doe`.
-* Items in square brackets are optional e.g `n/NAME [p/PHONE_NUMBER]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+* Items in square brackets are optional.
 * Parameters can be in any order e.g. if the command specifies `n/NAME p/PHONE_NUMBER`,
 `p/PHONE_NUMBER n/NAME` is also acceptable.
 ====
 
 === General Features
+
+This section is for all commands that are not specific to our timetable feature, calendar feature or journal feature.
+
 ==== Viewing help : `help`
+
+If you are ever unsure of what to do, use this command to display this UserGuide whenever you need it.
 
 Format: `help` +
 Alias: `hlp` +
 image:screenshots/23Help.png[width="790"]
 
 ==== Adding your partner : `add`
+
+Looking to add your significant other to NUSCouples? Look no further. Use this command to add your partner's details
+to our amazing app. *All fields are necessary, but they can be in any order.*
 
 Adds your partner to _NUSCouples_. +
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS tt/TIMETABLE_URL` +
@@ -110,6 +130,9 @@ Examples:
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 tt/http://modsn.us/wNuIW`
 
 ==== Editing your partner : `edit`
+
+If you ever need to update your partner's details, use this command. All fields are optional, *but* at least one valid
+field must be provided.
 
 Edits your existing partner in _NUSCouples_. +
 Format: `edit [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [tt/TIMETABLE_URL]` +
@@ -136,6 +159,9 @@ Edits the name of your partner to be `Betsy Crower`.
 
 ==== Deleting your partner : `delete`
 
+If it would take too much effort to edit your partner, we got you covered. You can just delete their details and
+add them again.
+
 Deletes your partner from _NUSCouples_. +
 Format: `delete` +
 Alias: `d` +
@@ -152,6 +178,9 @@ image:screenshots/11DeleteAfter.png[width="790"] +
 ****
 
 ==== Listing entered commands : `history`
+
+Want to see the most recent commands used this session? Use this command. It can help you identify if you suspect you
+have entered the wrong command.
 
 Lists all the commands that you have entered in reverse chronological order. +
 Format: `history` +
@@ -172,6 +201,9 @@ Pressing the kbd:[&uarr;] and kbd:[&darr;] arrows will display the previous and 
 
 ==== Undoing previous command : `undo`
 
+Oh no! Did you accidentally delete your partner's details? Quick use this command. Only some commands can be undone
+right now. Read on for more details.
+
 Restores _NUSCouples_ to the state before the previous "undoable command" was executed. +
 Format: `undo` +
 Alias: `u` +
@@ -184,7 +216,7 @@ image:screenshots/17EditUndoAfter.png[width="790"] +
 
 [NOTE]
 ====
-Undoable commands: those commands that modify _NUSCouples_ content (`add`, `delete`, `edit` and `clear`).
+Undoable commands: those commands that modify _NUSCouples_ content (`add`, `delete` and `edit`).
 ====
 
 Examples:
@@ -203,6 +235,9 @@ The `undo` command fails as there are no undoable commands executed previously.
 `undo` (reverses the `edit n/John Doe` command) +
 
 ==== Redoing the previously undone command : `redo`
+
+Did you undo a command, only to change your mind? We have a command just for you. Note that similar restrictions that
+ apply for undo command are also applied to redo command.
 
 Reverses the most recent `undo` command. +
 Format: `redo` +
@@ -230,8 +265,6 @@ The `redo` command fails as there are no `undo` commands executed previously.
 `undo` (reverses the `edit n/John Doe` command) +
 `redo` (reapplies the `edit n/John Doe` command) +
 `redo` (reapplies the `delete` command) +
-
-// end::undoredo[]
 
 ==== Saving the data
 
@@ -387,6 +420,9 @@ it was created on in the format `yyyymmdd - journal`. For example, a journal win
 that entry in the window. Saving is not required as the journal entry will be automatically saved when the
 journal window is closed. +
 
+To protect you from accidentally entering commands while in the journal window, the journal window will always be in
+front of the main window.
+
 [NOTE]
 If saving fails, a new window will appear containing your last session data with a warning above your text. You should
 copy your text to your computer clipboard using kbd:[ctr] + kbd:[c] so you will not lose your data if you need to
@@ -403,10 +439,12 @@ image:screenshots/21JnewAfter1.png[width="395"]
 image:screenshots/22JnewAfter2.png[width="395"] +
 
 
-==== Viewing journal entries : `jview` [Coming in v1.5]
+==== Viewing journal entries : `jview`
 
 Selects a journal entry from the list seen in the GUI. The contents of the journal entry will be shown in the main
-window. +
+window. Opening a journal window while a journal entry is displayed will display the edited entry once the journal
+window is closed.+
+
 Format: `jview` +
 Alias: `jv` +
 

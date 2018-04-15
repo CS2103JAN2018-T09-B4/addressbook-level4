@@ -3,6 +3,7 @@ package seedu.address.storage;
 import javax.xml.bind.annotation.XmlElement;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.journalentry.Date;
 import seedu.address.model.journalentry.JournalEntry;
 
 //@@author traceurgan
@@ -23,7 +24,7 @@ public class XmlAdaptedJournalEntry {
     public XmlAdaptedJournalEntry() {}
 
     /**
-     * Constructs an {@code XmlAdaptedPerson} with the given person details.
+     * Constructs an {@code XmlAdaptedJournalEntry} with the given journal entry details.
      */
     public XmlAdaptedJournalEntry(String date, String text) {
         this.date = date;
@@ -31,13 +32,28 @@ public class XmlAdaptedJournalEntry {
     }
 
     /**
-     * Converts a given Person into this class for JAXB use.
+     * Converts a given Journal Entry into this class for JAXB use.
      *
      * @param source future changes to this will not affect the created XmlAdaptedPerson
      */
     public XmlAdaptedJournalEntry(JournalEntry source) {
-        date = source.getDate();
+        date = source.getDate().value;
         text = source.getText();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof XmlAdaptedJournalEntry)) {
+            return false;
+        }
+
+        XmlAdaptedJournalEntry otherJournalEntry = (XmlAdaptedJournalEntry) other;
+        return this.date.equals(otherJournalEntry.date)
+                && this.text.equals(otherJournalEntry.text);
     }
 
     /**
@@ -50,6 +66,7 @@ public class XmlAdaptedJournalEntry {
         if (this.date == null) { //impossible, date is generated when new journal entry is created
             throw new IllegalValueException("Date missing");
         }
+        final Date date = new Date(this.date);
 
         return new JournalEntry(date, text);
     }

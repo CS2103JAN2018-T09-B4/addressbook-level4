@@ -10,19 +10,19 @@ import java.util.Objects;
  */
 public class JournalEntry {
 
-    private final String date;
+    private final Date date;
     private String text;
 
     /**
      * Every field must be present and not null.
      */
-    public JournalEntry(String date, String text) {
+    public JournalEntry(Date date, String text) {
         requireAllNonNull(date, text);
         this.date = date;
         this.text = text;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
@@ -45,17 +45,10 @@ public class JournalEntry {
                 && otherJournalEntry.getText().equals(this.getText());
     }
 
-    private void setText(JournalEntry updatedVersion) {
-        this.text = updatedVersion.getText();
-    }
-
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(date);
     }
 
-    static void updateJournalEntry(JournalEntry journalEntry, JournalEntry oldVersion) {
-        oldVersion.setText(journalEntry);
-    }
 }

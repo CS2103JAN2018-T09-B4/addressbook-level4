@@ -13,6 +13,7 @@ import seedu.address.commons.util.XmlUtil;
 import seedu.address.model.Journal;
 import seedu.address.testutil.TypicalJournalEntries;
 
+//@@author traceurgan
 public class XmlSerializableJournalTest {
 
     private static final String TEST_DATA_FOLDER = FileUtil.getPath(

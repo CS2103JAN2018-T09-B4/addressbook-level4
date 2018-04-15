@@ -29,7 +29,7 @@ public class JournalEntryCard extends UiPart<Region> {
         super(FXML);
         this.journalEntry = journalEntry;
         id.setText(displayedIndex + ". ");
-        date.setText(journalEntry.getDate());
+        date.setText(journalEntry.getDate().value);
         text.setText(journalEntry.getText());
     }
 
