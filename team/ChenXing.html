@@ -5,14 +5,14 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.6.1">
-<title>John Doe - Project Portfolio</title>
+<title>Chen Xing - Project Portfolio</title>
 <link rel="stylesheet" href="../stylesheets/gh-pages.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
 <link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css">
 </head>
 <body class="article">
 <div id="header">
-<h1>John Doe - Project Portfolio</h1>
+<h1>Chen Xing - Project Portfolio</h1>
 </div>
 <div id="content">
 <div id="preamble">
@@ -67,14 +67,14 @@ It aims to help these couples create and remember new memories during their time
 </div>
 </li>
 <li>
-<p><strong>Minor enhancement</strong>: added commands to the command box to ease the user by managing the caret to jump from last index to first index and vice versa.</p>
+<p><strong>Minor enhancement</strong>: added keystrokes to the command box to ease the user by managing the caret to jump from last index to first index and vice versa.</p>
 </li>
 <li>
 <p><strong>Future enhancement</strong>: will be implementing Google Calendar to sync the Calendar in the App currently.
 Unresolved directive in ChenXing.adoc - include::../userGuide.adoc[tag=googleAPI]</p>
 </li>
 <li>
-<p><strong>Code contributed</strong>: [<a href="https://github.com">Functional code</a>] [<a href="https://github.com">Test code</a>] <em>{give links to collated code files}</em></p>
+<p><strong>Code contributed</strong>: [<a href="https://github.com/CS2103JAN2018-T09-B4/main/tree/master/collated/functional">Functional code</a>] [<a href="https://github.com/CS2103JAN2018-T09-B4/main/tree/master/collated/test">Test code</a>] <em>{give links to collated code files}</em></p>
 </li>
 <li>
 <p><strong>Other contributions</strong>:</p>
@@ -168,88 +168,139 @@ Unresolved directive in ChenXing.adoc - include::../userGuide.adoc[tag=googleAPI
 </tr>
 </tbody>
 </table>
-<div class="sect3">
-<h4 id="undoing-previous-command-code-undo-code"><a class="link" href="#undoing-previous-command-code-undo-code">Undoing previous command : <code>undo</code></a></h4>
-<div class="paragraph">
-<p>Restores <em>NUSCouples</em> to the state before the previous "undoable command" was executed.<br>
-Format: <code>undo</code><br>
-Alias: <code>u</code></p>
-</div>
-<div class="admonitionblock note">
-<table>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
 <tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Undoable commands: those commands that modify <em>NUSCouples</em> content (<code>add</code>, <code>delete</code>, <code>edit</code> and <code>clear</code>).</p>
-</div>
-</td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="small">Return to <a href="#toc">Table of Contents</a></span><br></p></td>
 </tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="calendar"><a class="link" href="#calendar">Calendar</a></h3>
+<div class="sect3">
+<h4 id="when-you-want-to-check-which-are-the-available-dates-you-are-free-code-calendar-code"><a class="link" href="#when-you-want-to-check-which-are-the-available-dates-you-are-free-code-calendar-code">When you want to check which are the available dates you are free: <code>Calendar</code></a></h4>
+<div class="paragraph">
+<p>View calendar.<br>
+Format: <code>calander</code><br>
+Alias: <code>cal</code><br></p>
+</div>
+<div class="paragraph">
+<p>Selecting Different Views<br>
+Day: <code>cal d</code><br>
+Week: <code>cal w</code><br>
+Month: <code>cal m</code><br>
+Year: <code>cal y</code><br></p>
+</div>
+<div class="paragraph">
+<p>The image below shows a calendar view in day after you have entered <code>cal d</code>
+in the command box. From the calendar, you can see if there is any events on that day.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/CalendarView.png" alt="CalendarView" width="650">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="when-you-have-a-date-with-your-partner-then-you-decides-to-add-the-event-to-the-calendar-after-making-sure-that-there-are-no-clashes-with-your-timetable-nor-schedules-code-appointment-code"><a class="link" href="#when-you-have-a-date-with-your-partner-then-you-decides-to-add-the-event-to-the-calendar-after-making-sure-that-there-are-no-clashes-with-your-timetable-nor-schedules-code-appointment-code">When you have a date with your partner then you decides to add the event to the Calendar after making sure that there are no clashes with your timetable nor schedules: <code>Appointment</code></a></h4>
+<div class="paragraph">
+<p>Adds new event to calendar.<br>
+Format: <code>appointment</code><br>
+Alias: <code>appt</code></p>
+</div>
+<div class="paragraph">
+<p>Following the Format:<br>
+To add an event, Description and Time parameters are COMPULSORY fields that are required to enter.<br>
+To add Description and time - <code>d/ + Description, Time</code><br></p>
+</div>
+<div class="paragraph">
+<p>Example: <code>appointment d/Lunch, Next Monday 3pm</code><br></p>
+</div>
+<div class="paragraph">
+<p>The image below shows a calendar view in day after you have entered <code>appt 1 d/Checkup, tomorrow 10am to 12pm</code> event.
+As you can see, the event is nicely populated on the calendar after you have successfully created a new event!
+Moreover, this Calendar feature allows you to enter multiple events too!! And the footer will show the time when you make changes
+to the Calendar!!<br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/CalendarAdd.png" alt="CalendarAdd" width="650">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="when-your-partner-suddenly-cannot-make-it-on-the-scheduled-event-code-cancel-code"><a class="link" href="#when-your-partner-suddenly-cannot-make-it-on-the-scheduled-event-code-cancel-code">When your partner suddenly cannot make it on the scheduled event: <code>cancel</code></a></h4>
+<div class="paragraph">
+<p>Delete specified event from calendar.<br>
+Format: <code>cancel</code><br>
+Alias: Nil</p>
+</div>
+<div class="paragraph">
+<p>Following the Format:<br>
+To Cancel specified event: <code>Description with Person name</code><br>
+Example: <code>cancel Lunch with John Doe</code><br></p>
+</div>
+<div class="paragraph">
+<p>The images below shows the before and after calendar view after you have executed the cancel appointment commands.<br>
+As you can see, after the commands are executed the footer will display the updated time as well and result panel will
+display <code>appointment canceled</code>. When there is no events on that day, the calendar will also display <code>no entries</code> too.</p>
+</div>
+<div class="paragraph">
+<p>Screenshot: Before<br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/beforeCancelCal.png" alt="beforeCancelCal" width="650">
+</div>
+</div>
+<div class="paragraph">
+<p>Screenshot: After<br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/afterCancelCal.png" alt="afterCancelCal" width="650">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="accessibility"><a class="link" href="#accessibility">Accessibility</a></h4>
+<div class="paragraph">
+<p>Unique KeyStrokes in NUSCouples.<br>
+Move Cursor to front: <code>Shift Ctrl</code><br>
+Move Cursor to behind: <code>Shift Alt</code><br>
+Move Cursor to behind (MAC USERS): <code>Shift Option</code><br></p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="small">Return to <a href="#toc">Table of Contents</a></span><br></p></td>
+</tr>
+</tbody>
 </table>
 </div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>delete</code><br>
-<code>undo</code> (reverses the <code>delete</code> command)<br></p>
-</li>
-<li>
-<p><code>select</code><br>
-<code>help</code><br>
-<code>undo</code><br>
-The <code>undo</code> command fails as there are no undoable commands executed previously.</p>
-</li>
-<li>
-<p><code>edit n/John Doe</code><br>
-<code>delete</code><br>
-<code>undo</code> (reverses the <code>delete</code> command)<br>
-<code>undo</code> (reverses the <code>edit n/John Doe</code> command)<br></p>
-</li>
-</ul>
-</div>
-</div>
 <div class="sect3">
-<h4 id="redoing-the-previously-undone-command-code-redo-code"><a class="link" href="#redoing-the-previously-undone-command-code-redo-code">Redoing the previously undone command : <code>redo</code></a></h4>
+<h4 id="sync-the-calendar-with-google-api-code-coming-in-v2-0-code"><a class="link" href="#sync-the-calendar-with-google-api-code-coming-in-v2-0-code">Sync the calendar with Google API <code>[coming in v2.0]</code></a></h4>
 <div class="paragraph">
-<p>Reverses the most recent <code>undo</code> command.<br>
-Format: <code>redo</code><br>
-Alias: <code>r</code></p>
+<p><em>{explain how the user can authentic with google API and view and retrieve events from Google}</em></p>
 </div>
 <div class="paragraph">
-<p>Examples:</p>
+<p>|calendar, cal |Viewing your current calendar |<code>calendar</code> | cal w</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>delete</code><br>
-<code>undo</code> (reverses the <code>delete</code> command)<br>
-<code>redo</code> (reapplies the <code>delete</code> command)<br></p>
-</li>
-<li>
-<p><code>delete</code><br>
-<code>redo</code><br>
-The <code>redo</code> command fails as there are no <code>undo</code> commands executed previously.</p>
-</li>
-<li>
-<p><code>edit n/John Doe</code><br>
-<code>delete</code><br>
-<code>undo</code> (reverses the <code>delete</code> command)<br>
-<code>undo</code> (reverses the <code>edit n/John Doe</code> command)<br>
-<code>redo</code> (reapplies the <code>edit n/John Doe</code> command)<br>
-<code>redo</code> (reapplies the <code>delete</code> command)<br></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="encrypting-data-files-code-coming-in-v2-0-code"><a class="link" href="#encrypting-data-files-code-coming-in-v2-0-code">Encrypting data files <code>[coming in v2.0]</code></a></h4>
 <div class="paragraph">
-<p><em>{explain how the user can enable/disable data encryption}</em></p>
+<p>|appointment, appt |Adding a new event to your current calendar |<code>appointment</code> | appt 1 d/Checkup, tomorrow 10am to 12pm</p>
+</div>
+<div class="paragraph">
+<p>|cancel |Deleting an event from your current calendar |<code>cancel</code> |</p>
+</div>
+<div class="paragraph">
+<p>|exit, ex |Exits <em>NUSCouples</em> |<code>exit</code> |</p>
+</div>
 </div>
 </div>
 </div>
@@ -925,7 +976,7 @@ Use case ends.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-15 12:14:22 UTC
+Last updated 2018-04-15 12:26:28 UTC
 </div>
 </div>
 </body>
