@@ -144,6 +144,19 @@ stored in NUSCouples along with one other given timetable.</p>
 Format: <code>tview</code><br>
 Alias: <code>tv</code></p>
 </div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<code>Click</code> your partner&#8217;s details in the list panel on the left to view your partner&#8217;s timetable.<br>
+<code>Ctrl</code> + <code>Click</code> your partner&#8217;s details to go back to calendar view.
+</td>
+</tr>
+</table>
+</div>
 </div>
 <div class="sect3">
 <h4 id="comparing-timetable-code-tcompare-code-since-v1-5"><a class="link" href="#comparing-timetable-code-tcompare-code-since-v1-5">Comparing timetable : <code>tcompare</code> [Since v1.5]</a></h4>
@@ -197,9 +210,9 @@ Alias: <code>tc tt/TIMETABLE_URL</code></p>
 </tbody>
 </table>
 <div class="sect2">
-<h3 id="timetable-viewer-feature"><a class="link" href="#timetable-viewer-feature">Timetable Viewer feature</a></h3>
+<h3 id="timetable-view-and-compare-feature"><a class="link" href="#timetable-view-and-compare-feature">Timetable View and Compare feature</a></h3>
 <div class="sect3">
-<h4 id="proposed-implementation"><a class="link" href="#proposed-implementation">Proposed Implementation</a></h4>
+<h4 id="adding-a-timetable"><a class="link" href="#adding-a-timetable">Adding a Timetable</a></h4>
 <div class="paragraph">
 <p>The Timetable Viewer feature is implemented by <code>Timetable</code>, which will reside in <code>ModelManager</code>.</p>
 </div>
@@ -232,13 +245,16 @@ Alias: <code>tc tt/TIMETABLE_URL</code></p>
 <code>VENUE</code> of each module.</p>
 </div>
 <div class="paragraph">
-<p>The sequence diagram below shows interactions within the <code>Logic</code> Component for the <code>execute("tadd <a href="http://modsn.us/wNuIW"" class="bare">http://modsn.us/wNuIW"</a>)</code>
-API call.</p>
+<p>The following diagram shows how the Timetable class is represented.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/AddTimetableSequenceDiagram.png" alt="AddTimetableSequenceDiagram" width="650">
+<img src="../images/TimetableClass.png" alt="TimetableClass" width=""700">
 </div>
+</div>
+<div class="paragraph">
+<p>A TimetableModule represents one NUSMods module.<br>
+The TimetableModuleSlots represents a particular class session of a TimetableModule. (e.g. Tutorial, Lecture, etc)</p>
 </div>
 </div>
 <div class="sect3">
@@ -281,7 +297,20 @@ API call.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> Store information by days of the week</p>
+<p><strong>Alternative 1 (current choice):</strong> Store information by days of the week and by modules taken</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easy to add new functions on top of this implementation, more flexible.</p>
+</li>
+<li>
+<p>Cons: May be a bit messy to implement due to the need to manage both structures.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Store information by days of the week</p>
 <div class="ulist">
 <ul>
 <li>
@@ -294,7 +323,7 @@ API call.</p>
 </div>
 </li>
 <li>
-<p><strong>Alternative 2:</strong> Store information by modules taken</p>
+<p><strong>Alternative 3:</strong> Store information by modules taken</p>
 <div class="ulist">
 <ul>
 <li>
@@ -310,13 +339,84 @@ API call.</p>
 </div>
 </div>
 </div>
+<div class="sect3">
+<h4 id="viewing-a-timetable"><a class="link" href="#viewing-a-timetable">Viewing a Timetable</a></h4>
+<div class="paragraph">
+<p>The following image shows how the tview Command works.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ShowTimetableCommandHighLevelSequenceDiagram.png" alt="ShowTimetableCommandHighLevelSequenceDiagram" width="820">
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>TimetableChangedEvent</code> is handled by <code>StorageManager</code> which will save the new timetable details into the relevant
+timetable display files.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">    <span class="annotation">@Subscribe</span>
+    <span class="directive">public</span> <span class="type">void</span> handleTimetableChangedEvent(TimetableChangedEvent event) {
+        setUpTimetableDisplayFiles(event.timetable.getTimetableDisplayInfo());
+        setUpTimetablePageHtmlFile();
+        raise(<span class="keyword">new</span> ShowTimetableRequestEvent());
+    }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>ShowTimetableRequestEvent</code> is handled by both <code>ListPanel</code> and <code>MainWindow</code>.
+The following code snippets show how they are handled.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">    <span class="annotation">@Subscribe</span>
+    <span class="directive">private</span> <span class="type">void</span> handleShowTimetableRequestEvent (ShowTimetableRequestEvent event) {
+        logger.info(LogsCenter.getEventHandlingLogMessage(event));
+        scrollTo(PARTNER_INDEX); <span class="comment">// selects Partner in ListPanel</span>
+    }</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">    <span class="annotation">@Subscribe</span>
+    <span class="directive">private</span> <span class="type">void</span> handleShowHelpEvent(ShowHelpRequestEvent event) {
+        logger.info(LogsCenter.getEventHandlingLogMessage(event));
+        handleHelp();
+    }
+
+    <span class="directive">public</span> <span class="type">void</span> handleShowTimetable() {
+        browserPanel.loadTimetablePage(); <span class="comment">// Loads Timetable Page in Browser Panel</span>
+        <span class="keyword">if</span> (!browserPlaceholder.getChildren().contains(browserPanel.getRoot())) {
+            browserPlaceholder.getChildren().add(browserPanel.getRoot());
+        }
+    }</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="comparing-timetables"><a class="link" href="#comparing-timetables">Comparing Timetables</a></h4>
+<div class="paragraph">
+<p>The sequence diagram below shows interactions within the <code>Logic</code> Component for the <code>execute(“tc tt/http://modsn.us/q7cLP”)</code>
+API call.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/CompareTimetableSequenceDiagram.png" alt="CompareTimetableSequenceDiagram" width="820">
+</div>
+</div>
+<div class="paragraph">
+<p>Similar to <a href="#viewing-a-timetable">Viewing a Timetable</a>, the CompareTimetableCommand raises two Events:
+<code>ShowTimetableRequestEvent</code> and <code>TimetableChangedEvent</code>. This updates the relevant files and refreshes the
+Timetable Page displayed.</p>
+</div>
+</div>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-15 15:42:25 UTC
+Last updated 2018-04-15 15:50:52 UTC
 </div>
 </div>
 </body>
